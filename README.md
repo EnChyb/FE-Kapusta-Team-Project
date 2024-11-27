@@ -14,13 +14,13 @@ Ensure you have the LTS version of Node.js installed on your computer. If necess
 
 ## Cooperation
 
-Make a new branch for every feature or fix
-`git checkout -b nazwa-gałęzi`
+1. Before you start working on a new branch, synchronize your changes in main: `git pull`.
 
-Name your branch using a number of feature on trello, eg.:
-`feature/01`
-or if you want to fix something:
-`fix/01`
+2. Make a new branch for every feature or fix
+   `git checkout -b nazwa-gałęzi`
+   Name your branch using a number of feature on trello, eg.:
+   `feature/01`
+   or if you want to fix something:
+   `fix/01`
 
-Once you've finished working on the branch, open a pull request on GitHub.
-After merging, your branch will be deleted automatically.
+3. Once you've finished working on the branch, open a pull request on GitHub. After merging, your branch will be deleted automatically.
