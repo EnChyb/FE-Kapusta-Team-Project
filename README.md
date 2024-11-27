@@ -24,3 +24,7 @@ Ensure you have the LTS version of Node.js installed on your computer. If necess
    `fix/01`
 
 3. Once you've finished working on the branch, open a pull request on GitHub. After merging, your branch will be deleted automatically.
+
+## Production
+
+Deploying a project using Vercel: (fe-kapusta-team-project.vercel.app)
