@@ -1,0 +1,512 @@
+/***
+    The new CSS reset - version 1.11.3 (last updated 25.08.2024)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(
+        :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
+    ) {
+    all: unset;
+    display: revert;
+}
+
+/* Fix mobile Safari increase font-size on landscape mode */
+html {
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+    cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu,
+summary {
+    list-style: none;
+}
+
+/* Firefox: solve issue where nested ordered lists continue numbering from parent (https://bugzilla.mozilla.org/show_bug.cgi?id=1881517) */
+ol {
+    counter-reset: revert;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+    -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+    color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+display:revert; revert to element instead of attribute */
+:where([hidden]) {
+    display: none;
+}
+
+/* revert for bug in Chromium browsers
+- fix for the content editable attribute will work properly.
+- webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* Remove details summary webkit styles */
+::-webkit-details-marker {
+    display: none;
+}
+
+/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.15; /* 1. Correct the line height in all browsers. */
+    -webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
+    tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
+}
+
+/**
+Add the correct font weight in Chrome and Safari.
+*/
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono",
+        Menlo, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+
+legend {
+    padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+    vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    height: auto;
+}
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+    display: list-item;
+}
+
+/* Document
+* ========================================================================== */
+
+/**
+* 1. Use the default cursor in all browsers (opinionated).
+* 2. Use a 4-space tab width in all browsers (opinionated).
+* 3. Remove the grey highlight on links in iOS (opinionated).
+* 4. Prevent adjustments of font size after orientation changes in
+*    IE on Windows Phone and in iOS.
+* 5. Breaks words to prevent overflow in all browsers (opinionated).
+*/
+
+html {
+    cursor: default; /* 1 */
+    -moz-tab-size: 4; /* 2 */
+    -webkit-tap-highlight-color: transparent /* 3 */;
+    -ms-text-size-adjust: 100%; /* 4 */
+    word-break: break-word; /* 5 */
+}
+
+/**
+* 1. Add the correct sizing in Firefox.
+* 2. Show the overflow in Edge 18- and IE.
+*/
+
+hr {
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+    color: inherit;
+}
+
+/**
+* Add the correct text decoration in Edge 18-, IE, and Safari.
+*/
+
+abbr[title] {
+    text-decoration: underline;
+    text-decoration: underline dotted;
+}
+
+/*
+* Change the alignment on media elements in all browsers (opinionated).
+*/
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/**
+* Remove the border on iframes in all browsers (opinionated).
+*/
+
+iframe {
+    border-style: none;
+}
+
+/**
+* Change the fill color to match the text color in all browsers (opinionated).
+*/
+
+svg:not([fill]) {
+    fill: currentColor;
+}
+
+/**
+* Remove the margin on controls in Safari.
+*/
+
+button,
+input,
+select {
+    margin: 0;
+}
+
+/**
+* Remove the inheritance of text transform in Edge 18-, Firefox, and IE.
+*/
+
+button {
+    text-transform: none;
+}
+
+/**
+* 1. Change the inconsistent appearance in all browsers (opinionated).
+*/
+
+fieldset {
+    border: 1px solid #a0a0a0; /* 1 */
+}
+
+/**
+* Show the overflow in Edge 18- and IE.
+*/
+
+input {
+    overflow: visible;
+}
+
+/**
+* Correct the text wrapping in Edge 18- and IE.
+*/
+
+legend {
+    display: table; /* 1 */
+    max-width: 100%; /* 1 */
+    white-space: normal; /* 1 */
+}
+
+/**
+* 1. Add the correct display in Edge 18- and IE.
+* 2. Add the correct vertical alignment in Chrome, Edge, and Firefox.
+*/
+
+progress {
+    display: inline-block; /* 1 */
+    vertical-align: baseline; /* 2 */
+}
+
+/**
+* Remove the inheritance of text transform in Firefox.
+*/
+
+select {
+    text-transform: none;
+}
+
+/**
+* Correct the text style of placeholders in Chrome, Edge, and Safari.
+*/
+
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.54;
+}
+
+/**
+* Remove the inner border and padding of focus outlines in Firefox.
+*/
+
+::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+/**
+* Restore the focus outline styles unset by the previous rule in Firefox.
+*/
+
+:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+/**
+* Remove the additional :invalid styles in Firefox.
+*/
+
+:-moz-ui-invalid {
+    box-shadow: none;
+}
+
+/*
+* Add the correct display in Edge 18- and IE.
+*/
+
+details {
+    display: block;
+}
+
+/*
+* Add the correct styles in Edge 18-, IE, and Safari.
+*/
+
+dialog {
+    background-color: white;
+    border: solid;
+    color: black;
+    display: block;
+    height: -moz-fit-content;
+    height: -webkit-fit-content;
+    height: fit-content;
+    left: 0;
+    margin: auto;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    width: fit-content;
+}
+
+dialog:not([open]) {
+    display: none;
+}
+
+/*
+* Remove the tapping delay on clickable elements
+in all browsers (opinionated).
+*/
+
+a,
+area,
+button,
+input,
+label,
+select,
+summary,
+textarea,
+[tabindex] {
+    touch-action: manipulation;
+}
+
+/**
+* Change the cursor on busy elements in all browsers (opinionated).
+*/
+
+[aria-busy="true"] {
+    cursor: progress;
+}
+
+/*
+* Change the cursor on control elements in all browsers (opinionated).
+*/
+
+[aria-controls] {
+    cursor: pointer;
+}
+
+/*
+* Change the cursor on disabled, not-editable, or otherwise
+* inoperable elements in all browsers (opinionated).
+*/
+
+[aria-disabled="true"],
+[disabled] {
+    cursor: not-allowed;
+}
+
+/*
+* Change the display on visually hidden accessible elements
+* in all browsers (opinionated).
+*/
+
+[aria-hidden="false"][hidden] {
+    display: initial;
+}
+
+[aria-hidden="false"][hidden]:not(:focus) {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}

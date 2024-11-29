@@ -1,13 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="./src/assets/images/favicon.webp"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kapusta Finance</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <nav class="header__nav">
+                <a href="" aria-label="Home page"
+                    ><img
+                        srcset="
+                            ./src/assets/images/logo/logo-1x.webp 1x,
+                            ./src/assets/images/logo/logo-2x.webp 1.5x,
+                            ./src/assets/images/logo/logo-3x.webp 2x
+                        "
+                        alt="Kapusta logo"
+                        width="90"
+                        height="31"
+                /></a>
+
+                <div class="header__user-controls">
+                    <!-- Jeżeli chcemy z backendu jakąś focie to do <img> (w css jest display: none;) a jeżeli nie będzie foci (np error) to span się wyświetla (defaultowo się wyświetla span) -->
+                    <div class="header__profile-pic-wrapper">
+                        <img
+                            class="header__profile-pic"
+                            src=""
+                            alt="User profile picture"
+                            width="32"
+                            height="32"
+                        />
+                        <span
+                            class="header__profile-pic-placeholder"
+                            role="img"
+                            aria-label="User profile picture"
+                            >U</span
+                        >
+                    </div>
+
+                    <span class="header__user-name">User Name</span>
+
+                    <span class="header__divider"></span>
+
+                    <button
+                        class="header__logout-btn"
+                        type="button"
+                        aria-label="Logout"
+                    >
+                        <svg
+                            class="header__logout-icon"
+                            width="16"
+                            height="16"
+                            aria-hidden="true"
+                        >
+                            <use
+                                href="./src/assets/images/sprite.svg#logout"
+                            ></use>
+                        </svg>
+                        <span class="header__logout-text">Exit</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
 </html>
