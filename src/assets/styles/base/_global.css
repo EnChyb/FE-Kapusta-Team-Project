@@ -1,0 +1,55 @@
+:root {
+    /* Font variables */
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-bold: 700;
+    --font-extra-bold: 900;
+
+    /* Color variables */
+    --clr-primary-text: #52555f;
+    --clr-primary-light: #52555fb3;
+    --clr-titles: #000000;
+    --clr-accent: #ff751d;
+    --clr-expense: #e7192e;
+    --clr-income: #407946;
+    --clr-background: #f5f6fb;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    padding-inline: 20px;
+}
+
+@media (width >= 772px) {
+    .container {
+        padding-inline: 32px;
+    }
+}
+
+/* 
+--min-size
+--max-size
+--min-viewport
+--max-viewport
+
+calc(var(--min-size) + (var(--max-size) - var(--min-size)) * ((100vw - var(--min-viewport)) / (var(--max-viewport) - var(--min-viewport)))); */
+
+/* Tab outline */
+:focus {
+    outline: none;
+}
+
+:focus-visible,
+a:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px #000000, 0 0 0 2px #ff751d;
+    transition: box-shadow 0.08s ease;
+}
+
+a:focus-visible,
+button:focus-visible {
+    border-radius: 6%;
+}
