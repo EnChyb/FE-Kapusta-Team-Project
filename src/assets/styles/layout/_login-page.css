@@ -178,6 +178,11 @@ main.login-page::after {
         border-radius: 0 0 0 115px;
     }
 
+    main.login-page::after {
+        background-position: bottom 50px left
+            calc(103px + (230 - 103) * ((100vw - 773px) / (1280 - 773)));
+    }
+
     .logo-login-title {
         margin-top: 191px;
         margin-left: 138px;
