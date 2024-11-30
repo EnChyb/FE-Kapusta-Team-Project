@@ -12,11 +12,30 @@
     --clr-accent: #ff751d;
     --clr-expense: #e7192e;
     --clr-income: #407946;
+    --clr-background: #f5f6fb;
 }
 
 body {
     font-family: "Roboto", sans-serif;
 }
+
+.container {
+    padding-inline: 20px;
+}
+
+@media (width >= 772px) {
+    .container {
+        padding-inline: 32px;
+    }
+}
+
+/* 
+--min-size
+--max-size
+--min-viewport
+--max-viewport
+
+calc(var(--min-size) + (var(--max-size) - var(--min-size)) * ((100vw - var(--min-viewport)) / (var(--max-viewport) - var(--min-viewport)))); */
 
 /* Tab outline */
 :focus {

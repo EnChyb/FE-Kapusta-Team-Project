@@ -45,6 +45,10 @@
     display: none;
 }
 
+.header__logout-btn {
+    cursor: pointer;
+}
+
 .header__logout-icon {
     display: block;
 }
