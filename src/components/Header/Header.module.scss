@@ -35,10 +35,17 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #52555f;
 }
 
 .header__user-name {
 	display: none;
+	font-size: 0.75rem;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	color: #52555f;
 }
 
 .header__divider {
@@ -47,6 +54,12 @@
 
 .header__logout-btn {
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.75rem;
+	text-decoration: underline;
+	color: #52555f;
 }
 
 .header__logout-icon {
@@ -54,7 +67,9 @@
 }
 
 .header__logout-text {
-	display: none;
+	font-weight: 400;
+	text-decoration: underline;
+	display: inline;
 }
 
 @media (min-width: 620px) {
