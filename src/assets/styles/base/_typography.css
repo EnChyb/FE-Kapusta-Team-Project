@@ -40,7 +40,7 @@
 
 .login__label {
     font-weight: var(--font-regular);
-    font-size: 0.625rem;
+    font-size: 12px;
     letter-spacing: 0.04em;
     color: var(--clr-titles);
 }
