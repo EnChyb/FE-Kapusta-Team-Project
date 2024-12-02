@@ -1,11 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./Login.module.css";
+import logoLogin from "../../assets/images/logo/logo-login.webp"; 
 
 const Logo = () => (
   <img
     className="logo-login-title"
-    src="./src/assets/images/logo/logo-login.webp"
+    src={logoLogin}
     alt="Kapusta, Smart Finance"
     width="183"
     height="63"

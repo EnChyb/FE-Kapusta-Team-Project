@@ -2,6 +2,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
+import logo1x from "../../assets/images/logo/logo-1x.webp";
+import logo2x from "../../assets/images/logo/logo-2x.webp";
+import logo3x from "../../assets/images/logo/logo-3x.webp";
+
 const ProfilePic = ({ profilePic }) => (
 	<div className={styles["header__profile-pic-wrapper"]}>
 		{profilePic ? (
@@ -57,12 +61,10 @@ const Header = ({ userName = "", profilePic = "", onLogout }) => {
 			<nav className={styles["header__nav"]}>
 				<Link to="/" aria-label="Home page">
 					<img
-						srcSet="
-              ./src/assets/images/logo/logo-1x.webp 1x,
-              ./src/assets/images/logo/logo-2x.webp 1.5x,
-              ./src/assets/images/logo/logo-3x.webp 2x
-            "
+						src={logo1x}
+						srcSet={`${logo1x} 1x, ${logo2x} 1.5x, ${logo3x} 2x`}
 						alt="Kapusta logo"
+						className="home__logo"
 						width="90"
 						height="31"
 					/>
