@@ -91,6 +91,7 @@ main.login-page::after {
 }
 
 .login__input-container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
@@ -136,10 +137,11 @@ main.login-page::after {
 	box-shadow: 1px 3px 5px 0 rgba(82, 85, 95, 0.15);
 }
 .error {
-	color: #eb5757;
-	font-size: 10px;
-	line-height: 1.2;
-	margin-top: -8px;
+    position: absolute;
+    margin-top: 80px;
+    color: #EB5757;
+    font-size: 10px;
+    line-height: 1.2;
 }
 
 @media (width >= 772px) {
