@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./Login.module.scss";
+import styles from "./Login.module.css";
 
 const Logo = () => (
   <img

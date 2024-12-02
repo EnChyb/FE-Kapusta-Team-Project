@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import styles from "./Header.module.scss";
+import styles from "./Header.module.css";
 
 const ProfilePic = ({ profilePic }) => (
 	<div className={styles["header__profile-pic-wrapper"]}>
