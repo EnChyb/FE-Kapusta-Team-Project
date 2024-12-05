@@ -29,7 +29,7 @@ export default function LogoutModal({
     }, [isOpen, handleClose]);
 
     const handleOverlayClick = (event) => {
-        if (event.target.classList.contains("overlay")) {
+        if (event.target.classList.contains("modal__overlay")) {
             handleClose();
         }
     };
