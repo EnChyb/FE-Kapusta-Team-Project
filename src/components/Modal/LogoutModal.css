@@ -1,93 +1,58 @@
-.overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1000;
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .modal {
-	position: relative;
-	background: #ffffff;
-	border-radius: 30px;
-	padding: 20px;
-	width: 380px;
-	height: 194px;
-	text-align: center;
-	position: relative;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 50px 58px 60px;
+    max-width: min(380px, 87.5%);
+    min-height: 194px;
+    box-shadow: 10px 10px 30px 0 rgba(82, 85, 95, 0.4);
 }
 
-.modalCloseButton {
-	position: absolute;
-	top: 10px;
-	right: 18px;
-	background: transparent;
-	border: none;
-	font-size: 24px;
-	cursor: pointer;
+.modal__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: flex;
 }
 
-.modalTitle {
-	margin: 0;
-	position: absolute;
-	top: 45px;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 14px;
-	color: var(--clr-primary-text);
+.modal__title {
+    margin-bottom: 20px;
 }
 
-.modalButtons {
-	position: absolute;
-	bottom: 60px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	gap: 16px;
-	justify-content: space-around;
+.modal__btns-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
-.modalConfirmButton {
-	width: 125px;
-	height: 44px;
-	border-radius: 16px;
-	background-color: transparent;
-	color: var(--clr-primary-text);
-	border: 2px solid var(--clr-background);
-	cursor: pointer;
-	font-size: 16px;
-	text-align: center;
-	line-height: 44px;
-	transition: border-color 0.3s ease, color 0.3s ease;
-}
-.modalCancelButton {
-	width: 125px;
-	height: 44px;
-	border-radius: 16px;
-	background-color: transparent;
-	color: var(--clr-primary-text);
-	border: 2px solid var(--clr-background);
-	cursor: pointer;
-	font-size: 16px;
-	text-align: center;
-	line-height: 44px;
-	transition: border-color 0.3s ease, color 0.3s ease;
-}
-.modalConfirmButton:hover,
-.modalCancelButton:hover {
-	background-color: var(--clr-accent);
-	color: #ffffff;
-	transition: color 0.3s ease, background-color 0.3s ease;
+.modal__confirm-btn,
+.modal__cancel-btn {
+    width: 125px;
+    min-height: 44px;
+    border-radius: 16px;
+    padding: 12px 0;
+    border: 2px solid var(--clr-background);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 599px) {
-	.modal {
-		width: 90%;
-	}
+.modal__confirm-btn:hover,
+.modal__cancel-btn:hover {
+    background-color: var(--clr-accent);
+    color: #ffffff;
+    transition: all 0.3s ease;
 }
