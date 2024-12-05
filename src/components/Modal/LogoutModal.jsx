@@ -1,4 +1,6 @@
+import { useEffect, useCallback } from "react";
 import "./LogoutModal.css";
+
 export default function LogoutModal({
 	isOpen,
 	step,
@@ -6,6 +8,32 @@ export default function LogoutModal({
 	onCancel,
 	onStepChange,
 }) {
+	const handleClose = useCallback(() => {
+		onCancel();
+		document.activeElement.blur();
+	}, [onCancel]);
+
+	useEffect(() => {
+		if (!isOpen) return;
+
+		const handleKeyDown = (event) => {
+			if (event.key === "Escape") {
+				handleClose();
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [isOpen, handleClose]);
+
+	const handleOverlayClick = (event) => {
+		if (event.target.classList.contains("overlay")) {
+			handleClose();
+		}
+	};
+
 	if (!isOpen) return null;
 
 	const modalContent =
@@ -14,11 +42,11 @@ export default function LogoutModal({
 			: { title: "Are you sure?", confirmText: "Yes" };
 
 	return (
-		<div className="overlay">
+		<div className="overlay" onClick={handleOverlayClick}>
 			<div className="modal">
 				<button
 					className="modalCloseButton"
-					onClick={onCancel}
+					onClick={handleClose}
 					aria-label="Close"
 				>
 					&times;
@@ -31,7 +59,7 @@ export default function LogoutModal({
 					>
 						{modalContent.confirmText}
 					</button>
-					<button className="modalCancelButton" onClick={onCancel}>
+					<button className="modalCancelButton" onClick={handleClose}>
 						No
 					</button>
 				</div>
