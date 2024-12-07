@@ -45,7 +45,7 @@ const LoginForm = () => {
     password: ""
   };
 
-  const handleSubmit = async (values, actionType) => {
+  const handleSubmit = async (values, actions, actionType) => {
     try {
       if (actionType === "register") {
         await axios.post(`${API_URL}/auth/register`, values);
@@ -62,6 +62,13 @@ const LoginForm = () => {
         actionType === "register" ? "Registration error:" : "Login error:",
         error.response?.data?.message || error.message
       );
+
+      actions.setErrors({
+        email: "Invalid email or password",
+        password: "Please check your credentials"
+      });
+    } finally {
+      actions.setSubmitting(false);
     }
   };
 
@@ -76,9 +83,14 @@ const LoginForm = () => {
           .min(7, "Password must be at least 7 characters long")
           .required("This field is required")
       })}
-      onSubmit={(values) => handleSubmit(values, "login")}
+      onSubmit={(values, actions) => {
+        console.log("Submitted values:", values);
+        console.log("Formik actions:", actions);
+
+        handleSubmit(values, actions, "login");
+      }}
     >
-      {({ values, touched, errors }) => (
+      {({ values, touched, errors, isSubmitting }) => (
         <Form className="login__form">
           <div className="login__input-container">
             <label className="login__label" htmlFor="email">
@@ -114,16 +126,18 @@ const LoginForm = () => {
           </div>
           <div className="login__btns-container">
             <button
-              type="button"
+              type="submit"
+              disabled={isSubmitting}
               className="login__log-in-btn"
-              onClick={() => handleSubmit(values, "login")}
             >
               Log in
             </button>
             <button
               type="button"
               className="login__register-link"
-              onClick={() => handleSubmit(values, "register")}
+              onClick={() =>
+                handleSubmit(values, { setSubmitting: () => {} }, "register")
+              }
             >
               Registration
             </button>
