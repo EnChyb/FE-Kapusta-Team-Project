@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import MainPage from "./pages/MainPage";
-import Dashboard from "./pages/Dashboard";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   return (
@@ -10,9 +10,9 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route
-            path="/dashboard"
+            path="/home"
             element={
-              localStorage.getItem("token") ? <Dashboard /> : <MainPage />
+              localStorage.getItem("token") ? <HomePage /> : <MainPage />
             }
           />
         </Route>

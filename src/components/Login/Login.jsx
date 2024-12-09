@@ -73,8 +73,8 @@ const LoginForm = () => {
         console.log("Auto-login successful:", loginResponse.data);
         localStorage.setItem("token", loginResponse.data.accessToken);
 
-        // Przekierowanie na dashboard
-        navigate("/dashboard");
+        // Przekierowanie na home
+        navigate("/home");
       } else if (actionType === "login") {
         iziToast.success({
           title: "Login Successful",
@@ -85,8 +85,8 @@ const LoginForm = () => {
 
         localStorage.setItem("token", response.data.accessToken);
 
-        // Przekierowanie na dashboard
-        navigate("/dashboard");
+        // Przekierowanie na home
+        navigate("/home");
       }
     } catch (error) {
       console.error("Full error object:", error);
