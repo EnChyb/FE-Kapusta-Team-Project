@@ -20,7 +20,7 @@ const GoogleLoginButton = () => {
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("sid", sid);
 
-      navigate("/home");
+      navigate("/dashboard");
     }
   }, [navigate]);
 

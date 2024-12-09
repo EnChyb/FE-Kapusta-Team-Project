@@ -3,7 +3,7 @@ import { Suspense, lazy } from "react";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 const MainPage = lazy(() => import("./pages/MainPage"));
-const HomePage = lazy(() => import("./pages/HomePage"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 const App = () => {
 	return (
@@ -13,9 +13,9 @@ const App = () => {
 					<Route path="/" element={<SharedLayout />}>
 						<Route index element={<MainPage />} />
 						<Route
-							path="/home"
+							path="/dashboard"
 							element={
-								localStorage.getItem("token") ? <HomePage /> : <MainPage />
+								localStorage.getItem("token") ? <Dashboard /> : <MainPage />
 							}
 						/>
 					</Route>
