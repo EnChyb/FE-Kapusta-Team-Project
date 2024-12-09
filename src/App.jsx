@@ -4,6 +4,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 const MainPage = lazy(() => import("./pages/MainPage"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const ReportsPage = lazy(() => import("./pages/ReportsPage"));
 
 const App = () => {
 	return (
@@ -18,6 +19,7 @@ const App = () => {
 								localStorage.getItem("token") ? <Dashboard /> : <MainPage />
 							}
 						/>
+						<Route path="/reports" element={<ReportsPage />} />
 					</Route>
 				</Routes>
 			</Suspense>
