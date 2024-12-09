@@ -5,6 +5,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import logoLogin from "../../assets/images/logo/logo-login.webp";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../config/apiConfig";
 
 const Logo = () => (
   <img
@@ -18,8 +19,6 @@ const Logo = () => (
 
 const GoogleLoginButton = () => {
   const handleGoogleLogin = () => {
-    const API_URL =
-      import.meta.env.VITE_API_URL || "https://kapusta-backend.goit.global";
     window.location.href = `${API_URL}/auth/google`;
   };
 
@@ -39,8 +38,6 @@ const GoogleLoginButton = () => {
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const API_URL =
-    import.meta.env.VITE_API_URL || "https://kapusta-backend.goit.global";
 
   const initialValues = {
     email: "",

@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../config/apiConfig";
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
-    const API_URL =
-      import.meta.env.VITE_API_URL || "https://kapusta-backend.goit.global";
     window.location.href = `${API_URL}/auth/google`;
   };
 
