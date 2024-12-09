@@ -21,7 +21,7 @@ const GoogleLoginButton = () => {
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("sid", sid);
 
-      navigate("/dashboard");
+      navigate("/home");
     }
   }, [navigate]);
 
