@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import logoLogin from "../../assets/images/logo/logo-login.webp";
 import { useNavigate } from "react-router-dom";
 
@@ -45,30 +47,74 @@ const LoginForm = () => {
     password: ""
   };
 
-  const handleSubmit = async (values, actions, actionType) => {
+  const handleSubmit = async (values, actions = {}, actionType) => {
+    console.log("Request data:", values);
+    console.log("API URL:", API_URL);
+
     try {
+      const endpoint =
+        actionType === "register" ? "/auth/register" : "/auth/login";
+      const response = await axios.post(`${API_URL}${endpoint}`, values);
+
+      console.log("Login/Registration successful:", response.data);
+
       if (actionType === "register") {
-        await axios.post(`${API_URL}/auth/register`, values);
-        console.log("Registration successful");
+        iziToast.success({
+          title: "Registration Successful",
+          message:
+            "You have been automatically logged in and redirected to your dashboard.",
+          position: "topRight",
+          timeout: 5000
+        });
+
+        // Automatyczne logowanie po rejestracji
+        const loginResponse = await axios.post(`${API_URL}/auth/login`, values);
+
+        console.log("Auto-login successful:", loginResponse.data);
+        localStorage.setItem("token", loginResponse.data.accessToken);
+
+        // Przekierowanie na dashboard
+        navigate("/dashboard");
+      } else if (actionType === "login") {
+        iziToast.success({
+          title: "Login Successful",
+          message: "You are being redirected to your dashboard.",
+          position: "topRight",
+          timeout: 5000
+        });
+
+        localStorage.setItem("token", response.data.accessToken);
+
+        // Przekierowanie na dashboard
+        navigate("/dashboard");
       }
-
-      const response = await axios.post(`${API_URL}/auth/login`, values);
-      console.log("Login successful:", response.data);
-
-      localStorage.setItem("token", response.data.accessToken);
-      navigate("/dashboard");
     } catch (error) {
-      console.error(
-        actionType === "register" ? "Registration error:" : "Login error:",
-        error.response?.data?.message || error.message
-      );
+      console.error("Full error object:", error);
+      console.error("Error response details:", error.response?.data);
 
-      actions.setErrors({
-        email: "Invalid email or password",
-        password: "Please check your credentials"
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+
+      iziToast.error({
+        title: "Error",
+        message: errorMessage,
+        position: "topRight",
+        timeout: 5000
       });
+
+      if (actions.setErrors) {
+        actions.setErrors({
+          email: actionType === "register" ? "" : "Invalid email or password",
+          password:
+            actionType === "register" ? "" : "Please check your credentials"
+        });
+      }
     } finally {
-      actions.setSubmitting(false);
+      if (actions.setSubmitting) {
+        actions.setSubmitting(false);
+      }
     }
   };
 
@@ -84,9 +130,6 @@ const LoginForm = () => {
           .required("This field is required")
       })}
       onSubmit={(values, actions) => {
-        console.log("Submitted values:", values);
-        console.log("Formik actions:", actions);
-
         handleSubmit(values, actions, "login");
       }}
     >
@@ -136,7 +179,14 @@ const LoginForm = () => {
               type="button"
               className="login__register-link"
               onClick={() =>
-                handleSubmit(values, { setSubmitting: () => {} }, "register")
+                handleSubmit(
+                  values,
+                  {
+                    setSubmitting: () => {},
+                    setErrors: () => {}
+                  },
+                  "register"
+                )
               }
             >
               Registration
