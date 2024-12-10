@@ -4,7 +4,7 @@ import "./DataHeader.css";
 
 const DataHeader = () => {
 	return (
-		<div className="container">
+		<div className="container_dataheader">
 			<Balance />
 			<Link className="reportsLinkWrapper" to="/reports">
 				<span className="reports">Reports</span>

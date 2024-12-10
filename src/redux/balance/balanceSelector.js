@@ -1,1 +1,1 @@
-export const getBalance = (state) => state.balance.balance;
+export const getBalance = (state) => state.balance?.balance || 0;
