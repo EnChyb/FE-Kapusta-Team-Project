@@ -1,46 +1,78 @@
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import LogoutModal from "../Modal/LogoutModal";
+import { login, logout } from "../../redux/userSlice";
 
 const SharedLayout = () => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [modalStep, setModalStep] = useState(1);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { email } = useSelector((state) => state.user);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalStep, setModalStep] = useState(1);
 
-	const handleLogout = () => {
-		setIsModalOpen(true);
-		setModalStep(1);
-	};
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-	const confirmLogout = () => {
-		console.log("User logged out");
-		setIsModalOpen(false);
-	};
+    if (token) {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData) {
+        console.log("User data loaded from localStorage:", userData);
+        dispatch(login(userData));
+      }
+    } else {
+      dispatch(logout());
+      navigate("/");
+    }
+  }, [dispatch, navigate]);
 
-	const cancelLogout = () => {
-		setIsModalOpen(false);
-		setModalStep(1);
-	};
+  useEffect(() => {
+    if (email) {
+      console.log("Redirecting to /dashboard from SharedLayout...");
+      navigate("/dashboard");
+    }
+  }, [email, navigate]);
 
-	const goToNextStep = () => {
-		setModalStep(2);
-	};
+  const handleLogout = () => {
+    setIsModalOpen(true);
+    setModalStep(1);
+  };
 
-	return (
-		<>
-			<Header onLogout={handleLogout} />
-			<main>
-				<Outlet />
-			</main>
-			<LogoutModal
-				isOpen={isModalOpen}
-				step={modalStep}
-				onConfirm={confirmLogout}
-				onCancel={cancelLogout}
-				onStepChange={goToNextStep}
-			/>
-		</>
-	);
+  const confirmLogout = () => {
+    if (modalStep === 1) {
+      setModalStep(2);
+    } else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      dispatch(logout());
+      setIsModalOpen(false);
+      navigate("/");
+    }
+  };
+
+  const cancelLogout = () => {
+    setIsModalOpen(false);
+    setModalStep(1);
+  };
+
+  return (
+    <>
+      <Header onLogout={handleLogout} />
+      <main>
+        <Outlet />
+      </main>
+      {isModalOpen && (
+        <LogoutModal
+          isOpen={isModalOpen}
+          step={modalStep}
+          onConfirm={confirmLogout}
+          onCancel={cancelLogout}
+          onStepChange={() => setModalStep(2)}
+        />
+      )}
+    </>
+  );
 };
 
 export default SharedLayout;
