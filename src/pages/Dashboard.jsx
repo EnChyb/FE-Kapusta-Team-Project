@@ -1,36 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import LogoutModal from "../components/Modal/LogoutModal";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setIsModalOpen(true);
-  };
-
-  const confirmLogout = () => {
-    localStorage.removeItem("token");
-    setIsModalOpen(false);
-    navigate("/");
-  };
-
-  const cancelLogout = () => {
-    setIsModalOpen(false);
-  };
+  const { email } = useSelector((state) => state.user);
+  console.log("Dashboard loaded with email:", email);
 
   return (
     <main className="dashboard container">
-      <LogoutModal
-        isOpen={isModalOpen}
-        onConfirm={confirmLogout}
-        onCancel={cancelLogout}
-      />
-      <div className="dashboard__content">
-        <h1>Welcome to your Dashboard</h1>
-        <p>This is a protected page visible only after login.</p>
-      </div>
+      <h1>Welcome to your Dashboard</h1>
+      <p>Logged in as: {email}</p>
     </main>
   );
 };
