@@ -35,8 +35,8 @@
 	border: 2px solid #e0e0e0;
 	border-radius: 16px;
 	text-align: center;
-	font-size: 16px;
-	font-weight: 500;
+	font-size: 12px;
+	font-weight: 700;
 	background-color: #ffffff;
 	color: var(--clr-primary-text);
 	outline: none;
@@ -51,8 +51,8 @@
 	padding: 0 20px;
 	border: 2px solid #e0e0e0;
 	border-radius: 16px;
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 12px;
+	font-weight: 400;
 	color: rgba(82, 85, 95, 0.7);
 	background-color: transparent;
 	cursor: not-allowed;
@@ -83,6 +83,12 @@
 	.balance {
 		margin-top: 0;
 	}
+	.input {
+		font-size: 16px;
+	}
+	.button {
+		font-size: 16px;
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -96,5 +102,11 @@
 
 	.balance {
 		margin-top: 0;
+	}
+	.input {
+		font-size: 16px;
+	}
+	.button {
+		font-size: 16px;
 	}
 }

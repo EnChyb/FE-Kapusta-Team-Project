@@ -54,7 +54,7 @@ const Balance = () => {
 							className="input"
 							value={input}
 							onChange={handleChange}
-							placeholder="00.00 UAH"
+							placeholder="00.00 EUR"
 						/>
 						<button
 							type="submit"
