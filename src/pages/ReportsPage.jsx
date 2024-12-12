@@ -1,7 +1,11 @@
+import ExpensesIncome from "../components/Reports/ExpensesIncome";
+import TopReports from "../components/Reports/TopReports";
+
 const ReportsPage = () => {
 	return (
 		<div>
-			<h1>Reports</h1>
+			<TopReports />
+			<ExpensesIncome />
 		</div>
 	);
 };
