@@ -1,0 +1,36 @@
+.tracker-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.switch-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #d3d3d3;
+  color: #333;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.switch-button.active {
+  background-color: orange;
+  color: white;
+}
+
+.switch-button:hover {
+  background-color: #ffc107;
+  color: white;
+}

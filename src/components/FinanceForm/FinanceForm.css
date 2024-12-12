@@ -1,0 +1,31 @@
+.finance-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.finance-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.finance-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.finance-form button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+.finance-form button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
