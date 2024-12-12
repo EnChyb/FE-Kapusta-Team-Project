@@ -1,12 +1,13 @@
-import DataHeader from "../components/DataHeader/DataHeader";
+import ExpensesIncome from "../components/Reports/ExpensesIncome";
+import TopReports from "../components/Reports/TopReports";
 
 const ReportsPage = () => {
-  return (
-    <div>
-      <DataHeader />
-      <h1>Reports</h1>
-    </div>
-  );
+	return (
+		<div>
+			<TopReports />
+			<ExpensesIncome />
+		</div>
+	);
 };
 
 export default ReportsPage;

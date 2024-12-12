@@ -1,0 +1,63 @@
+.main-expenses-income-div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    box-shadow: 0px 10px 60px 0px #AAB2C533;
+    padding: 15px 0;
+    border-radius: 30px;
+    margin: 32px 123px;
+}
+
+.expenses-and-income-divider{
+    width: 1px;
+    height: 36px;
+    border: 1px solid;
+    opacity: 10%;
+    border-radius: 20px;
+}
+
+.expenses-income-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.expenses-income-txt {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.41px;
+    letter-spacing: 0.004em;
+    color: #52555F;
+}
+
+.income-extention-txt {
+    color: #407946;
+}
+
+.expenses-extention-txt {
+    color: #E53935;
+}
+
+@media only screen and (max-width: 767px) {
+    .expenses-and-income-divider{
+        height: 70px;
+    }
+
+    .main-expenses-income-div {
+        padding: 7px 10px;
+        margin: 32px 20px;
+    }
+
+    .expenses-income-section {
+        flex-direction: column;
+        gap: 0;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+    .main-expenses-income-div {
+        margin: 32px 32px;
+    }
+}
