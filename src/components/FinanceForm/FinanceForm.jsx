@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./FinanceForm.css";
 
 const FinanceForm = ({ onAdd, onClear }) => {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -13,7 +13,7 @@ const FinanceForm = ({ onAdd, onClear }) => {
 
     onAdd({ date, description, category, amount: parseFloat(amount) });
 
-    setDate("");
+    setDate(new Date().toISOString().split("T")[0]);
     setDescription("");
     setCategory("");
     setAmount("");
