@@ -14,7 +14,6 @@ const Balance = () => {
 
 	const handleChange = (e) => {
 		const inputValue = e.target.value;
-
 		if (/^\d*\.?\d*$/.test(inputValue)) {
 			setInput(inputValue);
 		}
@@ -44,7 +43,6 @@ const Balance = () => {
 	return (
 		<div className="container-balance">
 			{showModal && balance === 0 && <BalanceModal />}
-
 			<div className="balanceWrapper">
 				<span className="label-balance">Balance:</span>
 				<div className="balance">
