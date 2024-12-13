@@ -58,19 +58,17 @@
 	}
 }
 
-
-
 .mainPageLinkWrapper {
 	display: flex;
 	align-items: center;
 	position: absolute;
 	left: 113px;
-  }
-  
-  .mainPage {
+}
+
+.mainPage {
 	color: var(--clr-primary-text);
 	font-size: 12px;
 	line-height: 1.16;
 	letter-spacing: 0.04em;
 	text-decoration: none;
-  }
+}
