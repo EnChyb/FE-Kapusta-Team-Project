@@ -16,7 +16,7 @@
 	font-size: 12px;
 	font-weight: 500;
 	color: rgba(82, 85, 95, 0.7);
-	margin-left: 75px;
+	margin-left: 120px;
 }
 
 .balance {
@@ -33,7 +33,7 @@
 }
 
 .input-balance {
-	width: 100px;
+	width: 140px;
 	height: 36px;
 	border: 2px solid #e0e0e0;
 	border-radius: 16px 0 0 16px;
@@ -63,6 +63,8 @@
 	background-color: transparent;
 	cursor: not-allowed;
 	transition: all 0.3s ease;
+	width: 140px;
+	text-align: center;
 }
 
 .buttonActive-balance {
