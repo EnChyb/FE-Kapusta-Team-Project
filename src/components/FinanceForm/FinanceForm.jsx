@@ -7,6 +7,8 @@ const FinanceForm = ({ onAdd, onClear }) => {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
 
+  const categories = ["Transport", "Products", "Health", "Alcohol", "Housing"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!date || !description || !category || !amount) return;
@@ -26,6 +28,12 @@ const FinanceForm = ({ onAdd, onClear }) => {
       setAmount(value);
     }
   };
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCategory(selectedCategory);
+  };
+
   return (
     <form className="finance-form" onSubmit={handleSubmit}>
       <div className="finance-form-input">
@@ -41,12 +49,16 @@ const FinanceForm = ({ onAdd, onClear }) => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"
         />
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Category"
-        />
+        <select value={category} onChange={handleCategoryChange} required>
+          <option value="" disabled>
+            Product category ▼
+          </option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
         <input
           type="number"
           value={amount}
