@@ -1,0 +1,17 @@
+.finance-summary {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  border: black 2px solid;
+}
+
+.finance-summary h3 {
+  font-size: 16px;
+  color: #333;
+}
+
+.finance-summary p {
+  font-size: 14px;
+  color: #666;
+}
