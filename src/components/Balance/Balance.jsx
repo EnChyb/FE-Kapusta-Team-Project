@@ -42,25 +42,28 @@ const Balance = () => {
 	};
 
 	return (
-		<div className="container">
+		<div className="container-balance">
 			{showModal && balance === 0 && <BalanceModal />}
 
 			<div className="balanceWrapper">
-				<span className="label">Balance:</span>
+				<span className="label-balance">Balance:</span>
 				<div className="balance">
-					<form onSubmit={handleSubmit} className="form">
+					<form onSubmit={handleSubmit} className="form-balance">
 						<input
 							type="text"
-							className="input"
+							className="input-balance"
 							value={input}
 							onChange={handleChange}
 							placeholder="00.00 EUR"
 						/>
+						<div className="separator"></div>
 						<button
 							type="submit"
-							className={`button ${input ? "buttonActive" : ""}`}
+							className={`button-balance ${
+								input ? "buttonActive-balance" : ""
+							}`}
 						>
-							Confirm
+							CONFIRM
 						</button>
 					</form>
 				</div>

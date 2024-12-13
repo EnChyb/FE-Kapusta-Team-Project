@@ -1,4 +1,4 @@
-.container {
+.container-balance {
 	display: flex;
 	justify-content: center;
 }
@@ -9,11 +9,11 @@
 	gap: 20px;
 }
 
-.label {
+.label-balance {
 	font-size: 12px;
 	font-weight: 500;
 	color: rgba(82, 85, 95, 0.7);
-	margin-left: 80px;
+	margin-left: 75px;
 }
 
 .balance {
@@ -23,34 +23,38 @@
 	margin-top: 15px;
 }
 
-.form {
+.form-balance {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 0;
+	position: relative;
 }
 
-.input {
+.input-balance {
 	width: 100px;
 	height: 36px;
 	border: 2px solid #e0e0e0;
-	border-radius: 16px;
+	border-radius: 16px 0 0 16px;
 	text-align: center;
 	font-size: 12px;
 	font-weight: 700;
 	background-color: #ffffff;
 	color: var(--clr-primary-text);
 	outline: none;
+	border-right: none;
 }
 
-.input:focus {
+.input-balance:focus {
 	border-color: var(--clr-accent);
+	border-right: none;
 }
 
-.button {
+.button-balance {
 	height: 36px;
 	padding: 0 20px;
 	border: 2px solid #e0e0e0;
-	border-radius: 16px;
+	border-left: none;
+	border-radius: 0 16px 16px 0;
 	font-size: 12px;
 	font-weight: 400;
 	color: rgba(82, 85, 95, 0.7);
@@ -59,54 +63,98 @@
 	transition: all 0.3s ease;
 }
 
-.buttonActive {
+.buttonActive-balance {
 	background-color: var(--clr-accent);
 	color: #ffffff;
 	cursor: pointer;
 	border-color: var(--clr-accent);
 }
 
-.buttonActive:hover {
+.buttonActive-balance:hover {
 	background-color: #ff5400;
 	border-color: #ff5400;
+}
+
+.separator {
+	width: 1px;
+	height: 36px;
+	background-color: #e0e0e0;
+	position: relative;
+}
+
+@media screen and (min-width: 620px) {
+	.balanceWrapper {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.label-balance {
+		margin-top: 15px;
+		font-size: 12px;
+		font-weight: 500;
+		color: rgba(82, 85, 95, 0.7);
+	}
+
+	.form-balance {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.input-balance {
+		width: 113px;
+		height: 36px;
+		border: 2px solid #e0e0e0;
+		border-radius: 16px;
+		text-align: center;
+		font-size: 12px;
+		font-weight: 700;
+		background-color: #ffffff;
+		color: var(--clr-primary-text);
+	}
+
+	.button-balance {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 113px;
+		height: 36px;
+		border: 2px solid #e0e0e0;
+		border-radius: 16px;
+		font-size: 12px;
+		background-color: transparent;
+		color: rgba(82, 85, 95, 0.7);
+		cursor: not-allowed;
+		transition: all 0.3s ease;
+	}
+
+	.buttonActive-balance {
+		background-color: var(--clr-accent);
+		color: #ffffff;
+		cursor: pointer;
+		border-color: var(--clr-accent);
+	}
+
+	.separator {
+		display: none;
+	}
 }
 
 @media screen and (min-width: 1280px) {
 	.balanceWrapper {
 		display: flex;
+		align-items: center;
+		gap: 20px;
 	}
 
-	.label {
-		margin-left: 0;
+	.input-balance,
+	.button-balance {
+		width: 113px;
+		font-size: 12px;
 	}
 
-	.balance {
-		margin-top: 0;
-	}
-	.input {
-		font-size: 16px;
-	}
-	.button {
-		font-size: 16px;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.balanceWrapper {
-		display: flex;
-	}
-
-	.label {
-		margin-left: 0;
-	}
-
-	.balance {
-		margin-top: 0;
-	}
-	.input {
-		font-size: 16px;
-	}
-	.button {
-		font-size: 16px;
+	.separator {
+		display: none;
 	}
 }
