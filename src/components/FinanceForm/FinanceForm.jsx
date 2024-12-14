@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./FinanceForm.css";
+import Select from "react-select";
+import { PiX } from "react-icons/pi";
 
-const FinanceForm = ({ onAdd, onClear }) => {
+const FinanceForm = ({ onAdd, activeSection }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
-
-  const categories = ["Transport", "Products", "Health", "Alcohol", "Housing"];
+  const [category, setCategory] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,9 +29,46 @@ const FinanceForm = ({ onAdd, onClear }) => {
     }
   };
 
-  const handleCategoryChange = (e) => {
-    const selectedCategory = e.target.value;
-    setCategory(selectedCategory);
+  const clearEntries = () => {
+    setDescription("");
+    setCategory("");
+    setAmount("");
+  };
+
+  const selectExpenses = [
+    { value: "Transport", label: "Transport" },
+    { value: "Prodcuts", label: "Products" },
+    { value: "Health", label: "Health" },
+    { value: "Alcohol", label: "Alcohol" },
+    { value: "Entertainment", label: "Entertainment" },
+    { value: "Housing", label: "Housing" },
+    { value: "Technique", label: "Technique" },
+    { value: "Comunnalm communication", label: "Communal, communication" },
+    { value: "Sports, hobbies", label: "Sports, hobbies" },
+    { value: "Other", label: "Other" },
+  ];
+
+  const selectIncome = [
+    { value: "salary", label: "Salary" },
+    { value: "bonus", label: "Bonus" },
+  ];
+
+  const categories =
+    activeSection === "expenses" ? selectExpenses : selectIncome;
+
+  const selectStyles = {
+    control: (provieded) => ({
+      ...provieded,
+      width: "200px",
+      borderRadius: "8px",
+      boxShadow: "none",
+      textAlign: "left",
+    }),
+    option: (provieded, state) => ({
+      ...provieded,
+      color: "grey",
+      backgroundColor: state.isSelected ? "lightgrey" : "white",
+    }),
   };
 
   return (
@@ -49,16 +86,12 @@ const FinanceForm = ({ onAdd, onClear }) => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"
         />
-        <select value={category} onChange={handleCategoryChange} required>
-          <option value="" disabled>
-            Product category ▼
-          </option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+        <Select
+          value={category}
+          onChange={(selectedOption) => setCategory(selectedOption.value)}
+          options={categories}
+          styles={selectStyles}
+        />
         <input
           type="number"
           value={amount}
@@ -68,7 +101,7 @@ const FinanceForm = ({ onAdd, onClear }) => {
       </div>
       <div className="finance-form-button">
         <button type="submit">Input</button>
-        <button type="button" onClick={onClear}>
+        <button type="button" onClick={clearEntries}>
           Clear
         </button>
       </div>

@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import FinanceForm from "../FinanceForm/FinanceForm";
 import FinanceTable from "../FinanceTable/FinanceTable";
 import Summary from "../Summary/Summary";
 import "./FinanceSection.css";
 
-const FinanceSection = ({ title, data, setData }) => {
+const FinanceSection = ({ title, data, setData, activeSection }) => {
   const addEntry = (entry) => {
-    setData((prevData) => [...prevData, entry]);
-  };
+    const adjustedEntry = {
+      ...entry,
+      amount:
+        activeSection === "expenses"
+          ? -Math.abs(entry.amount)
+          : Math.abs(entry.amount),
+    };
 
-  const clearEntries = () => {
-    setData([]);
+    setData((prevData) => [...prevData, adjustedEntry]);
   };
 
   return (
     <div className="finance-section">
       <h2>{title}</h2>
-      <FinanceForm onAdd={addEntry} onClear={clearEntries} />
+      <FinanceForm onAdd={addEntry} activeSection={activeSection} />
       <div className="finance-details">
         <FinanceTable data={data} />
         <Summary data={data} />

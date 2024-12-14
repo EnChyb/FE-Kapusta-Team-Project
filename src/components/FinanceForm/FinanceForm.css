@@ -12,12 +12,6 @@
   border-radius: 4px;
 }
 
-.finance-form select {
-  border: 2px solid black;
-  width: 200px;
-  height: 30px;
-}
-
 .finance-form button {
   padding: 10px 15px;
   font-size: 16px;

@@ -42,10 +42,16 @@ const FinanceTracker = () => {
           title="Expenses"
           data={expenses}
           setData={setExpenses}
+          activeSection={activeSection}
         />
       )}
       {activeSection === "income" && (
-        <FinanceSection title="Income" data={income} setData={setIncome} />
+        <FinanceSection
+          title="Income"
+          data={income}
+          setData={setIncome}
+          activeSection={activeSection}
+        />
       )}
     </div>
   );
