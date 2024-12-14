@@ -8,11 +8,11 @@
     margin: 32px 123px;
 }
 
-.expenses-and-income-divider{
+.expenses-and-income-divider {
     width: 1px;
     height: 36px;
     border: 1px solid;
-    opacity: 10%;
+    opacity: 0.1;
     border-radius: 20px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-    .expenses-and-income-divider{
+    .expenses-and-income-divider {
         height: 70px;
     }
 
