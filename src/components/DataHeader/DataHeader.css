@@ -1,5 +1,4 @@
 .container_dataheader {
-	position: relative;
 	display: flex;
 	flex-direction: column-reverse;
 	flex-wrap: wrap;
@@ -11,13 +10,12 @@
 
 .reportsLinkWrapper {
 	display: flex;
-	align-items: center;
-	position: absolute;
-	right: 113px;
+	align-items: end;
+	margin-bottom: 25px;
 }
 
 .reports {
-	color: var(--clr-primary-text);
+	color: rgba(82, 85, 95, 0.7);
 	font-size: 12px;
 	line-height: 1.16;
 	letter-spacing: 0.04em;
@@ -26,5 +24,51 @@
 
 .iconReports {
 	margin-left: 15px;
-	fill: var(--clr-primary-text);
+	color: rgba(82, 85, 95, 1);
+}
+
+@media screen and (min-width: 620px) {
+	.container_dataheader {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.reportsLinkWrapper {
+		margin-top: 30px;
+		margin-left: auto;
+		position: initial;
+		justify-content: space-between;
+	}
+	.iconReports {
+		margin-inline-end: 30px;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.container_dataheader {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 8px;
+	}
+	.reportsLinkWrapper {
+		position: absolute;
+		right: 85px;
+	}
+}
+
+.mainPageLinkWrapper {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	left: 113px;
+}
+
+.mainPage {
+	color: var(--clr-primary-text);
+	font-size: 12px;
+	line-height: 1.16;
+	letter-spacing: 0.04em;
+	text-decoration: none;
 }
