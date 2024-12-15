@@ -10,6 +10,11 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.06px;
+    letter-spacing: 0.02em;
 }
 
 .finance-form-button {
@@ -68,12 +73,6 @@
   padding: 0;
   cursor: pointer;
   opacity: 0;
-}
-
-.finance-form input[type="text"],
-.finance-form input[type="number"] {
-  width: 180px;
-  height: 40px;
 }
 
 .finance-form button {
