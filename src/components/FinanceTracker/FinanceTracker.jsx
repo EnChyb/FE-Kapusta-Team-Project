@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FinanceSection from "../FinanceSection/FinanceSection";
 import "./FinanceTracker.css";
 

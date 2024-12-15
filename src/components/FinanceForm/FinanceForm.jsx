@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./FinanceForm.css";
 import Select from "react-select";
-import { PiX } from "react-icons/pi";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
@@ -57,29 +56,48 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     activeSection === "expenses" ? selectExpenses : selectIncome;
 
   const selectStyles = {
-    control: (provieded) => ({
-      ...provieded,
-      width: "200px",
+    control: (provided) => ({
+      ...provided,
+      width: "180px",
+      height: "40px",
       borderRadius: "8px",
       boxShadow: "none",
       textAlign: "left",
+      border: "1px solid #ddd",
     }),
-    option: (provieded, state) => ({
-      ...provieded,
-      color: "grey",
-      backgroundColor: state.isSelected ? "lightgrey" : "white",
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? "#52555F" : "#52555F",
+      backgroundColor: state.isSelected ? "#F6F7FC" : "white",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "8px",
     }),
   };
 
   return (
     <form className="finance-form" onSubmit={handleSubmit}>
       <div className="finance-form-input">
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          placeholder="Date"
-        />
+        <div className="date-input-container">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="calendar-icon"
+          >
+            <use href="/public/sprite.svg#calendar" />
+          </svg>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="Date"
+            className="date-input"
+          />
+        </div>
         <input
           type="text"
           value={description}
@@ -87,16 +105,17 @@ const FinanceForm = ({ onAdd, activeSection }) => {
           placeholder="Description"
         />
         <Select
-          value={category}
+          value={categories.find((cat) => cat.value === category)}
           onChange={(selectedOption) => setCategory(selectedOption.value)}
           options={categories}
           styles={selectStyles}
+          placeholder="Category"
         />
         <input
           type="number"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount"
+          onChange={handleAmountChange}
+          placeholder="0.00"
         />
       </div>
       <div className="finance-form-button">

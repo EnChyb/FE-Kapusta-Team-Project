@@ -1,0 +1,81 @@
+.shared-layout {
+  position: relative;
+  padding-top: 86px;
+  padding-bottom: min(
+    155px,
+    calc(105px + (155 - 105) * ((100vw - 320px) / (772 - 320)))
+  );
+}
+
+.shared-layout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: min(
+    526px,
+    calc(286px + (526 - 286) * ((100vw - 320px) / (772 - 320)))
+  );
+  background-color: var(--clr-background);
+  border-radius: 0 0 0 105px;
+  z-index: -1;
+}
+
+.shared-layout::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../assets/images/background-cabbage/cabbage-mobile.webp),
+    url(../../assets/images/background-cabbage/cabbage-mobile-bottom.webp);
+  background-repeat: no-repeat;
+  background-size: 83px;
+  background-position: top 104px right -34px, bottom 0px left 35px;
+  z-index: -1;
+}
+
+@media (width >= 772px) {
+  .shared-layout {
+    padding-top: 80px;
+  }
+
+  .shared-layout::before {
+    background-image: url(../../assets/images/background-cabbage/cabbage-desktop.webp);
+    background-repeat: no-repeat;
+    background-size: 1334px;
+    background-position: top 28px left 10px;
+  }
+
+  .shared-layout::after {
+    background-image: url(../../assets/images/background-cabbage/cabbage-tablet-bottom.webp);
+    background-size: 183px;
+    background-position: bottom 56px left
+      calc(103px + (230 - 103) * ((100vw - 773px) / (1280 - 773)));
+  }
+}
+
+@media (width >= 1280px) {
+  .shared-layout {
+    padding-inline: 90px;
+    padding-top: 117px;
+    padding-bottom: 125px;
+  }
+
+  .shared-layout::before {
+    border-radius: 0 0 0 115px;
+  }
+
+  .shared-layout::after {
+    background-position: bottom 50px left
+      calc(103px + (230 - 103) * ((100vw - 773px) / (1280 - 773)));
+  }
+}
+
+@media (width >= 1334px) {
+  .shared-layout::before {
+    background-size: calc(1334px + (100vw - 1334px));
+  }
+}

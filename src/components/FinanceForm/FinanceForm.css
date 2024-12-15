@@ -3,31 +3,109 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 20px;
+}
+
+.finance-form-input {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.finance-form-button {
+  display: flex;
+  gap: 15px;
 }
 
 .finance-form input {
   padding: 10px;
-  font-size: 16px;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 900;
+  line-height: 14.06px;
+  letter-spacing: 0.04em;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
+  color: #52555F;
 }
 
-.finance-form button {
-  padding: 10px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
+.date-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
   cursor: pointer;
 }
 
+.calendar-icon {
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  color: #52555F;
+  pointer-events: none;
+  width: 32px;
+  height: 32px;
+}
+
+.calendar-icon use {
+  fill: currentColor;
+}
+
+.date-input-container input[type="date"] {
+  width: 180px;
+  height: 40px;
+  padding-left: 40px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.date-input-container input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.finance-form input[type="text"],
+.finance-form input[type="number"] {
+  width: 180px;
+  height: 40px;
+}
+
+.finance-form button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
 .finance-form button[type="submit"] {
-  background-color: #4caf50;
+  background-color: #FF751D;
   color: white;
 }
 
+.finance-form button[type="submit"]:hover {
+  background-color: #F25D07;
+}
+
 .finance-form button[type="button"] {
-  background-color: #f44336;
-  color: white;
+  background-color: #FFFFFF;
+  color: #52555F;
+  border: 2px solid #F6F7FC;
+}
+
+.finance-form button[type="button"]:hover {
+  background-color: #F6F7FC;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
