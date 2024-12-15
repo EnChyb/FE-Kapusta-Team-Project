@@ -38,3 +38,11 @@
 .finance-table th {
   text-align: center;
 }
+
+.finance-table .negative-amount {
+  color: red;
+}
+
+.finance-table .positive-amount {
+  color: green;
+}

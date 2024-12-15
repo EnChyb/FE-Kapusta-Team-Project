@@ -18,7 +18,13 @@ const FinanceTable = ({ data }) => {
             <td>{entry.date}</td>
             <td>{entry.description}</td>
             <td>{entry.category}</td>
-            <td>{entry.amount.toFixed(2)}</td>
+            <td
+              className={
+                entry.amount < 0 ? "negative-amount" : "positive-amount"
+              }
+            >
+              {entry.amount.toFixed(2)}
+            </td>
           </tr>
         ))}
       </tbody>
