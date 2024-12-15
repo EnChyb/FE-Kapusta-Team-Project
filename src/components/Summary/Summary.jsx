@@ -2,7 +2,7 @@ import React from "react";
 
 const Summary = ({ data }) => {
   const monthlySummary = data.reduce((acc, entry) => {
-    const month = new Date(entry.date).toLocaleString("default", {
+    const month = new Date(entry.date).toLocaleString("en-US", {
       month: "long",
     });
 
