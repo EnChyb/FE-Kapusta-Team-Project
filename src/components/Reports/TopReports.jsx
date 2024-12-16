@@ -45,7 +45,7 @@ const TopReports = () => {
           <button
             className="change-month-button"
             onClick={() => changeMonth(-1)}
-            aria-label="Poprzedni miesiąc"
+            aria-label="Previous Month"
           >
             <img src={backArrow} alt="Previous month" />
           </button>
@@ -53,7 +53,7 @@ const TopReports = () => {
           <button
             className="change-month-button"
             onClick={() => changeMonth(1)}
-            aria-label="Następny miesiąc"
+            aria-label="Next Month"
           >
             <img src={upArrow} alt="Next month" />
           </button>
