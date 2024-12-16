@@ -13,13 +13,13 @@ const ExpensesIncomeStats = () => {
   };
 
   return (
-    <div className="container">
-      <div className="labelContainer">
-        <button onClick={handleButton}>
+    <div className="eiContainer">
+      <div className="eiLabelContainer">
+        <button onClick={handleButton} className="eiButton">
           <img src={backArrow} alt="Toggle" />
         </button>
-        <span className="label">{label}</span>
-        <button onClick={handleButton}>
+        <span className="eiLabel">{label}</span>
+        <button onClick={handleButton} className="eiButton">
           <img src={upArrow} alt="Toggle" />
         </button>
       </div>

@@ -39,34 +39,34 @@ const ExpensesList = () => {
   }, []);
 
   const expenseIcons = {
-    Продукты: "icon-products",
-    Алкоголь: "icon-alcohol",
-    Развлечения: "icon-entertainment",
-    Здоровье: "icon-health",
-    Транспорт: "icon-transport",
-    Жилье: "icon-housing",
-    Техника: "icon-technique",
-    "Коммуналка, связь": "icon-communal-communication",
-    "Спорт, хобби": "icon-sports-hobbies",
-    Образование: "icon-education",
-    Прочее: "icon-other",
+    products: "icon-products",
+    alcohol: "icon-alcohol",
+    entertainment: "icon-entertainment",
+    health: "icon-health",
+    transport: "icon-transport",
+    housing: "icon-housing",
+    technique: "icon-technique",
+    "communal-communication": "icon-communal-communication",
+    "sports-hobbies": "icon-sports-hobbies",
+    education: "icon-education",
+    other: "icon-other",
   };
 
   if (loading) return <li>Fetching expenses...</li>;
   if (error) return <li>Error: {error}</li>;
 
   return (
-    <ul className="list">
+    <ul className="eiList">
       {expenses.map((expense) => (
         <li key={expense._id}>
-          <span className="icon-description">{expense.amount.toFixed(2)}</span>
-          <svg className="icon">
+          <span className="eiIconDescription">{expense.amount.toFixed(2)}</span>
+          <svg className="eiIcon">
             <use
               href={`${Svg}#${
                 expenseIcons[expense.category] || "icon-other"
               }`}></use>
           </svg>
-          <span className="icon-description">{expense.category}</span>
+          <span className="eiIconDescription">{expense.category}</span>
         </li>
       ))}
     </ul>

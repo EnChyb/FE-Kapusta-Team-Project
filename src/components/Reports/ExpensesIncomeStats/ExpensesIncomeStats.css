@@ -1,4 +1,4 @@
-.list {
+.eiList {
   width: 750px;
   height: 268px;
   display: flex;
@@ -17,20 +17,20 @@ li {
   gap: 5px;
 }
 
-.icon {
+.eiIcon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 56px; /* Szerokość kontenera */
-  height: 56px; /* Wysokość kontenera */
+  width: 56px;
+  height: 56px;
 }
 
-.icon:hover {
-  fill: orange; /* Change the SVG color to orange */
-  transform: scale(1.1); /* Optional: Slight zoom effect */
+.eiIcon:hover {
+  fill: orange;
+  transform: scale(1.1);
 }
 
-.icon-description {
+.eiIconDescription {
   text-transform: uppercase;
   font-family: Roboto;
   font-size: 12px;
@@ -42,7 +42,7 @@ li {
   text-decoration-skip-ink: none;
 }
 
-.label {
+.eiLabel {
   font-family: Roboto;
   font-size: 14px;
   font-weight: 700;
@@ -56,12 +56,12 @@ li {
   margin: auto;
 }
 
-button img {
-  padding: 16px;
+.eiButton img {
+  margin: 16px;
   cursor: pointer;
 }
 
-.container {
+.eiContainer {
   width: 1034px;
   height: 348px;
   display: flex;

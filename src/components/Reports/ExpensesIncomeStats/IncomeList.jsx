@@ -3,20 +3,20 @@ import "./ExpensesIncomeStats.css";
 
 const IncomeList = () => {
   return (
-    <ul className="list">
+    <ul className="eiList">
       <li>
-        <span className="icon-description">5 000.00</span>
-        <svg className="icon">
+        <span className="eiIconDescription">5 000.00</span>
+        <svg className="eiIcon">
           <use href={`${Svg}#icon-salary`}></use>
         </svg>
-        <span className="icon-description">Salary</span>
+        <span className="eiIconDescription">Salary</span>
       </li>
       <li>
-        <span className="icon-description">5 000.00</span>
-        <svg className="icon">
+        <span className="eiIconDescription">5 000.00</span>
+        <svg className="eiIcon">
           <use href={`${Svg}#icon-income`}></use>
         </svg>
-        <span className="icon-description">Add. income</span>
+        <span className="eiIconDescription">Add. income</span>
       </li>
     </ul>
   );
