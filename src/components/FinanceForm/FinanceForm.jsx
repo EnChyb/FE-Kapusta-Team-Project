@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./FinanceForm.css";
 import Select from "react-select";
 import { PiX } from "react-icons/pi";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
@@ -31,7 +33,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
 
   const clearEntries = () => {
     setDescription("");
-    setCategory("");
+    setCategory(null);
     setAmount("");
   };
 
@@ -71,6 +73,20 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     }),
   };
 
+  const handleCategoryChange = (selectedOption) => {
+    setCategory(selectedOption ? selectedOption.value : "");
+  };
+
+  const validationSchema = Yup.object({
+    date: Yup.string().required("Data is required"),
+    description: Yup.string().required("Description is required"),
+    category: Yup.string().required("Category is required"),
+    amount: Yup.number()
+      .typeError("Amount must be a number")
+      .positive("Amount must be a positive number")
+      .required("Amount is required"),
+  });
+
   return (
     <form className="finance-form" onSubmit={handleSubmit}>
       <div className="finance-form-input">
@@ -84,19 +100,20 @@ const FinanceForm = ({ onAdd, activeSection }) => {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
+          placeholder="Product description"
         />
         <Select
-          value={category}
-          onChange={(selectedOption) => setCategory(selectedOption.value)}
+          value={category ? { value: category, label: category } : null}
+          onChange={handleCategoryChange}
           options={categories}
           styles={selectStyles}
+          placeholder="Product category"
         />
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount"
+          placeholder="0,00"
         />
       </div>
       <div className="finance-form-button">
