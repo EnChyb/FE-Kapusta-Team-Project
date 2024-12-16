@@ -46,9 +46,8 @@
 	border-right: none;
 }
 
-.input-balance:focus {
+.input-balance:hover {
 	border-color: var(--clr-accent);
-	border-right: none;
 }
 
 .button-balance {
@@ -61,12 +60,11 @@
 	font-weight: 400;
 	color: rgba(82, 85, 95, 0.7);
 	background-color: transparent;
-	cursor: not-allowed;
 	transition: all 0.3s ease;
 	width: 140px;
 	text-align: center;
 }
-.button-balance:focus {
+.button-balance:hover {
 	border-color: var(--clr-accent);
 	background-color: var(--clr-accent);
 	color: #ffffff;
@@ -120,7 +118,6 @@
 		font-size: 12px;
 		background-color: transparent;
 		color: rgba(82, 85, 95, 0.7);
-		cursor: not-allowed;
 		transition: all 0.3s ease;
 	}
 
