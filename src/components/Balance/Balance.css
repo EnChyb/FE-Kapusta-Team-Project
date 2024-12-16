@@ -34,7 +34,7 @@
 
 .input-balance {
 	width: 140px;
-	height: 36px;
+	height: 44px;
 	border: 2px solid #e0e0e0;
 	border-radius: 16px 0 0 16px;
 	text-align: center;
@@ -52,7 +52,7 @@
 }
 
 .button-balance {
-	height: 36px;
+	height: 44px;
 	padding: 0 20px;
 	border: 2px solid #e0e0e0;
 	border-left: none;
@@ -107,8 +107,8 @@
 	}
 
 	.input-balance {
-		width: 113px;
-		height: 36px;
+		width: 125px;
+		height: 44px;
 		border: 2px solid #e0e0e0;
 		border-radius: 16px;
 		text-align: center;
@@ -122,7 +122,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 113px;
+		width: 125px;
 		height: 36px;
 		border: 2px solid #e0e0e0;
 		border-radius: 16px;

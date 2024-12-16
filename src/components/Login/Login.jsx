@@ -49,7 +49,7 @@ const LoginForm = () => {
 			const endpoint =
 				actionType === "register" ? "/auth/register" : "/auth/login";
 			const response = await axios.post(`${API_URL}${endpoint}`, values);
-
+			console.log("Server response:", response.data);
 			const userData = { email: values.email };
 			localStorage.setItem("token", response.data.accessToken);
 			localStorage.setItem("user", JSON.stringify(userData));
