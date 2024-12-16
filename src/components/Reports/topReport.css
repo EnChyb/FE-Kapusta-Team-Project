@@ -80,13 +80,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center; 
-        order: 1; /* Przenieś Current period na górę */
+        order: 1; 
     }
 
     .balance-period-div {
         display: flex;
         flex-direction: column;
-        order: 2; /* Przenieś Balance pod Current period */
+        order: 2; 
     }
 
     .mobile-disable-txt-arrow {
