@@ -4,6 +4,9 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import LogoutModal from "../Modal/LogoutModal";
 import { login, logout } from "../../redux/userSlice";
+import { updateBalance } from "../../redux/balance/balanceSlice";
+import axios from "axios";
+import API_URL from "../../config/apiConfig";
 
 const SharedLayout = () => {
 	const dispatch = useDispatch();
@@ -16,12 +19,24 @@ const SharedLayout = () => {
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 
-		if (token) {
-			const userData = JSON.parse(localStorage.getItem("user"));
-			if (userData) {
-				console.log("User data loaded from localStorage:", userData);
-				dispatch(login(userData));
+		const fetchUserData = async () => {
+			try {
+				const response = await axios.get(`${API_URL}/user`, {
+					headers: { Authorization: `Bearer ${token}` },
+				});
+
+				const { email, balance } = response.data;
+				dispatch(login({ email }));
+				dispatch(updateBalance(balance));
+			} catch (error) {
+				console.error("Error fetching user data:", error);
+				dispatch(logout());
+				navigate("/");
 			}
+		};
+
+		if (token) {
+			fetchUserData();
 		} else {
 			dispatch(logout());
 			navigate("/");

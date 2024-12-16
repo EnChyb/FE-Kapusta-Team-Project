@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { changeBalance } from "../../redux/balance/balanceOperations";
@@ -7,23 +7,38 @@ import { BalanceModal } from "../BalanceModal/BalanceModal";
 import "./Balance.css";
 
 const Balance = () => {
-	const [input, setInput] = useState("");
-	const [showModal, setShowModal] = useState(true);
 	const balance = useSelector(getBalance);
 	const dispatch = useDispatch();
 
-	const handleChange = (e) => {
-		const inputValue = e.target.value;
-		if (/^\d*\.?\d*$/.test(inputValue)) {
-			setInput(inputValue);
+	const [input, setInput] = useState("");
+	const [showModal, setShowModal] = useState(true);
+
+	useEffect(() => {
+		if (balance !== 0) {
+			setInput(`${balance.toFixed(2)} EUR`);
 		}
+	}, [balance]);
+
+	const handleChange = (e) => {
+		const inputValue = e.target.value.replace(/[^0-9.,]/g, "");
+		setInput(inputValue);
+	};
+
+	const handleBlur = () => {
+		if (input && !input.includes("EUR")) {
+			setInput((prev) => `${prev} EUR`);
+		}
+	};
+
+	const handleFocus = () => {
+		setInput((prev) => prev.replace(" EUR", ""));
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newBalance = parseFloat(input);
+		const parsedValue = parseFloat(input.replace(",", ".").replace(" EUR", ""));
 
-		if (isNaN(newBalance) || newBalance <= 0) {
+		if (isNaN(parsedValue) || parsedValue <= 0) {
 			toast.error("Please enter a valid balance!", {
 				autoClose: 2000,
 				theme: "colored",
@@ -31,9 +46,11 @@ const Balance = () => {
 			return;
 		}
 
-		dispatch(changeBalance({ newBalance }));
-		setInput("");
+		dispatch(changeBalance({ newBalance: parsedValue }));
+
+		setInput(`${parsedValue.toFixed(2)} EUR`);
 		setShowModal(false);
+
 		toast.success("Balance updated successfully!", {
 			autoClose: 2000,
 			theme: "colored",
@@ -52,6 +69,8 @@ const Balance = () => {
 							className="input-balance"
 							value={input}
 							onChange={handleChange}
+							onFocus={handleFocus}
+							onBlur={handleBlur}
 							placeholder="00.00 EUR"
 						/>
 						<div className="separator"></div>
