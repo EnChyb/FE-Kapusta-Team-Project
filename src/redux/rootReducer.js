@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import balanceReducer from "./balance/balanceReducer";
+import balanceReducer from "./balance/balanceSlice";
 
 const rootReducer = combineReducers({
 	balance: balanceReducer,
