@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo1x from "../../assets/images/logo/logo-1x.webp";
 import logo2x from "../../assets/images/logo/logo-2x.webp";
@@ -59,9 +58,7 @@ LogoutButton.propTypes = {
   onLogout: PropTypes.func.isRequired
 };
 
-const Header = ({ onLogout }) => {
-  const { email } = useSelector((state) => state.user);
-
+const Header = ({ email, onLogout }) => {
   return (
     <header className="header">
       <nav className="header__nav">
@@ -89,6 +86,7 @@ const Header = ({ onLogout }) => {
 };
 
 Header.propTypes = {
+  email: PropTypes.string,
   onLogout: PropTypes.func.isRequired
 };
 
