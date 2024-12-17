@@ -23,7 +23,6 @@ const balanceSlice = createSlice({
 				state.loading = false;
 				state.error = action.payload;
 			});
-			
 	},
 });
 

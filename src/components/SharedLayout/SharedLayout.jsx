@@ -19,41 +19,35 @@ const SharedLayout = () => {
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 
-		const fetchUserData = async () => {
-			try {
-				const response = await axios.get(`${API_URL}/user`, {
-					headers: { Authorization: `Bearer ${token}` },
-				});
+		if (token && !email) {
+			const fetchUserData = async () => {
+				try {
+					const response = await axios.get(`${API_URL}/user`, {
+						headers: { Authorization: `Bearer ${token}` },
+					});
 
-				const { email, balance } = response.data;
+					const { email, balance } = response.data;
+					dispatch(login({ email }));
+					dispatch(updateBalance(balance));
 
-				dispatch(login({ email }));
-				dispatch(updateBalance(balance));
+					console.log("User data and balance loaded from backend:", {
+						email,
+						balance,
+					});
+				} catch (error) {
+					console.error("Error fetching user data or balance:", error);
 
-				console.log("User data and balance loaded from backend:", {
-					email,
-					balance,
-				});
-			} catch (error) {
-				console.error("Error fetching user data or balance:", error);
-
-				if (error.response?.status === 401) {
-					console.log("Unauthorized. Logging out...");
-					dispatch(logout());
-					localStorage.removeItem("token");
-					localStorage.removeItem("user");
-					navigate("/");
+					if (error.response?.status === 401) {
+						dispatch(logout());
+						localStorage.clear();
+						navigate("/");
+					}
 				}
-			}
-		};
+			};
 
-		if (token) {
 			fetchUserData();
-		} else {
-			dispatch(logout());
-			navigate("/");
 		}
-	}, [dispatch, navigate]);
+	}, [dispatch, navigate, email]);
 
 	useEffect(() => {
 		if (email && location.pathname === "/") {
