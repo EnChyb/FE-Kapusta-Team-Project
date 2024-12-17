@@ -20,7 +20,10 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<SharedLayout />}>
 					<Route index element={<MainPage />} />
-					<Route path="/home" element={email ? <HomePage /> : null} />
+					<Route
+						path="/home"
+						element={email ? <HomePage /> : <Navigate to="/" replace />}
+					/>
 					<Route
 						path="/reports"
 						element={email ? <ReportsPage /> : <Navigate to="/" replace />}
