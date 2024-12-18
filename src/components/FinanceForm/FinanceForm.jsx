@@ -110,8 +110,8 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             </div>
           </div>
           <div className="finance-form-button">
-            <button type="submit">Input</button>
-            <button type="reset">Clear</button>
+            <button type="submit">INPUT</button>
+            <button type="reset">CLEAR</button>
           </div>
         </Form>
       )}

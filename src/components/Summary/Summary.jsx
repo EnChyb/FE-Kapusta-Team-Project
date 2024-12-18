@@ -21,7 +21,7 @@ const Summary = ({ data }) => {
       <ul>
         {Object.entries(monthlySummary).map(([month, total]) => (
           <li key={month}>
-            {month}: {total.toFixed(2)}
+            {month}: {Math.abs(total).toFixed(2)}
           </li>
         ))}
       </ul>
