@@ -34,7 +34,7 @@
 
 .input-balance {
 	width: 140px;
-	height: 36px;
+	height: 44px;
 	border: 2px solid #e0e0e0;
 	border-radius: 16px 0 0 16px;
 	text-align: center;
@@ -46,13 +46,12 @@
 	border-right: none;
 }
 
-.input-balance:focus {
+.input-balance:hover {
 	border-color: var(--clr-accent);
-	border-right: none;
 }
 
 .button-balance {
-	height: 36px;
+	height: 44px;
 	padding: 0 20px;
 	border: 2px solid #e0e0e0;
 	border-left: none;
@@ -61,26 +60,18 @@
 	font-weight: 400;
 	color: rgba(82, 85, 95, 0.7);
 	background-color: transparent;
-	cursor: not-allowed;
 	transition: all 0.3s ease;
 	width: 140px;
 	text-align: center;
 }
-
-.buttonActive-balance {
+.button-balance:hover {
+	border-color: var(--clr-accent);
 	background-color: var(--clr-accent);
 	color: #ffffff;
-	cursor: pointer;
-	border-color: var(--clr-accent);
-}
-
-.buttonActive-balance:hover {
-	background-color: #ff5400;
-	border-color: #ff5400;
 }
 
 .separator {
-	width: 1px;
+	width: 2px;
 	height: 36px;
 	background-color: #e0e0e0;
 	position: relative;
@@ -94,7 +85,7 @@
 	}
 
 	.label-balance {
-		margin-top: 15px;
+		margin-top: 3px;
 		font-size: 12px;
 		font-weight: 500;
 		color: rgba(82, 85, 95, 0.7);
@@ -107,8 +98,7 @@
 	}
 
 	.input-balance {
-		width: 113px;
-		height: 36px;
+		width: 125px;
 		border: 2px solid #e0e0e0;
 		border-radius: 16px;
 		text-align: center;
@@ -122,22 +112,13 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 113px;
-		height: 36px;
+		width: 125px;
 		border: 2px solid #e0e0e0;
 		border-radius: 16px;
 		font-size: 12px;
 		background-color: transparent;
 		color: rgba(82, 85, 95, 0.7);
-		cursor: not-allowed;
 		transition: all 0.3s ease;
-	}
-
-	.buttonActive-balance {
-		background-color: var(--clr-accent);
-		color: #ffffff;
-		cursor: pointer;
-		border-color: var(--clr-accent);
 	}
 
 	.separator {
@@ -154,7 +135,6 @@
 
 	.input-balance,
 	.button-balance {
-		width: 113px;
 		font-size: 12px;
 	}
 
