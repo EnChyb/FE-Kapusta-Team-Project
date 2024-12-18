@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./FinanceForm.css";
 import Select from "react-select";
-import { PiX } from "react-icons/pi";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
@@ -23,14 +20,6 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     setAmount("");
   };
 
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-
-    if (!isNaN(value) && value !== "") {
-      setAmount(value);
-    }
-  };
-
   const clearEntries = () => {
     setDescription("");
     setCategory(null);
@@ -47,45 +36,35 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     { value: "Technique", label: "Technique" },
     { value: "Comunnalm communication", label: "Communal, communication" },
     { value: "Sports, hobbies", label: "Sports, hobbies" },
-    { value: "Other", label: "Other" },
+    { value: "Other", label: "Other" }
   ];
 
   const selectIncome = [
     { value: "salary", label: "Salary" },
-    { value: "bonus", label: "Bonus" },
+    { value: "bonus", label: "Bonus" }
   ];
 
   const categories =
     activeSection === "expenses" ? selectExpenses : selectIncome;
 
   const selectStyles = {
-    control: (provieded) => ({
-      ...provieded,
+    control: (provided) => ({
+      ...provided,
       width: "200px",
       borderRadius: "8px",
       boxShadow: "none",
-      textAlign: "left",
+      textAlign: "left"
     }),
-    option: (provieded, state) => ({
-      ...provieded,
+    option: (provided, state) => ({
+      ...provided,
       color: "grey",
-      backgroundColor: state.isSelected ? "lightgrey" : "white",
-    }),
+      backgroundColor: state.isSelected ? "lightgrey" : "white"
+    })
   };
 
   const handleCategoryChange = (selectedOption) => {
     setCategory(selectedOption ? selectedOption.value : "");
   };
-
-  const validationSchema = Yup.object({
-    date: Yup.string().required("Data is required"),
-    description: Yup.string().required("Description is required"),
-    category: Yup.string().required("Category is required"),
-    amount: Yup.number()
-      .typeError("Amount must be a number")
-      .positive("Amount must be a positive number")
-      .required("Amount is required"),
-  });
 
   return (
     <form className="finance-form" onSubmit={handleSubmit}>

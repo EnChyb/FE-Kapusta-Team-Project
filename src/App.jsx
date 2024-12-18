@@ -1,37 +1,56 @@
 import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
 } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import MainPage from "./pages/MainPage";
 import HomePage from "./pages/HomePage";
 import ReportsPage from "./pages/ReportsPage";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 const App = () => {
-	const { email } = useSelector((state) => state.user);
+  const [user, setUser] = useState(null);
 
-	console.log("Redux email in App:", email);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
-	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<SharedLayout />}>
-					<Route index element={<MainPage />} />
-					<Route
-						path="/home"
-						element={email ? <HomePage /> : <Navigate to="/" replace />}
-					/>
-					<Route
-						path="/reports"
-						element={email ? <ReportsPage /> : <Navigate to="/" replace />}
-					/>
-				</Route>
-			</Routes>
-		</Router>
-	);
+  const handleLogin = (email) => {
+    setUser({ email });
+    localStorage.setItem("user", JSON.stringify({ email }));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<SharedLayout user={user} onLogout={handleLogout} />}
+        >
+          <Route index element={<MainPage onLogin={handleLogin} />} />
+          <Route
+            path="/home"
+            element={user ? <HomePage /> : <Navigate to="/" replace />}
+          />
+          <Route
+            path="/reports"
+            element={user ? <ReportsPage /> : <Navigate to="/" replace />}
+          />
+        </Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
