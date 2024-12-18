@@ -71,7 +71,7 @@
 }
 
 .separator {
-	width: 1px;
+	width: 2px;
 	height: 36px;
 	background-color: #e0e0e0;
 	position: relative;
@@ -85,7 +85,7 @@
 	}
 
 	.label-balance {
-		margin-top: 15px;
+		margin-top: 3px;
 		font-size: 12px;
 		font-weight: 500;
 		color: rgba(82, 85, 95, 0.7);
