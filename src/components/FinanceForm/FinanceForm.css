@@ -1,11 +1,16 @@
 .finance-form {
+  height: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
+  position: relative;
+  gap: 15px;
 }
 
 .finance-form input {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -25,7 +30,7 @@
   color: white;
 }
 
-.finance-form button[type="button"] {
+.finance-form button[type="reset"] {
   background-color: #f44336;
   color: white;
 }
@@ -35,4 +40,84 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: textfield;
   margin: 0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.input-container-date,
+.input-container-description,
+.input-container-select,
+.input-container-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input,
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+button[type="button"] {
+  background-color: #f44336;
+  color: white;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.input-container-date input,
+.input-container-description input,
+.input-container-select .react-select,
+.input-container-amount input {
+  border-color: #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.input-container-date input:invalid,
+.input-container-description input:invalid,
+.input-container-select .react-select:invalid,
+.input-container-amount input:invalid {
+  border-color: red;
+  box-shadow: 0 0 5px red;
+}
+
+.react-select__control {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.input-container-date input:focus + .error,
+.input-container-description input:focus + .error,
+.input-container-select .react-select:focus + .error,
+.input-container-amount input:focus + .error {
+  color: darkred;
+  font-size: 16px;
+  font-weight: bold;
 }

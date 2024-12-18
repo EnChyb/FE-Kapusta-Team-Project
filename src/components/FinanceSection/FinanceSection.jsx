@@ -19,7 +19,6 @@ const FinanceSection = ({ title, data, setData, activeSection }) => {
 
   return (
     <div className="finance-section">
-      <h2>{title}</h2>
       <FinanceForm onAdd={addEntry} activeSection={activeSection} />
       <div className="finance-details">
         <FinanceTable data={data} />
