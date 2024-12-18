@@ -1,40 +1,32 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import LogoutModal from "../Modal/LogoutModal";
-import { login, logout } from "../../redux/userSlice";
-import "./SharedLayout.css";
 
-const SharedLayout = () => {
-  const dispatch = useDispatch();
+const SharedLayout = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { email } = useSelector((state) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState(1);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
 
-    if (token) {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData) {
-        console.log("User data loaded from localStorage:", userData);
-        dispatch(login(userData));
-      }
+    if (storedToken && storedUser) {
+      setToken(storedToken);
     } else {
-      dispatch(logout());
+      onLogout();
       navigate("/");
     }
-  }, [dispatch, navigate]);
+  }, [navigate, onLogout]);
 
   useEffect(() => {
-    if (email && location.pathname === "/") {
-      console.log("Redirecting to /home from SharedLayout...");
+    if (token && location.pathname === "/") {
       navigate("/home");
     }
-  }, [email, navigate, location.pathname]);
+  }, [token, navigate, location.pathname]);
 
   const handleLogout = () => {
     setIsModalOpen(true);
@@ -47,7 +39,8 @@ const SharedLayout = () => {
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      dispatch(logout());
+      setToken(null);
+      onLogout();
       setIsModalOpen(false);
       navigate("/");
     }
@@ -60,9 +53,9 @@ const SharedLayout = () => {
 
   return (
     <>
-      <Header onLogout={handleLogout} />
-      <main className="shared-layout">
-        <Outlet />
+      <Header email={user?.email} onLogout={handleLogout} />
+      <main>
+        <Outlet context={{ email: user?.email }} />
       </main>
       {isModalOpen && (
         <LogoutModal

@@ -20,17 +20,9 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     setAmount("");
   };
 
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-
-    if (!isNaN(value) && value !== "") {
-      setAmount(value);
-    }
-  };
-
   const clearEntries = () => {
     setDescription("");
-    setCategory("");
+    setCategory(null);
     setAmount("");
   };
 
@@ -63,17 +55,16 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       borderRadius: "8px",
       boxShadow: "none",
       textAlign: "left",
-      border: "1px solid #ddd",
     }),
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? "#52555F" : "#52555F",
-      backgroundColor: state.isSelected ? "#F6F7FC" : "white",
+      color: "grey",
+      backgroundColor: state.isSelected ? "lightgrey" : "white",
     }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: "8px",
-    }),
+  };
+
+  const handleCategoryChange = (selectedOption) => {
+    setCategory(selectedOption ? selectedOption.value : "");
   };
 
   return (
@@ -102,20 +93,20 @@ const FinanceForm = ({ onAdd, activeSection }) => {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
+          placeholder="Product description"
         />
         <Select
-          value={categories.find((cat) => cat.value === category)}
-          onChange={(selectedOption) => setCategory(selectedOption.value)}
+          value={category ? { value: category, label: category } : null}
+          onChange={handleCategoryChange}
           options={categories}
           styles={selectStyles}
-          placeholder="Category"
+          placeholder="Product category"
         />
         <input
           type="number"
           value={amount}
-          onChange={handleAmountChange}
-          placeholder="0.00"
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="0,00"
         />
       </div>
       <div className="finance-form-button">

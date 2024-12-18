@@ -1,19 +1,26 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { changeBalance } from "../../redux/balance/balanceOperations";
-import { getBalance } from "../../redux/balance/balanceSelector";
 import { BalanceModal } from "../BalanceModal/BalanceModal";
 import "./Balance.css";
 
 const Balance = () => {
+	const [balance, setBalance] = useState(null);
 	const [input, setInput] = useState("");
 	const [showModal, setShowModal] = useState(true);
-	const balance = useSelector(getBalance);
-	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const storedBalance = localStorage.getItem("balance");
+		if (storedBalance) {
+			const parsedBalance = parseFloat(storedBalance);
+			setBalance(parsedBalance);
+			setInput(parsedBalance.toFixed(2));
+		} else {
+			setInput("00.00");
+		}
+	}, []);
 
 	const handleChange = (e) => {
-		const inputValue = e.target.value;
+		const inputValue = e.target.value.replace(" EUR", "");
 		if (/^\d*\.?\d*$/.test(inputValue)) {
 			setInput(inputValue);
 		}
@@ -31,40 +38,66 @@ const Balance = () => {
 			return;
 		}
 
-		dispatch(changeBalance({ newBalance }));
-		setInput("");
+		setBalance(newBalance);
+		localStorage.setItem("balance", newBalance);
+
+		setInput(newBalance.toFixed(2));
 		setShowModal(false);
+
+		document.activeElement.blur();
+
 		toast.success("Balance updated successfully!", {
 			autoClose: 2000,
 			theme: "colored",
 		});
 	};
 
+	const handleInputFocus = () => {
+		if (input === "00.00") {
+			setInput("");
+		}
+	};
+
+	const handleInputBlur = () => {
+		if (input === "" && balance === null) {
+			setInput("00.00");
+		}
+	};
+
+	const handleInputClick = (e) => {
+		const inputElement = e.target;
+		const numberLength = inputElement.value.replace(" EUR", "").length; //
+		setTimeout(() => {
+			inputElement.setSelectionRange(numberLength, numberLength);
+		}, 0);
+	};
+
 	return (
 		<div className="container-balance">
-			{showModal && balance === 0 && <BalanceModal />}
+			{showModal && balance === null && <BalanceModal />}
 			<div className="balanceWrapper">
 				<span className="label-balance">Balance:</span>
-				<div className="balance">
-					<form onSubmit={handleSubmit} className="form-balance">
+				<form onSubmit={handleSubmit} className="form-balance">
+					<div className="input-container">
 						<input
 							type="text"
 							className="input-balance"
-							value={input}
+							value={`${input} EUR`}
 							onChange={handleChange}
+							onFocus={handleInputFocus}
+							onBlur={handleInputBlur}
+							onClick={handleInputClick}
 							placeholder="00.00 EUR"
 						/>
-						<div className="separator"></div>
-						<button
-							type="submit"
-							className={`button-balance ${
-								input ? "buttonActive-balance" : ""
-							}`}
-						>
-							CONFIRM
-						</button>
-					</form>
-				</div>
+					</div>
+					<div className="separator"></div>
+					<button
+						type="submit"
+						className={`button-balance ${input ? "buttonActive-balance" : ""}`}
+					>
+						CONFIRM
+					</button>
+				</form>
 			</div>
 		</div>
 	);
