@@ -2,19 +2,29 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   gap: 20px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .finance-form-input {
   display: flex;
-  gap: 15px;
+  gap: 0px;
+  height: 44px;
   align-items: center;
   font-family: Roboto;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.06px;
-    letter-spacing: 0.02em;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  border-collapse: collapse;
+}
+
+.finance-form-input div & .finance-form-input div input {
+  height: 44px;
+  min-height: 44px;
+  border-collapse: collapse;
 }
 
 .finance-form-button {
@@ -22,45 +32,46 @@
   gap: 15px;
 }
 
-.finance-form input {
-  padding: 10px;
-  font-size: 12px;
-  font-family: Roboto;
-  font-weight: 900;
-  line-height: 14.06px;
-  letter-spacing: 0.04em;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  color: #52555F;
+.finance-form-button button {
+  width: 136px;
+  height: 44px;
+  border-radius: 16px;
+  border-collapse: collapse;
 }
 
-.date-input-container {
+.finance-form input {
+  padding: 10px;
+  color: #52555f;
+  border-collapse: collapse;
+}
+
+div.date-input-container {
   display: flex;
   align-items: center;
   position: relative;
   cursor: pointer;
+  width: 140px;
+  height: 44px;
+  border: none;
+  border-collapse: collapse;
 }
 
 .calendar-icon {
   position: absolute;
   left: 15px;
-  top: 9px;
-  color: #52555F;
+  top: 11px;
+  color: #52555f;
   pointer-events: none;
   width: 32px;
   height: 32px;
 }
 
-.calendar-icon use {
-  fill: currentColor;
-}
-
 .date-input-container input[type="date"] {
-  width: 180px;
-  height: 40px;
+  height: 44px;
   padding-left: 40px;
-  padding-right: 10px;
+  padding-right: 0px;
   cursor: pointer;
+  border-collapse: collapse;
 }
 
 .date-input-container input[type="date"]::-webkit-calendar-picker-indicator {
@@ -75,6 +86,20 @@
   opacity: 0;
 }
 
+.product-description-input {
+  margin-left: 32px;
+  height: 44px;
+  border-radius: 8px 0 0 0;
+  border: 2px solid #f5f6fb;
+  border-right: 1px;
+  border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+}
+
 .finance-form button {
   padding: 10px 25px;
   font-size: 16px;
@@ -86,30 +111,71 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
+  border-collapse: collapse;
 }
 
 .finance-form button[type="submit"] {
-  background-color: #FF751D;
+  background-color: #ff751d;
   color: white;
+  border-collapse: collapse;
 }
 
 .finance-form button[type="submit"]:hover {
-  background-color: #F25D07;
+  background-color: #f25d07;
 }
 
 .finance-form button[type="button"] {
-  background-color: #FFFFFF;
-  color: #52555F;
-  border: 2px solid #F6F7FC;
+  background-color: #ffffff;
+  color: #52555f;
+  border: 2px solid #f6f7fc;
+  border-collapse: collapse;
 }
 
 .finance-form button[type="button"]:hover {
-  background-color: #F6F7FC;
+  background-color: #f6f7fc;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: textfield;
+  appearance: none;
   margin: 0;
+}
+
+.finance-form .select-control {
+  width: 180px;
+  height: 44px;
+  border: 2px solid #f5f6fb;
+  /* border-right: 1px; */
+  border-radius: 0px;
+  box-shadow: none;
+  text-align: left;
+  border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+}
+
+.finance-form .select-option {
+  color: grey;
+  border-collapse: collapse;
+}
+
+.finance-form .select-option--is-selected {
+  background-color: lightgrey;
+}
+
+.finance-form .select-option--is-not-selected {
+  background-color: white;
+}
+
+.amount-input {
+  height: 44px;
+  border-radius: 0 8px 8px 0;
+  border: 2px solid #f5f6fb;
+  border-left: 1px;
+  border-collapse: collapse;
 }

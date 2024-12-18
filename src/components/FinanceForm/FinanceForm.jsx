@@ -28,13 +28,13 @@ const FinanceForm = ({ onAdd, activeSection }) => {
 
   const selectExpenses = [
     { value: "Transport", label: "Transport" },
-    { value: "Prodcuts", label: "Products" },
+    { value: "Products", label: "Products" },
     { value: "Health", label: "Health" },
     { value: "Alcohol", label: "Alcohol" },
     { value: "Entertainment", label: "Entertainment" },
     { value: "Housing", label: "Housing" },
     { value: "Technique", label: "Technique" },
-    { value: "Comunnalm communication", label: "Communal, communication" },
+    { value: "Communal, communication", label: "Communal, communication" },
     { value: "Sports, hobbies", label: "Sports, hobbies" },
     { value: "Other", label: "Other" },
   ];
@@ -47,22 +47,6 @@ const FinanceForm = ({ onAdd, activeSection }) => {
   const categories =
     activeSection === "expenses" ? selectExpenses : selectIncome;
 
-  const selectStyles = {
-    control: (provided) => ({
-      ...provided,
-      width: "180px",
-      height: "40px",
-      borderRadius: "8px",
-      boxShadow: "none",
-      textAlign: "left",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      color: "grey",
-      backgroundColor: state.isSelected ? "lightgrey" : "white",
-    }),
-  };
-
   const handleCategoryChange = (selectedOption) => {
     setCategory(selectedOption ? selectedOption.value : "");
   };
@@ -72,8 +56,8 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       <div className="finance-form-input">
         <div className="date-input-container">
           <svg
-            width="40"
-            height="40"
+            width="32"
+            height="32"
             viewBox="0 0 32 32"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -89,25 +73,39 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             className="date-input"
           />
         </div>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Product description"
-        />
-        <Select
-          value={category ? { value: category, label: category } : null}
-          onChange={handleCategoryChange}
-          options={categories}
-          styles={selectStyles}
-          placeholder="Product category"
-        />
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="0,00"
-        />
+        <div>
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Product description"
+            className="product-description-input"
+          />
+        </div>
+        <div>
+          <Select
+            value={category ? { value: category, label: category } : null}
+            onChange={handleCategoryChange}
+            options={categories}
+            classNames={{
+              control: () => "select-control",
+              option: (state) =>
+                state.isSelected
+                  ? "select-option select-option--is-selected"
+                  : "select-option select-option--is-not-selected",
+            }}
+            placeholder="Product category"
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="0,00"
+            className="amount-input"
+          />
+        </div>
       </div>
       <div className="finance-form-button">
         <button type="submit">Input</button>
