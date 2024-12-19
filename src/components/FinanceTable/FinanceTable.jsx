@@ -1,7 +1,7 @@
 import "./FinanceTable.css";
 
 const FinanceTable = ({ data, onDelete }) => {
-  const rowesToDisplay = 9;
+  const rowesToDisplay = 12;
 
   const tableData = [
     ...data,
