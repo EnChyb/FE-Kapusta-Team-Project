@@ -5,7 +5,8 @@ import "./Balance.css";
 import { BalanceModal } from "../BalanceModal/BalanceModal";
 
 const Balance = () => {
-	const [input, setInput] = useState("");
+	const [input, setInput] = useState("00.00");
+	const [isEditing, setIsEditing] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 
@@ -38,18 +39,28 @@ const Balance = () => {
 
 	const handleChange = (e) => {
 		const inputValue = e.target.value.replace(" EUR", "");
-		if (/^\d*\.?\d*$/.test(inputValue)) {
+		if (/^\d*\.?\d*$/.test(inputValue) || inputValue === "") {
 			setInput(inputValue);
 		}
 	};
 
-	const handleInputClick = (e) => {
-		const inputElement = e.target;
-		const valueWithoutCurrency = inputElement.value.replace(" EUR", "");
-		const numberLength = valueWithoutCurrency.length;
+	const handleFocus = () => {
+		if (input === "00.00") {
+			setInput("");
+		}
+		setIsEditing(true);
+	};
 
-		// Ustaw kursor zawsze na końcu liczby
-		inputElement.setSelectionRange(numberLength, numberLength);
+	const handleInputClick = (e) => {
+		if (!isEditing) {
+			const inputElement = e.target;
+			const valueWithoutCurrency = inputElement.value.replace(" EUR", "");
+			const numberLength = valueWithoutCurrency.length;
+
+			setTimeout(() => {
+				inputElement.setSelectionRange(numberLength, numberLength);
+			}, 0);
+		}
 	};
 
 	const handleSubmit = async (e) => {
@@ -81,6 +92,7 @@ const Balance = () => {
 
 			const data = await response.json();
 			setInput(data.balance.toFixed(2));
+			setIsEditing(false);
 			setShowModal(false);
 			document.activeElement.blur();
 
@@ -108,8 +120,9 @@ const Balance = () => {
 						<input
 							type="text"
 							className="input-balance"
-							value={`${input} EUR`}
+							value={isEditing ? input : `${input} EUR`}
 							onChange={handleChange}
+							onFocus={handleFocus}
 							onClick={handleInputClick}
 							placeholder="00.00 EUR"
 						/>
