@@ -1,7 +1,8 @@
 .finance-table {
   min-width: 746px;
   margin: 0;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   table-layout: fixed;
 }
 
@@ -26,6 +27,9 @@
   line-height: 14.06px;
   letter-spacing: 0.02em;
   text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .finance-table td {
