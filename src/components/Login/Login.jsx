@@ -5,8 +5,10 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import logoLogin from "../../assets/images/logo/logo-login.webp";
 import API_URL from "../../config/apiConfig";
+import "./Login.css";
 
 const Logo = () => (
+
 	<img
 		className="logo-login-title"
 		src={logoLogin}
@@ -185,6 +187,7 @@ const Login = ({ onLogin }) => (
 			</div>
 		</section>
 	</main>
+
 );
 
 export default Login;
