@@ -41,12 +41,14 @@ table.finance-table * {
 /* Column widths in percentages */
 .finance-table th:nth-child(1),
 .finance-table td:nth-child(1) {
-  width: 15%; /* Date column */
+  width: 10%; /* Date column */
 }
 
 .finance-table th:nth-child(2),
 .finance-table td:nth-child(2) {
   width: 30%; /* Description column */
+  text-align: left;
+  padding-left: 20px;
 }
 
 .finance-table th:nth-child(3),
@@ -61,12 +63,8 @@ table.finance-table * {
 
 .finance-table th:nth-child(5),
 .finance-table td:nth-child(5) {
-  width: 15%; /* Actions column */
+  width: 10%; /* Actions column */
 }
-
-/* .finance-table tr:hover td {
-  background-color: #f5f6fb;
-} */
 
 .finance-table th,
 .finance-table td {
@@ -120,7 +118,7 @@ table.finance-table * {
 
 .finance-table-body::-webkit-scrollbar-thumb {
   background: #ff751d;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .finance-table-body tr {
@@ -149,7 +147,6 @@ table.finance-table * {
 }
 
 .delete-btn svg {
-  fill: #52555f;
   transform: translate(20%, 20%);
   width: 100%;
   height: 100%;
