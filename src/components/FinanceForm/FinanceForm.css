@@ -40,13 +40,6 @@
   gap: 15px;
 }
 
-.finance-form-button button {
-  width: 136px;
-  height: 44px;
-  border-radius: 16px;
-  border-collapse: collapse;
-}
-
 .finance-form input {
   display: flex;
   color: #52555f;
@@ -99,6 +92,7 @@
   margin-left: 32px;
   padding-left: 20px;
   height: 44px;
+  width: 290px;
   border-radius: 8px 0 0 0;
   border: 2px solid #f6f7fc;
   border-right: 1px;
@@ -114,14 +108,20 @@
   padding: 10px 25px;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 15px;
   cursor: pointer;
-  height: 40px;
+  width: 136px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
   border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
 }
 
 .finance-form button[type="submit"] {
@@ -191,11 +191,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 div.select-control,
-.css-13cymwt-control {
-  width: 180px;
+div.css-13cymwt-control {
+  width: 169px;
   height: 44px;
   border: 2px solid #f6f7fc;
-  border-radius: 0px;
+  border-radius: 0;
   box-shadow: none;
   text-align: left;
   border-collapse: collapse;
@@ -204,11 +204,62 @@ div.select-control,
   font-weight: 400;
   line-height: 14.06px;
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #f6f7fc;
+  border-left: 1px solid #f6f7fc;
+  padding: 0 8px;
 }
 
-div.select-control div,
-div.css-19bb58m {
-  padding-top: 5px;
+div.select-control > div:first-child,
+div.select-control > div:nth-of-type(2) {
+  transform: translateY(-14%);
+}
+
+div.select-control > div > div:first-of-type {
+  transform: translateY(5%);
+  margin: 0;
+}
+
+/* Value container styles */
+.css-1d8n9bt,
+.css-319lph-ValueContainer,
+.css-1fdsijx-ValueContainer {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Input container styles */
+.css-19bb58m,
+.css-6j8wv5-Input,
+.css-1k3w0ef-Input {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Placeholder styles */
+.css-1jqq78o-placeholder,
+.css-14el2xx-placeholder {
+  margin: 0;
+  padding: 0;
+  line-height: 44px;
+}
+
+/* Single value styles */
+.css-qc6sy-singleValue,
+.css-1dimb5e-singleValue,
+.css-26l3qy-menu {
+  margin: 0;
+  padding: 0;
+  line-height: 44px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 div.select-control span {
@@ -230,6 +281,7 @@ div.select-control span {
 
 .amount-input {
   height: 44px;
+  width: 119px;
   border-radius: 0 8px 8px 0;
   border: 2px solid #f6f7fc;
   border-left: 1px;
