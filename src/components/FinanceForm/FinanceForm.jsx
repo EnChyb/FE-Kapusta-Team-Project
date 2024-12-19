@@ -32,6 +32,14 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     amount: Yup.number()
       .typeError("Amount must be a number")
       .positive("Amount must be a positive number")
+      .test(
+        "is-decimal",
+        "Amount should have up to 2 decimal places",
+        (value) => {
+          if (!value) return true;
+          return /^\d+(\.\d{0,2})?$/.test(value.toString());
+        }
+      )
       .required("Amount is required"),
   });
 
@@ -122,6 +130,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                 name="amount"
                 placeholder="0.00"
                 className="amount-input"
+                step="0.01"
               />
               <ErrorMessage name="amount" component="div" className="error" />
             </div>
