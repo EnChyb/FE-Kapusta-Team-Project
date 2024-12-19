@@ -9,7 +9,7 @@ import MainPage from "./pages/MainPage";
 import HomePage from "./pages/HomePage";
 import ReportsPage from "./pages/ReportsPage";
 import { useState, useEffect } from "react";
-import ClipLoader from "react-spinners/PacmanLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const App = () => {
   const [user, setUser] = useState(null);
