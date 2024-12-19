@@ -17,4 +17,5 @@
 .finance-details {
   display: flex;
   gap: 20px;
+  align-self: flex-start;
 }
