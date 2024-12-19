@@ -1,33 +1,9 @@
-import { useState } from "react";
 import "./FinanceForm.css";
 import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!date || !description || !category || !amount) return;
-
-    onAdd({ date, description, category, amount: parseFloat(amount) });
-
-    setDate(new Date().toISOString().split("T")[0]);
-    setDescription("");
-    setCategory("");
-    setAmount("");
-  };
-
-  const clearEntries = () => {
-    setDescription("");
-    setCategory(null);
-    setAmount("");
-  };
-
   const selectExpenses = [
     { value: "Transport", label: "Transport" },
     { value: "Products", label: "Products" },
