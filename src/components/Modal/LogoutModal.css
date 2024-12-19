@@ -57,7 +57,7 @@
     transition: all 0.3s ease;
 }
 
-/* Modal */
+/* Typography */
 .modal__title {
     font-size: 0.875rem;
     font-weight: var(--font-medium);
