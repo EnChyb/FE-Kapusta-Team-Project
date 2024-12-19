@@ -56,3 +56,23 @@
     color: #ffffff;
     transition: all 0.3s ease;
 }
+
+/* Typography */
+.modal__title {
+    font-size: 0.875rem;
+    font-weight: var(--font-medium);
+    color: var(--clr-primary-text);
+    text-align: center;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+}
+
+.modal__confirm-btn,
+.modal__cancel-btn {
+    font-size: 0.75rem;
+    font-weight: var(--font-bold);
+    color: var(--clr-primary-text);
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
