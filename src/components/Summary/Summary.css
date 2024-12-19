@@ -1,7 +1,8 @@
 .summary-container {
   background-color: #f5f6fb;
-  border-radius: 20px;
+  border-radius: 20px 20px 20px 0;
   width: 230px;
+  height: fit-content;
 }
 
 .summary-title {
@@ -18,17 +19,24 @@
   font-weight: 700;
   line-height: 14.06px;
   letter-spacing: 0.02em;
+  border: 2px solid white;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
 }
 
 .summary-content {
-  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-left: none;
+  border-right: none;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
+  padding: 12px;
   border-bottom: 2px solid #ffffff;
 }
 
