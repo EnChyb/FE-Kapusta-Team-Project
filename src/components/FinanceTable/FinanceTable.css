@@ -11,12 +11,12 @@ table.finance-table * {
 
 .finance-table th,
 .finance-table td {
-  padding: 15px;
   text-align: left;
-  font-size: 16px;
+  font-size: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: center;
 }
 
 .finance-table th {
@@ -68,9 +68,10 @@ table.finance-table * {
   background-color: #f5f6fb;
 }
 
-.finance-table td,
-.finance-table th {
+.finance-table th,
+.finance-table td {
   text-align: center;
+  vertical-align: middle;
 }
 
 .finance-table .negative-amount {
@@ -82,7 +83,7 @@ table.finance-table * {
 }
 
 .finance-table-container {
-  width: 100%;
+  width: 75%;
   border-radius: 30px 30px 0 0;
   background-color: #fff;
   display: flex;
@@ -106,6 +107,7 @@ table.finance-table * {
   display: block;
   max-height: 450px;
   overflow-y: auto;
+  font-size: 12px;
 }
 
 .finance-table-body::-webkit-scrollbar {
@@ -132,7 +134,6 @@ table.finance-table * {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
