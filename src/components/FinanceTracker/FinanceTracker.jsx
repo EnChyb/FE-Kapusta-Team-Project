@@ -22,7 +22,7 @@ const FinanceTracker = () => {
             }`}
             onClick={() => handleSwitchSection("expenses")}
           >
-            Expenses
+            EXPENSES
           </button>
         </div>
         <div className="button-single">
@@ -32,7 +32,7 @@ const FinanceTracker = () => {
             }`}
             onClick={() => handleSwitchSection("income")}
           >
-            Income
+            INCOME
           </button>
         </div>
       </div>
