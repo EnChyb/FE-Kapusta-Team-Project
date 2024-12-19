@@ -2,6 +2,18 @@ import React from "react";
 import "./FinanceTable.css";
 
 const FinanceTable = ({ data }) => {
+  const rowesToDisplay = 9;
+
+  const tableData = [
+    ...data,
+    ...Array.from({ length: rowesToDisplay - data.length }, () => ({
+      date: "",
+      description: "",
+      category: "",
+      amount: null,
+    })),
+  ];
+
   return (
     <table className="finance-table">
       <thead>
@@ -13,7 +25,7 @@ const FinanceTable = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((entry, index) => (
+        {tableData.map((entry, index) => (
           <tr key={index}>
             <td>{entry.date}</td>
             <td>{entry.description}</td>
@@ -23,7 +35,7 @@ const FinanceTable = ({ data }) => {
                 entry.amount < 0 ? "negative-amount" : "positive-amount"
               }
             >
-              {entry.amount.toFixed(2)}
+              {entry.amount === null ? "" : entry.amount.toFixed(2)}
             </td>
           </tr>
         ))}
