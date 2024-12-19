@@ -68,7 +68,7 @@
 
 .calculator-icon {
   position: absolute;
-  right: 15px;
+  right: 5px;
   top: 12px;
   color: #52555f;
   pointer-events: none;
@@ -296,4 +296,5 @@ div.select-control span {
   border-left: 1px;
   border-collapse: collapse;
   padding-right: 40px;
+  text-align: right;
 }
