@@ -1,34 +1,56 @@
 import "./FinanceTable.css";
 
-const FinanceTable = ({ data }) => {
+const FinanceTable = ({ data, onDelete }) => {
   const rowesToDisplay = 9;
 
   const tableData = [
     ...data,
-    ...Array.from({ length: rowesToDisplay - data.length }, () => ({
-      date: "",
-      description: "",
-      category: "",
-      amount: null,
-    })),
+    ...Array.from(
+      { length: Math.max(rowesToDisplay - data.length, 0) },
+      () => ({
+        date: "",
+        description: "",
+        category: "",
+        amount: null,
+      })
+    ),
   ];
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+      .split("/")
+      .join(".");
+  };
+
+  const formatAmount = (amount) => {
+    if (amount === null) return "";
+    const absAmount = Math.abs(amount);
+    return `${amount < 0 ? "- " : ""}${absAmount.toFixed(2)} UAH.`;
+  };
 
   return (
     <div className="finance-table-container">
       <table className="finance-table">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Sum</th>
+            <th>DATE</th>
+            <th>DESCRIPTION</th>
+            <th>CATEGORY</th>
+            <th>SUM</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {tableData.map((entry, index) => (
             <tr key={index}>
-              <td>{entry.date}</td>
+              <td>{formatDate(entry.date)}</td>
               <td>{entry.description}</td>
               <td>{entry.category}</td>
               <td
@@ -36,9 +58,21 @@ const FinanceTable = ({ data }) => {
                   entry.amount < 0 ? "negative-amount" : "positive-amount"
                 }
               >
-                {entry.amount === null ? "" : entry.amount.toFixed(2)}
+                {formatAmount(entry.amount)}
               </td>
-              <td></td>
+              <td>
+                {entry.amount !== null && (
+                  <button
+                    className="delete-btn"
+                    onClick={() => onDelete && onDelete(index)}
+                    aria-label="Delete entry"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                      <use href="/sprite.svg#icon-delete" />
+                    </svg>
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
