@@ -1,6 +1,13 @@
 import "./Summary.css";
 
 const Summary = ({ data }) => {
+  const formatNumber = (number) => {
+    return Math.abs(number)
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   const monthlySummary =
     data?.reduce((acc, entry) => {
       const date = new Date(entry.date);
@@ -24,7 +31,7 @@ const Summary = ({ data }) => {
         {Object.entries(monthlySummary).map(([month, total]) => (
           <div key={month} className="summary-row">
             <span className="summary-month">{month}</span>
-            <span className="summary-amount">{Math.abs(total).toFixed(2)}</span>
+            <span className="summary-amount">{formatNumber(total)}</span>
           </div>
         ))}
       </div>
