@@ -38,7 +38,7 @@ const FinanceTable = ({ data, onDelete }) => {
   return (
     <div className="finance-table-container">
       <table className="finance-table">
-        <thead>
+        <tbody className="finance-table-header">
           <tr>
             <th>DATE</th>
             <th>DESCRIPTION</th>
@@ -46,8 +46,8 @@ const FinanceTable = ({ data, onDelete }) => {
             <th>SUM</th>
             <th></th>
           </tr>
-        </thead>
-        <tbody>
+        </tbody>
+        <tbody className="finance-table-body">
           {tableData.map((entry, index) => (
             <tr key={index}>
               <td>{formatDate(entry.date)}</td>

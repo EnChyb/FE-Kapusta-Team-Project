@@ -1,4 +1,4 @@
-.finance-table {
+table.finance-table {
   width: 100%;
   margin: 0;
   border-collapse: separate;
@@ -11,7 +11,6 @@ table.finance-table * {
 
 .finance-table th,
 .finance-table td {
-  border: 2px solid #f5f6fb;
   padding: 15px;
   text-align: left;
   font-size: 16px;
@@ -30,8 +29,6 @@ table.finance-table * {
   line-height: 14.06px;
   letter-spacing: 0.02em;
   text-align: left;
-  position: sticky;
-  top: 0;
   z-index: 0;
 }
 
@@ -84,26 +81,51 @@ table.finance-table * {
   color: #407946;
 }
 
-/* Container for scrollable table body */
 .finance-table-container {
-  max-height: 450px;
-  overflow-y: auto;
   width: 100%;
   border-radius: 30px 30px 0 0;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.finance-table-container::-webkit-scrollbar {
+.finance-table-header {
+  display: table;
+  width: 100%;
+}
+
+.finance-table-header > tr > th:first-child {
+  border-radius: 30px 0 0 0;
+}
+
+.finance-table-header > tr > th:last-child {
+  border-radius: 0 30px 0 0;
+}
+
+.finance-table-body {
+  display: block;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.finance-table-body::-webkit-scrollbar {
   width: 6px;
 }
 
-.finance-table-container::-webkit-scrollbar-track {
+.finance-table-body::-webkit-scrollbar-track {
   background: #f5f6fb;
 }
 
-.finance-table-container::-webkit-scrollbar-thumb {
+.finance-table-body::-webkit-scrollbar-thumb {
   background: #ff751d;
   border-radius: 3px;
+}
+
+.finance-table-body tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border: 1px solid #f5f6fb;
 }
 
 .delete-btn {
