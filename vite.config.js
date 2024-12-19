@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     alias: {
-      "@": "/src" // Alias dla folderu `src`
-    }
-  }
+      "@": "/src", // Alias dla folderu `src`
+    },
+  },
 });
