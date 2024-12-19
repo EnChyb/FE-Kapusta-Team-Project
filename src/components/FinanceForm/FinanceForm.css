@@ -66,6 +66,15 @@
   height: 32px;
 }
 
+.calculator-icon {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  color: #52555f;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .date-input {
   height: 44px;
   padding-left: 40px;
@@ -286,4 +295,5 @@ div.select-control span {
   border: 2px solid #f6f7fc;
   border-left: 1px;
   border-collapse: collapse;
+  padding-right: 40px;
 }

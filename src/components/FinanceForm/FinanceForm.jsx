@@ -106,6 +106,17 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             </div>
 
             <div className="input-container-amount">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="calculator-icon"
+              >
+                {/* Z JAKIEGOŚ POWODU NIE POJAWIA MI SIĘ BEZ /PUBLIC/ NIE USUWAĆ */}
+                <use href="/public/sprite.svg#calculator" />
+              </svg>
               <Field
                 type="number"
                 name="amount"
