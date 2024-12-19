@@ -1,7 +1,8 @@
 .finance-table {
-  max-width: 1200px;
+  min-width: 746px;
   margin: 0 auto;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .finance-table th,
@@ -10,15 +11,46 @@
   padding: 15px;
   text-align: left;
   font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .finance-table th {
   background-color: #f4f4f9;
   font-weight: bold;
+  height: 50px;
 }
 
 .finance-table td {
   background-color: #fff;
+  height: 45px;
+}
+
+/* Column widths in percentages */
+.finance-table th:nth-child(1),
+.finance-table td:nth-child(1) {
+  width: 15%; /* Date column */
+}
+
+.finance-table th:nth-child(2),
+.finance-table td:nth-child(2) {
+  width: 40%; /* Description column */
+}
+
+.finance-table th:nth-child(3),
+.finance-table td:nth-child(3) {
+  width: 25%; /* Category column */
+}
+
+.finance-table th:nth-child(4),
+.finance-table td:nth-child(4) {
+  width: 15%; /* Sum column */
+}
+
+.finance-table th:nth-child(5),
+.finance-table td:nth-child(5) {
+  width: 5%; /* Actions column */
 }
 
 .finance-table tr:nth-child(even) td {
@@ -44,4 +76,11 @@
 
 .finance-table .positive-amount {
   color: green;
+}
+
+/* Container for scrollable table body */
+.finance-table-container {
+  height: 450px;
+  overflow-y: auto;
+  width: 100%;
 }
