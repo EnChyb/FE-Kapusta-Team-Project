@@ -14,7 +14,7 @@
   display: flex;
   gap: 0px;
   height: 44px;
-  align-items: center;
+  align-items: flex-start;
   font-family: Roboto;
   font-size: 12px;
   font-weight: 400;
@@ -23,7 +23,12 @@
   border-collapse: collapse;
 }
 
-.finance-form-input div,
+.finance-form-input > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .finance-form-input div input {
   height: 44px;
   min-height: 44px;
@@ -151,8 +156,23 @@ input[type="number"]::-webkit-outer-spin-button {
 .error {
   color: red;
   font-size: 12px;
-  margin-top: 5px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  white-space: nowrap;
   font-weight: bold;
+}
+
+.input-container-description .error {
+  left: 32px;
+}
+
+.input-container-date,
+.input-container-description,
+.input-container-select,
+.input-container-amount {
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .input-container-date input,
