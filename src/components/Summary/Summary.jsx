@@ -1,34 +1,33 @@
-import React from "react";
+import "./Summary.css";
 
 const Summary = ({ data }) => {
-  const monthlySummary = data.reduce((acc, entry) => {
-    const date = new Date(entry.date);
-    const year = date.getFullYear();
-    const month = new Date(entry.date).toLocaleString("en-US", {
-      month: "long",
-    });
+  const monthlySummary =
+    data?.reduce((acc, entry) => {
+      const date = new Date(entry.date);
+      const month = date
+        .toLocaleString("en-US", { month: "long" })
+        .toUpperCase();
 
-    const monthYear = `${month} (${year})`;
+      if (!acc[month]) {
+        acc[month] = 0;
+      }
 
-    if (!acc[monthYear]) {
-      acc[monthYear] = 0;
-    }
+      acc[month] += entry.amount;
 
-    acc[monthYear] += entry.amount;
-
-    return acc;
-  }, {});
+      return acc;
+    }, {}) || {};
 
   return (
-    <div>
-      <h3>SUMMARY</h3>
-      <ul>
-        {Object.entries(monthlySummary).map(([monthYear, total]) => (
-          <li key={monthYear}>
-            {monthYear}: {Math.abs(total).toFixed(2)}
-          </li>
+    <div className="summary-container">
+      <h2 className="summary-title">SUMMARY</h2>
+      <div className="summary-content">
+        {Object.entries(monthlySummary).map(([month, total]) => (
+          <div key={month} className="summary-row">
+            <span className="summary-month">{month}</span>
+            <span className="summary-amount">{Math.abs(total).toFixed(2)}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

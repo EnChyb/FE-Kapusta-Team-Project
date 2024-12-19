@@ -8,12 +8,12 @@
   min-width: 1098px;
 }
 
-.finance-section h2 {
+/* .finance-section h2 {
   color: #ff751d;
   font-size: 20px;
   margin-bottom: 20px;
   font-weight: bold;
-}
+} */
 
 .finance-details {
   display: flex;

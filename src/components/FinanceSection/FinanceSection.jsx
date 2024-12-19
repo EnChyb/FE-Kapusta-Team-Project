@@ -3,7 +3,7 @@ import FinanceTable from "../FinanceTable/FinanceTable";
 import Summary from "../Summary/Summary";
 import "./FinanceSection.css";
 
-const FinanceSection = ({ title, data, setData, activeSection }) => {
+const FinanceSection = ({ data, setData, activeSection }) => {
   const addEntry = (entry) => {
     const adjustedEntry = {
       ...entry,
