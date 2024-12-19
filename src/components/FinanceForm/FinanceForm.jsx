@@ -1,4 +1,3 @@
-import React from "react";
 import "./FinanceForm.css";
 import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -25,21 +24,6 @@ const FinanceForm = ({ onAdd, activeSection }) => {
 
   const categories =
     activeSection === "expenses" ? selectExpenses : selectIncome;
-
-  const selectStyles = {
-    control: (provided) => ({
-      ...provided,
-      width: "200px",
-      borderRadius: "8px",
-      boxShadow: "none",
-      textAlign: "left",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      color: "grey",
-      backgroundColor: state.isSelected ? "lightgrey" : "white",
-    }),
-  };
 
   const validationSchema = Yup.object({
     date: Yup.string().required("Date is required"),
@@ -71,8 +55,18 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       {({ setFieldValue, values }) => (
         <Form className="finance-form">
           <div className="finance-form-input">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="calendar-icon"
+            >
+              <use href="/sprite.svg#calendar" />
+            </svg>
             <div className="input-container-date">
-              <Field type="date" name="date" />
+              <Field type="date" name="date" className="date-input" />
               <ErrorMessage name="date" component="div" className="error" />
             </div>
 
@@ -81,6 +75,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                 type="text"
                 name="description"
                 placeholder="Product description"
+                className="product-description-input"
               />
               <ErrorMessage
                 name="description"
@@ -98,14 +93,25 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                 }
                 onChange={(option) => setFieldValue("category", option.value)}
                 options={categories}
-                styles={selectStyles}
+                classNames={{
+                  control: () => "select-control",
+                  option: (state) =>
+                    state.isSelected
+                      ? "select-option select-option--is-selected"
+                      : "select-option select-option--is-not-selected",
+                }}
                 placeholder="Product category"
               />
               <ErrorMessage name="category" component="div" className="error" />
             </div>
 
             <div className="input-container-amount">
-              <Field type="number" name="amount" placeholder="0.00" />
+              <Field
+                type="number"
+                name="amount"
+                placeholder="0.00"
+                className="amount-input"
+              />
               <ErrorMessage name="amount" component="div" className="error" />
             </div>
           </div>
