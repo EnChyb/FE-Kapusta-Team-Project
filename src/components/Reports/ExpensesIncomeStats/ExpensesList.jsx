@@ -4,7 +4,7 @@ import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../config/apiConfig";
 
-const ExpensesList = () => {
+const ExpensesList = ({ selectedDate }) => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,6 +15,10 @@ const ExpensesList = () => {
       setError(null);
 
       try {
+        const year = selectedDate.getFullYear();
+        const month = String(selectedDate.getMonth() + 1).padStart(2, "0"); // Dodanie zer przed cyframi 1-9
+        const date = `${year}-${month}`;
+
         const token = localStorage.getItem("token");
         if (!token) {
           throw new Error("No authorization token.");
@@ -24,9 +28,24 @@ const ExpensesList = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          params: {
+            date, // Nowy parametr w formacie YYYY-MM
+          },
         });
 
-        setExpenses(response.data.expenses || []);
+        console.log("Fetched expenses:", response.data.expenses);
+
+        const summedExpenses = response.data.expenses.reduce((acc, expense) => {
+          const category = expense.category;
+          if (!acc[category]) {
+            acc[category] = { ...expense, amount: expense.amount };
+          } else {
+            acc[category].amount += expense.amount;
+          }
+          return acc;
+        }, {});
+
+        setExpenses(Object.values(summedExpenses));
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");
@@ -36,7 +55,7 @@ const ExpensesList = () => {
     };
 
     fetchExpenses();
-  }, []);
+  }, [selectedDate]);
 
   const expenseIcons = {
     Products: "icon-products",
@@ -52,13 +71,13 @@ const ExpensesList = () => {
     Other: "icon-other",
   };
 
-  if (loading) return <li>Fetching expenses...</li>;
-  if (error) return <li>Error: {error}</li>;
+  if (loading) return <li>Loading expenses...</li>;
+  if (error) return <li>Can't load expenses</li>;
 
   return (
     <ul className="eiList">
       {expenses.map((expense) => (
-        <li key={expense._id}>
+        <li key={expense._id || expense.category}>
           <span className="eiIconDescription">{expense.amount.toFixed(2)}</span>
           <svg className="eiIcon">
             <use

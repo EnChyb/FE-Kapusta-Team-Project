@@ -1,13 +1,19 @@
+import { useState } from "react";
 import ExpensesIncome from "../components/Reports/ExpensesIncome";
 import TopReports from "../components/Reports/TopReports";
 import ExpensesIncomeStats from "../components/Reports/ExpensesIncomeStats/ExpensesIncomeStats";
 
 const ReportsPage = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
     <div>
-      <TopReports />
+      <TopReports
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
       <ExpensesIncome />
-      <ExpensesIncomeStats />
+      <ExpensesIncomeStats selectedDate={selectedDate} />
     </div>
   );
 };

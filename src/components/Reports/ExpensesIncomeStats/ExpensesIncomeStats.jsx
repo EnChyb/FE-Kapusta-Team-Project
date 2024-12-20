@@ -5,7 +5,7 @@ import IncomeList from "./IncomeList";
 import upArrow from "../../../assets/svg/Vector 16.svg";
 import backArrow from "../../../assets/svg/Vector 15.svg";
 
-const ExpensesIncomeStats = () => {
+const ExpensesIncomeStats = ({ selectedDate }) => {
   const [label, setLabel] = useState("Expenses");
 
   const handleButton = () => {
@@ -24,7 +24,11 @@ const ExpensesIncomeStats = () => {
         </button>
       </div>
 
-      {label === "Expenses" ? <ExpensesList /> : <IncomeList />}
+      {label === "Expenses" ? (
+        <ExpensesList selectedDate={selectedDate} />
+      ) : (
+        <IncomeList selectedDate={selectedDate} />
+      )}
     </div>
   );
 };

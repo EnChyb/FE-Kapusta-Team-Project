@@ -1,15 +1,13 @@
-import { useState } from 'react';
-import './topReport.css';
-import backspaceIcon from '../../assets/images/keyboard_backspace.png';
-import upArrow from '../../assets/images/up-month-arrow.png';
-import backArrow from '../../assets/images/back-month-arrow.png';
-import { Link } from 'react-router-dom';
-import Balance from '../Balance/Balance';
+import "./topReport.css";
+import backspaceIcon from "../../assets/images/keyboard_backspace.png";
+import upArrow from "../../assets/images/up-month-arrow.png";
+import backArrow from "../../assets/images/back-month-arrow.png";
+import { Link } from "react-router-dom";
+import Balance from "../Balance/Balance";
 
-const TopReports = () => {
-  const [date, setDate] = useState(new Date());
-
+const TopReports = ({ selectedDate, setSelectedDate }) => {
   const changeMonth = (offset) => {
+<<<<<<< Updated upstream
     const newDate = new Date(date);
     newDate.setMonth(date.getMonth() + offset); 
     setDate(newDate);
@@ -18,6 +16,19 @@ const TopReports = () => {
   const formatDate = () => {
     const month = date.toLocaleString('default', { month: 'long' });
     const year = date.getFullYear();
+=======
+    setSelectedDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(prevDate.getMonth() + offset);
+      console.log("New selectedDate:", newDate);
+      return newDate;
+    });
+  };
+
+  const formatDate = () => {
+    const month = selectedDate.toLocaleString("en-US", { month: "long" });
+    const year = selectedDate.getFullYear();
+>>>>>>> Stashed changes
     return `${month} ${year}`;
   };
 
@@ -31,6 +42,7 @@ const TopReports = () => {
             width="24" 
             height="24" 
           />
+<<<<<<< Updated upstream
           <p className='main-report-top-txt'>Main page</p>
         </Link>
       </div>
@@ -53,6 +65,30 @@ const TopReports = () => {
             className='change-month-button'
             onClick={() => changeMonth(1)} 
           >
+=======
+          <p className="main-report-top-txt mobile-disable-txt-arrow">
+            Main page
+          </p>
+        </Link>
+      </div>
+      <div className="balance-period-div">
+        <Balance />
+      </div>
+      <div className="main-current-period-div">
+        <p className="main-report-top-txt">Current period:</p>
+        <div className="show-month-div">
+          <button
+            className="change-month-button"
+            onClick={() => changeMonth(-1)}
+            aria-label="Previous Month">
+            <img src={backArrow} alt="Previous month" />
+          </button>
+          <p className="second-page-back-txt">{formatDate()}</p>
+          <button
+            className="change-month-button"
+            onClick={() => changeMonth(1)}
+            aria-label="Next Month">
+>>>>>>> Stashed changes
             <img src={upArrow} alt="Next month" />
           </button>
         </div>
