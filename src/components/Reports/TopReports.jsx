@@ -18,7 +18,7 @@ const TopReports = () => {
   };
 
   const formatDate = () => {
-    const month = date.toLocaleString('default', { month: 'long' });
+    const month = date.toLocaleString('en-US', { month: 'long' });
     const year = date.getFullYear();
     return `${month} ${year}`;
   };
