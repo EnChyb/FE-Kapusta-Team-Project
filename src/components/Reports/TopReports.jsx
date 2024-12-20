@@ -8,6 +8,7 @@ import Balance from "../Balance/Balance";
 const TopReports = ({ selectedDate, setSelectedDate }) => {
   const changeMonth = (offset) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const newDate = new Date(date);
     newDate.setMonth(date.getMonth() + offset); 
     setDate(newDate);
@@ -17,6 +18,8 @@ const TopReports = ({ selectedDate, setSelectedDate }) => {
     const month = date.toLocaleString('default', { month: 'long' });
     const year = date.getFullYear();
 =======
+=======
+>>>>>>> Stashed changes
     setSelectedDate((prevDate) => {
       const newDate = new Date(prevDate);
       newDate.setMonth(prevDate.getMonth() + offset);
@@ -28,6 +31,9 @@ const TopReports = ({ selectedDate, setSelectedDate }) => {
   const formatDate = () => {
     const month = selectedDate.toLocaleString("en-US", { month: "long" });
     const year = selectedDate.getFullYear();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     return `${month} ${year}`;
   };
@@ -42,6 +48,7 @@ const TopReports = ({ selectedDate, setSelectedDate }) => {
             width="24" 
             height="24" 
           />
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <p className='main-report-top-txt'>Main page</p>
         </Link>
@@ -66,6 +73,8 @@ const TopReports = ({ selectedDate, setSelectedDate }) => {
             onClick={() => changeMonth(1)} 
           >
 =======
+=======
+>>>>>>> Stashed changes
           <p className="main-report-top-txt mobile-disable-txt-arrow">
             Main page
           </p>
@@ -88,6 +97,9 @@ const TopReports = ({ selectedDate, setSelectedDate }) => {
             className="change-month-button"
             onClick={() => changeMonth(1)}
             aria-label="Next Month">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             <img src={upArrow} alt="Next month" />
           </button>
