@@ -39,17 +39,17 @@ const ExpensesList = () => {
   }, []);
 
   const expenseIcons = {
-    products: "icon-products",
-    alcohol: "icon-alcohol",
-    entertainment: "icon-entertainment",
-    health: "icon-health",
-    transport: "icon-transport",
-    housing: "icon-housing",
-    technique: "icon-technique",
-    "communal-communication": "icon-communal-communication",
-    "sports-hobbies": "icon-sports-hobbies",
-    education: "icon-education",
-    other: "icon-other",
+    Products: "icon-products",
+    Alcohol: "icon-alcohol",
+    Entertainment: "icon-entertainment",
+    Health: "icon-health",
+    Transport: "icon-transport",
+    Housing: "icon-housing",
+    Technique: "icon-technique",
+    "Communal, Communication": "icon-communal-communication",
+    "Sports, Hobbies": "icon-sports-hobbies",
+    Education: "icon-education",
+    Other: "icon-other",
   };
 
   if (loading) return <li>Fetching expenses...</li>;
