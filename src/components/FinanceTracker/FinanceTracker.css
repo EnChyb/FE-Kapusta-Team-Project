@@ -1,36 +1,31 @@
 .tracker-container {
-  padding: 20px;
+  /* padding: 20px; */
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin: 20px auto;
+  margin: 8px 90px;
 }
 
 .button-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
 }
 
 .switch-button {
   padding: 10px 20px;
-  margin-right: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px 15px 0 0;
   cursor: pointer;
-  background-color: #d3d3d3;
-  color: #333;
+  background-color: #fafbfd;
+  color: #000;
   font-size: 16px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .switch-button.active {
-  background-color: orange;
-  color: white;
+  background-color: #fefefe;
+  color: #ff751d;
 }
 
 .switch-button:hover {
-  background-color: #ffc107;
-  color: white;
+  background-color: #ff751d;
+  color: #fefefe;
 }

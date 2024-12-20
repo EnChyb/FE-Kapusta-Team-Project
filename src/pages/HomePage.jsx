@@ -1,17 +1,18 @@
-import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 import DataHeader from "../components/DataHeader/DataHeader";
 import FinanceTracker from "../components/FinanceTracker/FinanceTracker";
+import "./HomePage.css";
 
 const HomePage = () => {
-  const { email } = useSelector((state) => state.user);
-  console.log("HomePage loaded with email:", email);
+    const { email } = useOutletContext();
 
-  return (
-    <main>
-      <DataHeader />
-      <FinanceTracker />
-    </main>
-  );
+    return (
+        <main className="home-page">
+            {}
+            <DataHeader email={email} />
+            <FinanceTracker email={email} />
+        </main>
+    );
 };
 
 export default HomePage;

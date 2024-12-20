@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FinanceSection from "../FinanceSection/FinanceSection";
 import "./FinanceTracker.css";
 
@@ -22,7 +22,7 @@ const FinanceTracker = () => {
             }`}
             onClick={() => handleSwitchSection("expenses")}
           >
-            Expenses
+            EXPENSES
           </button>
         </div>
         <div className="button-single">
@@ -32,7 +32,7 @@ const FinanceTracker = () => {
             }`}
             onClick={() => handleSwitchSection("income")}
           >
-            Income
+            INCOME
           </button>
         </div>
       </div>
@@ -42,10 +42,16 @@ const FinanceTracker = () => {
           title="Expenses"
           data={expenses}
           setData={setExpenses}
+          activeSection={activeSection}
         />
       )}
       {activeSection === "income" && (
-        <FinanceSection title="Income" data={income} setData={setIncome} />
+        <FinanceSection
+          title="Income"
+          data={income}
+          setData={setIncome}
+          activeSection={activeSection}
+        />
       )}
     </div>
   );

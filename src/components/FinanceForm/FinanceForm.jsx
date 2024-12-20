@@ -1,66 +1,147 @@
-import React, { useState } from "react";
 import "./FinanceForm.css";
+import Select from "react-select";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-const FinanceForm = ({ onAdd, onClear }) => {
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
+const FinanceForm = ({ onAdd, activeSection }) => {
+  const selectExpenses = [
+    { value: "Transport", label: "Transport" },
+    { value: "Products", label: "Products" },
+    { value: "Health", label: "Health" },
+    { value: "Alcohol", label: "Alcohol" },
+    { value: "Entertainment", label: "Entertainment" },
+    { value: "Housing", label: "Housing" },
+    { value: "Technique", label: "Technique" },
+    { value: "Communal communication", label: "Communal, communication" },
+    { value: "Sports, hobbies", label: "Sports, hobbies" },
+    { value: "Other", label: "Other" },
+  ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!date || !description || !category || !amount) return;
+  const selectIncome = [
+    { value: "salary", label: "Salary" },
+    { value: "bonus", label: "Bonus" },
+  ];
 
-    onAdd({ date, description, category, amount: parseFloat(amount) });
+  const categories =
+    activeSection === "expenses" ? selectExpenses : selectIncome;
 
-    setDate("");
-    setDescription("");
-    setCategory("");
-    setAmount("");
-  };
+  const validationSchema = Yup.object({
+    date: Yup.string().required("Date is required"),
+    description: Yup.string().required("Description is required"),
+    category: Yup.mixed().required("Category is required"),
+    amount: Yup.number()
+      .typeError("Amount must be a number")
+      .positive("Amount must be a positive number")
+      .test(
+        "is-decimal",
+        "Amount should have up to 2 decimal places",
+        (value) => {
+          if (!value) return true;
+          return /^\d+(\.\d{0,2})?$/.test(value.toString());
+        }
+      )
+      .required("Amount is required"),
+  });
 
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-
-    if (!isNaN(value) && value !== "") {
-      setAmount(value);
-    }
-  };
   return (
-    <form className="finance-form" onSubmit={handleSubmit}>
-      <div className="finance-form-input">
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          placeholder="Date"
-        />
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
-        />
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Category"
-        />
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount"
-        />
-      </div>
-      <div className="finance-form-button">
-        <button type="submit">Input</button>
-        <button type="button" onClick={onClear}>
-          Clear
-        </button>
-      </div>
-    </form>
+    <Formik
+      initialValues={{
+        date: new Date().toISOString().split("T")[0],
+        description: "",
+        category: "",
+        amount: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values, { resetForm }) => {
+        onAdd({
+          ...values,
+          amount: parseFloat(values.amount),
+        });
+        resetForm();
+      }}
+    >
+      {({ setFieldValue, values }) => (
+        <Form className="finance-form">
+          <div className="finance-form-input">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="calendar-icon"
+            >
+              <use href="/sprite.svg#calendar" />
+            </svg>
+            <div className="input-container-date">
+              <Field type="date" name="date" className="date-input" />
+              <ErrorMessage name="date" component="div" className="error" />
+            </div>
+
+            <div className="input-container-description">
+              <Field
+                type="text"
+                name="description"
+                placeholder="Product description"
+                className="product-description-input"
+              />
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="error"
+              />
+            </div>
+
+            <div className="input-container-select">
+              <Select
+                value={
+                  values.category
+                    ? { value: values.category, label: values.category }
+                    : null
+                }
+                onChange={(option) => setFieldValue("category", option.value)}
+                options={categories}
+                classNames={{
+                  control: () => "select-control",
+                  option: (state) =>
+                    state.isSelected
+                      ? "select-option select-option--is-selected"
+                      : "select-option select-option--is-not-selected",
+                }}
+                placeholder="Product category"
+              />
+              <ErrorMessage name="category" component="div" className="error" />
+            </div>
+
+            <div className="input-container-amount">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="calculator-icon"
+              >
+                {/* Z JAKIEGOŚ POWODU NIE POJAWIA MI SIĘ BEZ /PUBLIC/ NIE USUWAĆ */}
+                <use href="/public/sprite.svg#calculator" />
+              </svg>
+              <Field
+                type="number"
+                name="amount"
+                placeholder="0.00"
+                className="amount-input"
+                step="0.01"
+              />
+              <ErrorMessage name="amount" component="div" className="error" />
+            </div>
+          </div>
+          <div className="finance-form-button">
+            <button type="submit">INPUT</button>
+            <button type="reset">CLEAR</button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

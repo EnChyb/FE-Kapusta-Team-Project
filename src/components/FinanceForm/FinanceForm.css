@@ -1,31 +1,300 @@
 .finance-form {
+  /* height: 200px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
+  gap: 15px;
+  position: relative;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.finance-form-input {
+  display: flex;
+  gap: 0px;
+  height: 44px;
+  align-items: flex-start;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  border-collapse: collapse;
+}
+
+.finance-form-input > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-form-input div input {
+  height: 44px;
+  min-height: 44px;
+  border-collapse: collapse;
+}
+
+.finance-form-button {
+  display: flex;
+  gap: 15px;
 }
 
 .finance-form input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  display: flex;
+  color: #52555f;
+  border-collapse: collapse;
+}
+
+.date-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 140px;
+  height: 44px;
+  border: none;
+  border-collapse: collapse;
+}
+
+.calendar-icon {
+  position: absolute;
+  left: 15px;
+  top: 11px;
+  color: #52555f;
+  pointer-events: none;
+  width: 32px;
+  height: 32px;
+}
+
+.calculator-icon {
+  position: absolute;
+  right: 5px;
+  top: 12px;
+  color: #52555f;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.date-input {
+  height: 44px;
+  padding-left: 40px;
+  padding-right: 0px;
+  border-collapse: collapse;
+  position: relative;
+  z-index: 1;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+.product-description-input {
+  margin-left: 32px;
+  padding-left: 20px;
+  height: 44px;
+  width: 290px;
+  border-radius: 8px 0 0 0;
+  border: 2px solid #f6f7fc;
+  border-right: 1px;
+  border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
 }
 
 .finance-form button {
-  padding: 10px 15px;
+  padding: 10px 25px;
   font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
+  width: 136px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
 }
 
 .finance-form button[type="submit"] {
-  background-color: #4caf50;
+  background-color: #ff751d;
   color: white;
+  border-collapse: collapse;
 }
 
-.finance-form button[type="button"] {
-  background-color: #f44336;
-  color: white;
+.finance-form button[type="submit"]:hover {
+  background-color: #f25d07;
+}
+
+.finance-form button[type="reset"] {
+  background-color: #ffffff;
+  color: #52555f;
+  border: 2px solid #f6f7fc;
+  border-collapse: collapse;
+}
+
+.finance-form button[type="reset"]:hover {
+  background-color: #f6f7fc;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+  margin: 0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.input-container-description .error {
+  left: 32px;
+}
+
+.input-container-date,
+.input-container-description,
+.input-container-select,
+.input-container-amount {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container-date input,
+.input-container-description input,
+.input-container-select .react-select,
+.input-container-amount input {
+  transition: border-color 0.3s ease;
+}
+
+.input-container-date input:invalid,
+.input-container-description input:invalid,
+.input-container-select .react-select:invalid,
+.input-container-amount input:invalid {
+  border-color: red;
+  box-shadow: 0 0 5px red;
+}
+
+div.select-control,
+div.css-13cymwt-control {
+  width: 169px;
+  height: 44px;
+  border: 2px solid #f6f7fc;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+  border-collapse: collapse;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #f6f7fc;
+  border-left: 1px solid #f6f7fc;
+  padding: 0 8px;
+}
+
+div.select-control > div:first-child,
+div.select-control > div:nth-of-type(2) {
+  transform: translateY(-14%);
+}
+
+div.select-control > div > div:first-of-type {
+  transform: translateY(5%);
+  margin: 0;
+}
+
+/* Value container styles */
+.css-1d8n9bt,
+.css-319lph-ValueContainer,
+.css-1fdsijx-ValueContainer {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Input container styles */
+.css-19bb58m,
+.css-6j8wv5-Input,
+.css-1k3w0ef-Input {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Placeholder styles */
+.css-1jqq78o-placeholder,
+.css-14el2xx-placeholder {
+  margin: 0;
+  padding: 0;
+  line-height: 44px;
+}
+
+/* Single value styles */
+.css-qc6sy-singleValue,
+.css-1dimb5e-singleValue,
+.css-26l3qy-menu {
+  margin: 0;
+  padding: 0;
+  line-height: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+div.select-control span {
+  display: none;
+}
+
+.select-option {
+  color: grey;
+  border-collapse: collapse;
+}
+
+.select-option--is-selected {
+  background-color: lightgrey;
+}
+
+.select-option--is-not-selected {
+  background-color: white;
+}
+
+.amount-input {
+  height: 44px;
+  width: 119px;
+  border-radius: 0 8px 8px 0;
+  border: 2px solid #f6f7fc;
+  border-left: 1px;
+  border-collapse: collapse;
+  padding-right: 40px;
+  text-align: right;
 }

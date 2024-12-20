@@ -1,13 +1,14 @@
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import logoLogin from "../../assets/images/logo/logo-login.webp";
-import { useNavigate } from "react-router-dom";
 import API_URL from "../../config/apiConfig";
+import "./Login.css";
 
 const Logo = () => (
+
 	<img
 		className="logo-login-title"
 		src={logoLogin}
@@ -36,7 +37,7 @@ const GoogleLoginButton = () => {
 	);
 };
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
 	const navigate = useNavigate();
 
 	const initialValues = {
@@ -48,27 +49,56 @@ const LoginForm = () => {
 		try {
 			const endpoint =
 				actionType === "register" ? "/auth/register" : "/auth/login";
-			const response = await axios.post(`${API_URL}${endpoint}`, values);
-
-			const userData = { email: values.email };
-			localStorage.setItem("token", response.data.accessToken);
-			localStorage.setItem("user", JSON.stringify(userData));
-
-			console.log("Saved token:", response.data.accessToken);
-			console.log("Saved user data:", userData);
-
-			iziToast.success({
-				title:
-					actionType === "register"
-						? "Registration Successful"
-						: "Login Successful",
-				message: "Redirecting to your dashboard.",
-				position: "topRight",
-				timeout: 3000,
+			const response = await fetch(`${API_URL}${endpoint}`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(values),
 			});
 
-			console.log("Navigating to /home");
-			navigate("/home");
+			if (!response.ok) {
+				throw new Error("Failed to process request");
+			}
+
+			const data = await response.json();
+
+			if (actionType === "register") {
+				const loginResponse = await fetch(`${API_URL}/auth/login`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(values),
+				});
+
+				if (!loginResponse.ok) {
+					throw new Error("Failed to login after registration");
+				}
+
+				const loginData = await loginResponse.json();
+				localStorage.setItem("token", loginData.accessToken);
+				localStorage.setItem("user", JSON.stringify({ email: values.email }));
+
+				iziToast.success({
+					title: "Registration Successful",
+					message: "Redirecting to your main page.",
+					position: "topRight",
+					timeout: 3000,
+				});
+
+				onLogin(values.email);
+				navigate("/home");
+			} else {
+				localStorage.setItem("token", data.accessToken);
+				localStorage.setItem("user", JSON.stringify({ email: values.email }));
+
+				iziToast.success({
+					title: "Login Successful",
+					message: "Redirecting to your main page.",
+					position: "topRight",
+					timeout: 3000,
+				});
+
+				onLogin(values.email);
+				navigate("/home");
+			}
 		} catch (error) {
 			console.error("Error during login/register:", error);
 			iziToast.error({
@@ -141,7 +171,7 @@ const LoginForm = () => {
 	);
 };
 
-const Login = () => (
+const Login = ({ onLogin }) => (
 	<main className="login-page container">
 		<Logo />
 		<section className="login" aria-label="Login or Register">
@@ -153,10 +183,11 @@ const Login = () => (
 				<p className="login__option-2">
 					Or log in using an email and password, after registering:
 				</p>
-				<LoginForm />
+				<LoginForm onLogin={onLogin} />
 			</div>
 		</section>
 	</main>
+
 );
 
 export default Login;
