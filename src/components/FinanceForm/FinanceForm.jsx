@@ -13,14 +13,14 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     { value: "Entertainment", label: "Entertainment" },
     { value: "Housing", label: "Housing" },
     { value: "Technique", label: "Technique" },
-    { value: "Communal communication", label: "Communal, communication" },
+    { value: "Communal, communication", label: "Communal, communication" },
     { value: "Sports, hobbies", label: "Sports, hobbies" },
     { value: "Other", label: "Other" },
   ];
 
   const selectIncome = [
-    { value: "salary", label: "Salary" },
-    { value: "bonus", label: "Bonus" },
+    { value: "Salary", label: "Salary" },
+    { value: "Bonus", label: "Bonus" },
   ];
 
   const categories =
@@ -44,7 +44,8 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       .required("Amount is required"),
   });
 
-  const handleFormSubmit = async (values, { resetForm }) => {
+  const handleFormSubmit = async (values, actions) => {
+    const { resetForm } = actions;
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -91,7 +92,12 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       } else {
         throw new Error("Transaction data is missing in the response.");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error(
+        "Error during transaction:",
+        err.response ? err.response.data : err.message
+      );
+    }
   };
 
   return (
@@ -103,7 +109,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
         amount: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => handleFormSubmit(values, resetForm)}
+      onSubmit={(values, actions) => handleFormSubmit(values, actions)}
     >
       {({ setFieldValue, values }) => (
         <Form className="finance-form">
