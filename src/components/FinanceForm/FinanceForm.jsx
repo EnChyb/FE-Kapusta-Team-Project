@@ -2,6 +2,7 @@ import "./FinanceForm.css";
 import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
   const selectExpenses = [
@@ -43,6 +44,56 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       .required("Amount is required"),
   });
 
+  const handleFormSubmit = async (values, { resetForm }) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("User is not authenticated.");
+      }
+
+      const endpoint =
+        activeSection === "expenses"
+          ? "https://be-kapusta-team-project.onrender.com/transaction/expense"
+          : "https://be-kapusta-team-project.onrender.com/transaction/income";
+
+      console.log("Data being sent to the backend:", {
+        date: values.date,
+        description: values.description,
+        category: values.category,
+        amount: values.amount,
+      });
+
+      const response = await axios.post(
+        endpoint,
+        {
+          date: values.date,
+          description: values.description,
+          category: values.category,
+          amount: values.amount,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Transaction added successfully:", response.data);
+
+      const transaction =
+        activeSection === "expenses"
+          ? response.data.expense
+          : response.data.income;
+
+      if (transaction) {
+        onAdd(transaction);
+        resetForm();
+      } else {
+        throw new Error("Transaction data is missing in the response.");
+      }
+    } catch (err) {}
+  };
+
   return (
     <Formik
       initialValues={{
@@ -52,13 +103,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
         amount: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
-        onAdd({
-          ...values,
-          amount: parseFloat(values.amount),
-        });
-        resetForm();
-      }}
+      onSubmit={(values, { resetForm }) => handleFormSubmit(values, resetForm)}
     >
       {({ setFieldValue, values }) => (
         <Form className="finance-form">
