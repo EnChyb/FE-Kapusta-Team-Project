@@ -18,12 +18,11 @@ main.home-page::after {
   content: "";
   position: fixed;
   bottom: 0;
-  width: 1640px;
+  width: 100vw;
   height: 232px;
-  /* max-height: 232px; */
   background-image: url("../../images/background-cabbage/cabbage-desktop.webp");
   background-repeat: repeat-x;
-  background-position: bottom right;
-  background-size: contain;
+  background-position: bottom center;
+  background-size: auto 100%;
   z-index: -1;
 }

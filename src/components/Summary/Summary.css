@@ -1,17 +1,57 @@
-.finance-summary {
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 5px;
+.summary-container {
+  background-color: #f5f6fb;
+  border-radius: 20px 20px 20px 0;
+  width: 230px;
+  height: fit-content;
+}
+
+.summary-title {
+  font-size: 12px;
+  font-weight: 700;
   text-align: center;
-  border: black 2px solid;
+  padding: 12px 0;
+  background-color: #f5f6fb;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  border: 2px solid white;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
 }
 
-.finance-summary h3 {
-  font-size: 16px;
-  color: #333;
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-left: none;
+  border-right: none;
 }
 
-.finance-summary p {
-  font-size: 14px;
-  color: #666;
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-month {
+  width: 50%;
+  font-size: 12px;
+  color: #52555f;
+}
+
+.summary-amount {
+  width: 50%;
+  font-size: 12px;
+  color: #52555f;
 }

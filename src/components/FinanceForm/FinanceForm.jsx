@@ -32,6 +32,14 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     amount: Yup.number()
       .typeError("Amount must be a number")
       .positive("Amount must be a positive number")
+      .test(
+        "is-decimal",
+        "Amount should have up to 2 decimal places",
+        (value) => {
+          if (!value) return true;
+          return /^\d+(\.\d{0,2})?$/.test(value.toString());
+        }
+      )
       .required("Amount is required"),
   });
 
@@ -106,11 +114,23 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             </div>
 
             <div className="input-container-amount">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="calculator-icon"
+              >
+                {/* Z JAKIEGOŚ POWODU NIE POJAWIA MI SIĘ BEZ /PUBLIC/ NIE USUWAĆ */}
+                <use href="/public/sprite.svg#calculator" />
+              </svg>
               <Field
                 type="number"
                 name="amount"
                 placeholder="0.00"
                 className="amount-input"
+                step="0.01"
               />
               <ErrorMessage name="amount" component="div" className="error" />
             </div>
