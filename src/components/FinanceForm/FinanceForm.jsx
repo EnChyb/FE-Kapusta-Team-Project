@@ -2,9 +2,11 @@ import "./FinanceForm.css";
 import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../redux/transactionsSlice";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
+  const dispatch = useDispatch();
   const selectExpenses = [
     { value: "Transport", label: "Transport" },
     { value: "Products", label: "Products" },
@@ -47,50 +49,19 @@ const FinanceForm = ({ onAdd, activeSection }) => {
   const handleFormSubmit = async (values, actions) => {
     const { resetForm } = actions;
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("User is not authenticated.");
-      }
-
-      const endpoint =
-        activeSection === "expenses"
-          ? "https://be-kapusta-team-project.onrender.com/transaction/expense"
-          : "https://be-kapusta-team-project.onrender.com/transaction/income";
-
-      console.log("Data being sent to the backend:", {
+      const transactionData = {
+        type: activeSection === "expenses" ? "expense" : "income",
         date: values.date,
         description: values.description,
         category: values.category,
-        amount: values.amount,
-      });
+        amount: Number(values.amount),
+      };
 
-      const response = await axios.post(
-        endpoint,
-        {
-          date: values.date,
-          description: values.description,
-          category: values.category,
-          amount: values.amount,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const result = await dispatch(addTransaction(transactionData)).unwrap();
 
-      console.log("Transaction added successfully:", response.data);
-
-      const transaction =
-        activeSection === "expenses"
-          ? response.data.expense
-          : response.data.income;
-
-      if (transaction) {
-        onAdd(transaction);
+      if (result.transaction) {
+        onAdd(result.transaction);
         resetForm();
-      } else {
-        throw new Error("Transaction data is missing in the response.");
       }
     } catch (err) {
       console.error(
