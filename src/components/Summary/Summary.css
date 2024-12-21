@@ -44,14 +44,20 @@
   border-bottom: none;
 }
 
+.summary-year {
+  width: 20%;
+  font-size: 12px;
+  color: #52555f;
+}
+
 .summary-month {
-  width: 50%;
+  width: 40%;
   font-size: 12px;
   color: #52555f;
 }
 
 .summary-amount {
-  width: 50%;
+  width: 40%;
   font-size: 12px;
   color: #52555f;
 }
