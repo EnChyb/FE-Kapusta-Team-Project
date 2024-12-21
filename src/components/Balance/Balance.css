@@ -1,144 +1,144 @@
 .container-balance {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .balanceWrapper {
-	display: block;
-	align-items: center;
-	gap: 20px;
+  display: block;
+  align-items: center;
+  gap: 20px;
 }
 
 .label-balance {
-	font-size: 12px;
-	font-weight: 500;
-	color: rgba(82, 85, 95, 0.7);
-	margin-left: 120px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(82, 85, 95, 0.7);
+  margin-left: 120px;
 }
 
 .balance {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-	margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
 }
 
 .form-balance {
-	display: flex;
-	align-items: center;
-	gap: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
 .input-balance {
-	width: 140px;
-	height: 44px;
-	border: 2px solid #e0e0e0;
-	border-radius: 16px 0 0 16px;
-	text-align: center;
-	font-size: 12px;
-	font-weight: 700;
-	background-color: #ffffff;
-	color: var(--clr-primary-text);
-	outline: none;
-	border-right: none;
+  width: 140px;
+  height: 44px;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px 0 0 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: #ffffff;
+  color: var(--clr-primary-text);
+  outline: none;
+  border-right: none;
 }
 
 .input-balance:hover {
-	border-color: var(--clr-accent);
+  border-color: var(--clr-accent);
 }
 
 .button-balance {
-	height: 44px;
-	padding: 0 20px;
-	border: 2px solid #e0e0e0;
-	border-left: none;
-	border-radius: 0 16px 16px 0;
-	font-size: 12px;
-	font-weight: 400;
-	color: rgba(82, 85, 95, 0.7);
-	background-color: transparent;
-	transition: all 0.3s ease;
-	width: 140px;
-	text-align: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 2px solid #e0e0e0;
+  border-left: none;
+  border-radius: 0 16px 16px 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(82, 85, 95, 0.7);
+  background-color: transparent;
+  transition: all 0.3s ease;
+  width: 140px;
+  text-align: center;
 }
 .button-balance:hover {
-	border-color: var(--clr-accent);
-	background-color: var(--clr-accent);
-	color: #ffffff;
+  border-color: var(--clr-accent);
+  background-color: var(--clr-accent);
+  color: #ffffff;
 }
 
 .separator {
-	width: 2px;
-	height: 36px;
-	background-color: #e0e0e0;
-	position: relative;
+  width: 2px;
+  height: 36px;
+  background-color: #e0e0e0;
+  position: relative;
 }
 
 @media screen and (min-width: 620px) {
-	.balanceWrapper {
-		display: flex;
-		align-items: center;
-		gap: 15px;
-	}
+  .balanceWrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 
-	.label-balance {
-		margin-top: 3px;
-		font-size: 12px;
-		font-weight: 500;
-		color: rgba(82, 85, 95, 0.7);
-	}
+  .label-balance {
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(82, 85, 95, 0.7);
+  }
 
-	.form-balance {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
+  .form-balance {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-	.input-balance {
-		width: 125px;
-		border: 2px solid #e0e0e0;
-		border-radius: 16px;
-		text-align: center;
-		font-size: 12px;
-		font-weight: 700;
-		background-color: #ffffff;
-		color: var(--clr-primary-text);
-	}
+  .input-balance {
+    width: 125px;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #ffffff;
+    color: var(--clr-primary-text);
+  }
 
-	.button-balance {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 125px;
-		border: 2px solid #e0e0e0;
-		border-radius: 16px;
-		font-size: 12px;
-		background-color: transparent;
-		color: rgba(82, 85, 95, 0.7);
-		transition: all 0.3s ease;
-	}
+  .button-balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    font-size: 12px;
+    background-color: transparent;
+    color: rgba(82, 85, 95, 0.7);
+    transition: all 0.3s ease;
+  }
 
-	.separator {
-		display: none;
-	}
+  .separator {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-	.balanceWrapper {
-		display: flex;
-		align-items: center;
-		gap: 20px;
-	}
+  .balanceWrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-	.input-balance,
-	.button-balance {
-		font-size: 12px;
-	}
+  .input-balance,
+  .button-balance {
+    font-size: 12px;
+  }
 
-	.separator {
-		display: none;
-	}
+  .separator {
+    display: none;
+  }
 }
