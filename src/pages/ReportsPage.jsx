@@ -3,13 +3,13 @@ import TopReports from "../components/Reports/TopReports";
 import ExpensesIncomeStats from "../components/Reports/ExpensesIncomeStats/ExpensesIncomeStats";
 
 const ReportsPage = () => {
-  return (
-    <div>
-      <TopReports />
-      <ExpensesIncome />
-      <ExpensesIncomeStats />
-    </div>
-  );
+    return (
+        <>
+            <TopReports />
+            <ExpensesIncome />
+            <ExpensesIncomeStats />
+        </>
+    );
 };
 
 export default ReportsPage;

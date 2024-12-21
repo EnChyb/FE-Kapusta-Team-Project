@@ -7,11 +7,10 @@ const HomePage = () => {
     const { email } = useOutletContext();
 
     return (
-        <main className="home-page">
-            {}
+        <>
             <DataHeader email={email} />
             <FinanceTracker email={email} />
-        </main>
+        </>
     );
 };
 
