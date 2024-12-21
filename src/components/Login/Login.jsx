@@ -1,10 +1,9 @@
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import logoLogin from "../../assets/images/logo/logo-login.webp";
-import { useNavigate } from "react-router-dom";
 import API_URL from "../../config/apiConfig";
 import "./Login.css";
 

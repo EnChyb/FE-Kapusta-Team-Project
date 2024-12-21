@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ExpensesIncome.css';
 import axios from 'axios';
+import API_URL from '../../config/apiConfig';
 
 const ExpensesIncome = () => {
   const [income, setIncome] = useState([]);
@@ -10,7 +11,7 @@ const ExpensesIncome = () => {
   useEffect(() => {
     const fetchIncome = async () => {
       try {
-        const response = await axios.get('https://kapusta-backend.goit.global/transaction/income');
+        const response = await axios.get(`${API_URL}/transaction/income`);
         setIncome(response.data.incomes);
       } catch (err) {
         setError(err.message || "Błąd podczas pobierania dochodów");
@@ -19,7 +20,7 @@ const ExpensesIncome = () => {
 
     const fetchExpense = async () => {
       try {
-        const response = await axios.get('https://kapusta-backend.goit.global/transaction/expense');
+        const response = await axios.get(`${API_URL}/transaction/expense`);
         setExpense(response.data.expense);
       } catch (err) {
         setError(err.message || "Błąd podczas pobierania wydatków");

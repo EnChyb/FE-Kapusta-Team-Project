@@ -1,5 +1,5 @@
 .finance-form {
-  height: 200px;
+  /* height: 200px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -64,6 +64,15 @@
   pointer-events: none;
   width: 32px;
   height: 32px;
+}
+
+.calculator-icon {
+  position: absolute;
+  right: 5px;
+  top: 12px;
+  color: #52555f;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .date-input {
@@ -286,4 +295,6 @@ div.select-control span {
   border: 2px solid #f6f7fc;
   border-left: 1px;
   border-collapse: collapse;
+  padding-right: 40px;
+  text-align: right;
 }

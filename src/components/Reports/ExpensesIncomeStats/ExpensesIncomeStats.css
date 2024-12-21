@@ -1,0 +1,74 @@
+.eiList {
+  width: 750px;
+  height: 268px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  width: 102px;
+  height: 122px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.eiIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+}
+
+.eiIcon:hover {
+  fill: orange;
+  transform: scale(1.1);
+}
+
+.eiIconDescription {
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.eiLabel {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.41px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-transform: uppercase;
+  width: 96px;
+  margin: auto;
+}
+
+.eiButton img {
+  margin: 16px;
+  cursor: pointer;
+}
+
+.eiContainer {
+  width: 1034px;
+  height: 348px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  margin: auto;
+  border-radius: 30px;
+}
