@@ -32,7 +32,7 @@ const FinanceTable = ({ data, onDelete }) => {
   const formatAmount = (amount) => {
     if (amount === null) return "";
     const absAmount = Math.abs(amount);
-    return `${amount < 0 ? "- " : ""}${absAmount.toFixed(2)} UAH.`;
+    return `${amount < 0 ? "- " : ""}${absAmount.toFixed(2)} EUR`;
   };
 
   return (

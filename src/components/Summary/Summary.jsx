@@ -14,12 +14,18 @@ const Summary = ({ data }) => {
       const month = date
         .toLocaleString("en-US", { month: "long" })
         .toUpperCase();
+      const year = date.getFullYear();
+      const key = `${year}-${month}`;
 
-      if (!acc[month]) {
-        acc[month] = 0;
+      if (!acc[key]) {
+        acc[key] = {
+          year,
+          month,
+          total: 0,
+        };
       }
 
-      acc[month] += entry.amount;
+      acc[key].total += entry.amount;
 
       return acc;
     }, {}) || {};
@@ -28,8 +34,9 @@ const Summary = ({ data }) => {
     <div className="summary-container">
       <h2 className="summary-title">SUMMARY</h2>
       <div className="summary-content">
-        {Object.entries(monthlySummary).map(([month, total]) => (
-          <div key={month} className="summary-row">
+        {Object.values(monthlySummary).map(({ year, month, total }) => (
+          <div key={`${year}-${month}`} className="summary-row">
+            <span className="summary-year">{year}</span>
             <span className="summary-month">{month}</span>
             <span className="summary-amount">{formatNumber(total)}</span>
           </div>

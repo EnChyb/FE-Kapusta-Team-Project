@@ -20,7 +20,7 @@ main.home-page::after {
   bottom: 0;
   width: 100vw;
   height: 232px;
-  background-image: url("../../images/background-cabbage/cabbage-desktop.webp");
+  background-image: url("../assets/images/background-cabbage/cabbage-desktop.webp");
   background-repeat: repeat-x;
   background-position: bottom center;
   background-size: auto 100%;
