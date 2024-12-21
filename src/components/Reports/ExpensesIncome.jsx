@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import './ExpensesIncome.css';
-import axios from 'axios';
-import API_URL from '../../config/apiConfig';
+import { useEffect, useState } from "react";
+import "./ExpensesIncome.css";
+import axios from "axios";
+import API_URL from "../../config/apiConfig";
 
 const ExpensesIncome = () => {
   const [income, setIncome] = useState([]);
@@ -35,14 +35,14 @@ const ExpensesIncome = () => {
     if (Array.isArray(income)) {
       return income.reduce((sum, item) => sum + item.amount, 0);
     }
-    return income; 
+    return income;
   };
 
   const renderExpense = () => {
     if (Array.isArray(expense)) {
       return expense.reduce((sum, item) => sum + item.amount, 0);
     }
-    return expense; 
+    return expense;
   };
 
   // if (error) {
@@ -54,7 +54,7 @@ const ExpensesIncome = () => {
       <section className="expenses-income-section">
         <p className="expenses-income-txt">Income:</p>
         <p className="expenses-income-txt income-extention-txt">
-          + {renderIncome()} UAH
+          + {renderIncome()} EUR
         </p>
       </section>
 
@@ -63,7 +63,7 @@ const ExpensesIncome = () => {
       <section className="expenses-income-section">
         <p className="expenses-income-txt">Expenses:</p>
         <p className="expenses-income-txt expenses-extention-txt">
-          - {renderExpense()} UAH
+          - {renderExpense()} EUR
         </p>
       </section>
     </div>
