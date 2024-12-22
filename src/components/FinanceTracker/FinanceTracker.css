@@ -1,7 +1,7 @@
 .tracker-container {
   /* padding: 20px; */
   font-family: Arial, sans-serif;
-  margin: 8px 90px;
+  margin: 0 59px;
 }
 
 .button-container {
@@ -28,4 +28,10 @@
 .switch-button:hover {
   background-color: #ff751d;
   color: #fefefe;
+}
+
+@media only screen and (min-width: 772px) and (max-width: 1279px) {
+  .tracker-container {
+    margin: 0px;
+  }
 }
