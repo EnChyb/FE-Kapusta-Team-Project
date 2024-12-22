@@ -99,7 +99,7 @@
 }
 
 .product-description-input {
-  margin-left: 32px;
+  /* margin-left: 32px; */
   height: 44px;
   width: 290px;
   border-radius: 8px 0 0 0;
@@ -327,7 +327,7 @@ div.select-control span {
   }
 
   .product-description-input {
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
 
   .input-container-select && .input-container-select > div {
