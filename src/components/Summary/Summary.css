@@ -31,7 +31,7 @@
   border: 2px solid white;
   border-left: none;
   border-right: none;
-  max-height: calc(6 * 40px + 1); /* 6 rows * 40px height per row */
+  max-height: calc(6 * 40px + 1px); /* 6 rows * 40px height per row */
   overflow-y: auto;
 }
 

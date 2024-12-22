@@ -326,10 +326,6 @@ div.select-control span {
     width: 100%;
   }
 
-  .product-description-input {
-    /* margin-left: 20px; */
-  }
-
   .input-container-select && .input-container-select > div {
     min-width: 186px;
   }
