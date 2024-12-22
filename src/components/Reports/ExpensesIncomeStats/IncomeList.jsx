@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../config/apiConfig";
 
 const IncomeList = () => {
+  const { date } = useParams();
   const [incomes, setIncomes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(incomes)
 
   useEffect(() => {
     const fetchIncomes = async () => {
@@ -20,13 +23,18 @@ const IncomeList = () => {
           throw new Error("No authorization token.");
         }
 
-        const response = await axios.get(`${API_URL}/transaction/income`, {
+        const response = await axios.get(`${API_URL}/transaction/period-data`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        });
+          params: { date }
+        })
 
-        setIncomes(response.data.incomes || []);
+        console.log("Income in list", response)
+
+        const transformedIncomes = Object.entries(response.data.incomes.incomesData || {}).map(([category, data]) => ({ category, total: data.total }));
+
+        setIncomes(transformedIncomes);
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");
@@ -36,7 +44,7 @@ const IncomeList = () => {
     };
 
     fetchIncomes();
-  }, []);
+  }, [date]);
 
   const incomeIcons = {
     Salary: "icon-salary",
@@ -50,8 +58,8 @@ const IncomeList = () => {
   return (
     <ul className="eiList">
       {incomes.map((income) => (
-        <li key={income._id}>
-          <span className="eiIconDescription">{income.amount.toFixed(2)}</span>
+        <li key={income.category}>
+          <span className="eiIconDescription">{income.total ? income.total.toFixed(2) : "N/A"}</span>
           <svg className="eiIcon">
             <use
               href={`${Svg}#${

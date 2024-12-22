@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../config/apiConfig";
 
 const ExpensesList = () => {
+  const { date } = useParams();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(expenses)
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -20,13 +23,18 @@ const ExpensesList = () => {
           throw new Error("No authorization token.");
         }
 
-        const response = await axios.get(`${API_URL}/transaction/expense`, {
+        const response = await axios.get(`${API_URL}/transaction/period-data`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          params: { date }
         });
 
-        setExpenses(response.data.expenses || []);
+        console.log("Expenses in list", response)
+
+        const transformedExpenses = Object.entries(response.data.expenses.incomesData || {}).map(([category, data]) => ({ category, total: data.total }));
+
+        setExpenses(transformedExpenses);
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");
@@ -36,7 +44,7 @@ const ExpensesList = () => {
     };
 
     fetchExpenses();
-  }, []);
+  }, [date]);
 
   const expenseIcons = {
     Products: "icon-products",
@@ -58,8 +66,8 @@ const ExpensesList = () => {
   return (
     <ul className="eiList">
       {expenses.map((expense) => (
-        <li key={expense._id}>
-          <span className="eiIconDescription">{expense.amount.toFixed(2)}</span>
+        <li key={expense.category}>
+          <span className="eiIconDescription">{expense.total ? expense.total.toFixed(2) : "N/A"}</span>
           <svg className="eiIcon">
             <use
               href={`${Svg}#${
