@@ -1,74 +1,74 @@
 .container_dataheader {
-	display: flex;
-	flex-direction: column-reverse;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	margin-top: 40px;
-	margin-bottom: 40px;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .reportsLinkWrapper {
-	display: flex;
-	align-items: end;
-	margin-bottom: 25px;
+    display: flex;
+    align-items: end;
+    margin-bottom: 25px;
 }
 
 .reports {
-	color: rgba(82, 85, 95, 0.7);
-	font-size: 12px;
-	line-height: 1.16;
-	letter-spacing: 0.04em;
-	text-decoration: none;
+    color: rgba(82, 85, 95, 0.7);
+    font-size: 12px;
+    line-height: 1.16;
+    letter-spacing: 0.04em;
+    text-decoration: none;
 }
 
 .iconReports {
-	margin-left: 15px;
-	color: rgba(82, 85, 95, 1);
+    margin-left: 15px;
+    color: rgba(82, 85, 95, 1);
 }
 
-@media screen and (min-width: 620px) {
-	.container_dataheader {
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.reportsLinkWrapper {
-		margin-top: 15px;
-		margin-left: auto;
-		position: initial;
-		justify-content: space-between;
-	}
-	.iconReports {
-		margin-inline-end: 30px;
-	}
+@media screen and (min-width: 665px) {
+    .container_dataheader {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .reportsLinkWrapper {
+        margin-top: 15px;
+        margin-left: auto;
+        position: initial;
+        justify-content: space-between;
+    }
+    .iconReports {
+        margin-inline-end: 30px;
+    }
 }
 
 @media screen and (min-width: 1280px) {
-	.container_dataheader {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-bottom: 8px;
-	}
-	.reportsLinkWrapper {
-		position: absolute;
-		right: 85px;
-	}
+    .container_dataheader {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    .reportsLinkWrapper {
+        position: absolute;
+        right: 85px;
+    }
 }
 
 .mainPageLinkWrapper {
-	display: flex;
-	align-items: center;
-	position: absolute;
-	left: 113px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 113px;
 }
 
 .mainPage {
-	color: var(--clr-primary-text);
-	font-size: 12px;
-	line-height: 1.16;
-	letter-spacing: 0.04em;
-	text-decoration: none;
+    color: var(--clr-primary-text);
+    font-size: 12px;
+    line-height: 1.16;
+    letter-spacing: 0.04em;
+    text-decoration: none;
 }
