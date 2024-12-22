@@ -30,15 +30,25 @@ const Summary = ({ data }) => {
       return acc;
     }, {}) || {};
 
+  const summaryData = Object.values(monthlySummary);
+  const emptyRows = Math.max(6 - summaryData.length, 0);
+  const fillerRows = Array(emptyRows).fill({
+    year: "",
+    month: "",
+    total: "",
+  });
+
   return (
     <div className="summary-container">
       <h2 className="summary-title">SUMMARY</h2>
       <div className="summary-content">
-        {Object.values(monthlySummary).map(({ year, month, total }) => (
-          <div key={`${year}-${month}`} className="summary-row">
-            <span className="summary-year">{year}</span>
-            <span className="summary-month">{month}</span>
-            <span className="summary-amount">{formatNumber(total)}</span>
+        {[...summaryData, ...fillerRows].map((item, index) => (
+          <div key={index} className="summary-row">
+            <span className="summary-year">{item.year}</span>
+            <span className="summary-month">{item.month}</span>
+            <span className="summary-amount">
+              {item.total ? formatNumber(item.total) : ""}
+            </span>
           </div>
         ))}
       </div>
