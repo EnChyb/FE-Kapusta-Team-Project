@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import LogoutModal from "../Modal/LogoutModal";
+import "./SharedLayout.css";
 
 const SharedLayout = ({ user, onLogout }) => {
     const navigate = useNavigate();
@@ -53,10 +54,10 @@ const SharedLayout = ({ user, onLogout }) => {
 
     const routeClass = {
         "/": "login-page container",
-        "/home": "home-page",
-        "/reports": "reports-page",
+        "/home": "home-page container",
+        "/reports": "reports-page container",
     };
-    const mainClassName = routeClass[location.pathname] || "";
+    const mainClassName = routeClass[location.pathname] || "container";
 
     return (
         <>
