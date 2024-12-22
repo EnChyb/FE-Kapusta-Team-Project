@@ -126,13 +126,12 @@ const Balance = () => {
 
     return (
         <div className="balance__container">
-            {showModal && <BalanceModal />}
-
             <form onSubmit={handleSubmit} className="balance__form">
                 <label className="balance__label" htmlFor="balance">
                     Balance:
                 </label>
                 <div className="balance__input-container">
+                    {showModal && <BalanceModal />}
                     <input
                         className="balance__input"
                         id="balance"
