@@ -4,17 +4,15 @@ import ExpensesIncomeStats from "../components/Reports/ExpensesIncomeStats/Expen
 import TopReports from "../components/Reports/TopReports";
 
 const ReportsPage = () => {
-  // const { month } = useParams();
-  // console.log('Selected month:', month);
 
-  return (
-    <div>
+    return (
+        <>
+            <TopReports />
+            <ExpensesIncome />
+            <ExpensesIncomeStats />
+        </>
+    );
 
-      <TopReports />
-      <ExpensesIncome  />
-      <ExpensesIncomeStats />
-    </div>
-  );
 };
 
 export default ReportsPage;

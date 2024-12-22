@@ -70,9 +70,8 @@ const ExpensesList = () => {
           <span className="eiIconDescription">{expense.total ? expense.total.toFixed(2) : "N/A"}</span>
           <svg className="eiIcon">
             <use
-              href={`${Svg}#${
-                expenseIcons[expense.category] || "icon-other"
-              }`}></use>
+              href={`${Svg}#${expenseIcons[expense.category] || "icon-other"}`}
+            ></use>
           </svg>
           <span className="eiIconDescription">{expense.category}</span>
         </li>
