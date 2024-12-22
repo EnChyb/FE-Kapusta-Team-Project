@@ -1,0 +1,63 @@
+.summary-container {
+  background-color: #f5f6fb;
+  border-radius: 20px 20px 20px 0;
+  width: 230px;
+  height: fit-content;
+}
+
+.summary-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px 0;
+  background-color: #f5f6fb;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.02em;
+  border: 2px solid white;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-left: none;
+  border-right: none;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-year {
+  width: 20%;
+  font-size: 12px;
+  color: #52555f;
+}
+
+.summary-month {
+  width: 40%;
+  font-size: 12px;
+  color: #52555f;
+}
+
+.summary-amount {
+  width: 40%;
+  font-size: 12px;
+  color: #52555f;
+}

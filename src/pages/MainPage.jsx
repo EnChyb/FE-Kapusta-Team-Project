@@ -1,11 +1,11 @@
 import Login from "../components/Login/Login";
 
-const MainPage = () => {
-	return (
-		<main>
-			<Login />
-		</main>
-	);
+const MainPage = ({ onLogin }) => {
+    return (
+        <>
+            <Login onLogin={onLogin} />
+        </>
+    );
 };
 
 export default MainPage;
