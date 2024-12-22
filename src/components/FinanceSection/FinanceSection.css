@@ -25,7 +25,7 @@
 
   .finance-details {
     flex-direction: column;
-    background-image: url(src/assets/images/background-cabbage/cabbage-tablet-bottom.webp);
+    /* background-image: url(src/assets/images/background-cabbage/cabbage-tablet-bottom.webp); */
     background-repeat: no-repeat;
     background-position: bottom 60px right 56px;
     background-size: 183px;

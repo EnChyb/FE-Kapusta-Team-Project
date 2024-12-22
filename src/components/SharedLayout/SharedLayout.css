@@ -127,7 +127,7 @@ main.reports-page::before {
     main.home-page::after,
     main.reports-page::after {
         content: "";
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
