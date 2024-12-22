@@ -1,37 +1,71 @@
 import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
 } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import MainPage from "./pages/MainPage";
-import HomePage from "./pages/HomePage";
-import ReportsPage from "./pages/ReportsPage";
-import { useSelector } from "react-redux";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+const MainPage = lazy(() => import("./pages/MainPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ReportsPage = lazy(() => import("./pages/ReportsPage"));
+const NotFound = lazy(() => import("./pages/NotFoundPage"));
 
 const App = () => {
-	const { email } = useSelector((state) => state.user);
+  const [user, setUser] = useState(null);
 
-	console.log("Redux email in App:", email);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    try {
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser?.email) {
+          setUser(parsedUser);
+        } else {
+          throw new Error("Invalid user data");
+        }
+      }
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+      localStorage.removeItem("user");
+    }
+  }, []);
 
-	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<SharedLayout />}>
-					<Route index element={<MainPage />} />
-					<Route
-						path="/home"
-						element={email ? <HomePage /> : <Navigate to="/" replace />}
-					/>
-					<Route
-						path="/reports"
-						element={email ? <ReportsPage /> : <Navigate to="/" replace />}
-					/>
-				</Route>
-			</Routes>
-		</Router>
-	);
+  const handleLogin = (email) => {
+    setUser({ email });
+    localStorage.setItem("user", JSON.stringify({ email }));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
+  return (
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={<SharedLayout user={user} onLogout={handleLogout} />}
+          >
+            <Route index element={<MainPage onLogin={handleLogin} />} />
+            <Route
+              path="/home"
+              element={user ? <HomePage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/reports/:date"
+              element={user ? <ReportsPage /> : <Navigate to="/" replace />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </Router>
+  );
 };
 
 export default App;
