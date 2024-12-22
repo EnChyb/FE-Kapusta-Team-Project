@@ -26,6 +26,14 @@ const FinanceSection = ({ data, setData, activeSection, onDelete }) => {
   };
 
   useEffect(() => {
+    setData((prevData) =>
+      prevData.map((entry) =>
+        activeSection === "expenses"
+          ? { ...entry, amount: -Math.abs(entry.amount) }
+          : { ...entry, amount: Math.abs(entry.amount) }
+      )
+    );
+
     console.log(`Data for ${activeSection} section:`, data);
   }, [data, activeSection]);
 
