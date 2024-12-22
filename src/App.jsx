@@ -9,6 +9,8 @@ import MainPage from "./pages/MainPage";
 import HomePage from "./pages/HomePage";
 import ReportsPage from "./pages/ReportsPage";
 import { useState, useEffect } from "react";
+import NotFound from "./pages/NotFoundPage";
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -54,8 +56,11 @@ const App = () => {
             element={user ? <HomePage /> : <Navigate to="/" replace />}
           />
           <Route
-            path="/reports"
+            path="/reports/:date"
             element={user ? <ReportsPage /> : <Navigate to="/" replace />}
+          />
+          <Route 
+            path="*" element={<NotFound />}
           />
         </Route>
       </Routes>

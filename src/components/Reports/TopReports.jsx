@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './topReport.css';
 import backspaceIcon from '../../assets/images/keyboard_backspace.png';
 import upArrow from '../../assets/images/up-month-arrow.png';
 import backArrow from '../../assets/images/back-month-arrow.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Balance from '../Balance/Balance';
 
 const TopReports = () => {
   const [date, setDate] = useState(new Date());
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Aktualizacja URL z nowym miesiącem
+    // Format YYYY-MM 
+    const formattedMonth = date.toISOString().slice(0, 7); 
+    console.log(formattedMonth)
+    navigate(`/reports/${formattedMonth}`);
+  }, [date, navigate]);
 
   const changeMonth = (offset) => {
     setDate((prevDate) => {
