@@ -100,7 +100,6 @@
 
 .product-description-input {
   margin-left: 32px;
-  padding-left: 20px;
   height: 44px;
   width: 290px;
   border-radius: 8px 0 0 0;
@@ -112,6 +111,10 @@
   font-weight: 400;
   line-height: 14.06px;
   letter-spacing: 0.02em;
+}
+
+.product-description-input::placeholder {
+  padding-left: 20px;
 }
 
 .finance-form button {
@@ -319,7 +322,7 @@ div.select-control span {
 
   .input-container-description,
   .product-description-input {
-    min-width: 184px;
+    min-width: 174px;
     width: 100%;
   }
 
