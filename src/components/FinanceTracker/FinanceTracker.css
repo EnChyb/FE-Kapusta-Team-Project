@@ -1,7 +1,7 @@
 .tracker-container {
   /* padding: 20px; */
   font-family: Arial, sans-serif;
-  margin: 0 90px;
+  margin: 0 59px;
 }
 
 .button-container {
@@ -32,6 +32,6 @@
 
 @media only screen and (min-width: 772px) and (max-width: 1279px) {
   .tracker-container {
-    margin: 0 32px;
+    margin: 0px;
   }
 }

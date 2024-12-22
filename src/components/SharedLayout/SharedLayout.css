@@ -89,7 +89,7 @@ main.login-page::after {
 main.home-page,
 main.reports-page {
   position: relative;
-  /* padding-top: 16px; */
+  padding-top: 16px;
 }
 
 main.home-page::before,
@@ -108,7 +108,7 @@ main.reports-page::before {
 @media (width >= 772px) {
   main.home-page,
   main.reports-page {
-    padding-top: 10px;
+    padding-top: 40px;
   }
 
   main.home-page::before,
