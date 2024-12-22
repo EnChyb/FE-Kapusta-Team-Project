@@ -2,14 +2,14 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import MainPage from "./pages/MainPage";
-import HomePage from "./pages/HomePage";
-import ReportsPage from "./pages/ReportsPage";
-import { useState, useEffect } from "react";
-import NotFound from "./pages/NotFoundPage";
+import { useState, useEffect, lazy, Suspense } from "react";
+const MainPage = lazy(() => import("./pages/MainPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ReportsPage = lazy(() => import("./pages/ReportsPage"));
+// const NotFound = lazy(() => import("./pages/NotFoundPage"));
 
 
 const App = () => {
@@ -45,25 +45,26 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={<SharedLayout user={user} onLogout={handleLogout} />}
-        >
-          <Route index element={<MainPage onLogin={handleLogin} />} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
           <Route
-            path="/home"
-            element={user ? <HomePage /> : <Navigate to="/" replace />}
-          />
-          <Route
-            path="/reports/:date"
-            element={user ? <ReportsPage /> : <Navigate to="/" replace />}
-          />
-          <Route 
-            path="*" element={<NotFound />}
-          />
-        </Route>
-      </Routes>
+            path="/"
+            element={<SharedLayout user={user} onLogout={handleLogout} />}
+          >
+            <Route index element={<MainPage onLogin={handleLogin} />} />
+            <Route
+              path="/home"
+              element={user ? <HomePage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/reports/:date"
+              element={user ? <ReportsPage /> : <Navigate to="/" replace />}
+            />
+                
+          </Route>
+        </Routes>
+      </Suspense>
+
     </Router>
   );
 };
