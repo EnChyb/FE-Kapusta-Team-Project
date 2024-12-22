@@ -58,17 +58,18 @@
 
 .calendar-icon {
   position: absolute;
-  left: 15px;
+  /* left: 15px; */
   top: 11px;
   color: #52555f;
   pointer-events: none;
   width: 32px;
   height: 32px;
+  transform: translateX(10px);
 }
 
 .calculator-icon {
   position: absolute;
-  right: 5px;
+  right: 0px;
   top: 12px;
   color: #52555f;
   pointer-events: none;
@@ -297,4 +298,44 @@ div.select-control span {
   border-collapse: collapse;
   padding-right: 40px;
   text-align: right;
+}
+
+@media only screen and (min-width: 772px) and (max-width: 1279px) {
+  .finance-form {
+    flex-direction: column;
+    margin: 0;
+    gap: 0;
+  }
+
+  .finance-form-input {
+    margin: 0 auto;
+  }
+
+  .finance-form-button {
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 48px;
+  }
+
+  .input-container-description,
+  .product-description-input {
+    min-width: 184px;
+    width: 100%;
+  }
+
+  .product-description-input {
+    margin-left: 20px;
+  }
+
+  .input-container-select && .input-container-select > div {
+    min-width: 186px;
+  }
+
+  .input-container-amount {
+    min-width: 110px;
+  }
+
+  .amount-input {
+    padding-right: 50px;
+  }
 }

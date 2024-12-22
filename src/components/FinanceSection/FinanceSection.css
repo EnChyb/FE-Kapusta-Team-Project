@@ -8,15 +8,26 @@
   min-width: 1098px;
 }
 
-/* .finance-section h2 {
-  color: #ff751d;
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-weight: bold;
-} */
-
 .finance-details {
   display: flex;
   gap: 40px;
-  align-self: flex-start;
+  /* align-self: flex-start; */
+}
+
+@media only screen and (min-width: 772px) and (max-width: 1279px) {
+  .finance-section {
+    padding: 24px 40px;
+    padding-bottom: 60px;
+    margin-bottom: 50px;
+    min-width: 704px;
+    max-height: 724px;
+  }
+
+  .finance-details {
+    flex-direction: column;
+    background-image: url(src/assets/images/background-cabbage/cabbage-tablet-bottom.webp);
+    background-repeat: no-repeat;
+    background-position: bottom 20px right 56px;
+    background-size: 183px;
+  }
 }

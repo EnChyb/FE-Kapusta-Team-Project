@@ -56,7 +56,7 @@
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1279px) {
+@media only screen and (min-width: 772px) and (max-width: 1279px) {
     .main-expenses-income-div {
         margin: 32px 32px;
     }
