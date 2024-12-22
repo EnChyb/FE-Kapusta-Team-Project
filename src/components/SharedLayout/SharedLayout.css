@@ -139,7 +139,7 @@ main.reports-page::before {
 @media (width >= 1280px) {
   main.home-page::after,
   main.reports-page::after {
-    background-image: url(../../assets/images/background-cabbage/cabbage-desktop.webp);
+    background-image: url(../../assets/images/background-cabbage/cabbage-desktop-bottom.webp);
     position: fixed;
     background-repeat: repeat-x;
     background-size: auto 232px;
