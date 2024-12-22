@@ -1,144 +1,107 @@
-.container-balance {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.balance__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
-.balanceWrapper {
-  display: block;
-  align-items: center;
-  gap: 20px;
+.balance__input-container {
+    display: flex;
+    position: relative;
 }
 
-.label-balance {
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(82, 85, 95, 0.7);
-  margin-left: 120px;
+.balance__input {
+    width: 140px;
+    height: 44px;
+    padding: 0 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px 0 0 16px;
+    text-align: right;
+    vertical-align: middle;
+    cursor: pointer;
 }
-
-.balance {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.form-balance {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.input-balance {
-  width: 140px;
-  height: 44px;
-  border: 2px solid #e0e0e0;
-  border-radius: 16px 0 0 16px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 700;
-  background-color: #ffffff;
-  color: var(--clr-primary-text);
-  outline: none;
-  border-right: none;
-}
-
-.input-balance:hover {
-  border-color: var(--clr-accent);
+.balance__input:focus-visible {
+    background-color: #ffffff;
+    cursor: text;
 }
 
 .button-balance {
-  height: 44px;
-  padding: 0 20px;
-  border: 2px solid #e0e0e0;
-  border-left: none;
-  border-radius: 0 16px 16px 0;
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(82, 85, 95, 0.7);
-  background-color: transparent;
-  transition: all 0.3s ease;
-  width: 140px;
-  text-align: center;
-}
-.button-balance:hover {
-  border-color: var(--clr-accent);
-  background-color: var(--clr-accent);
-  color: #ffffff;
-}
-
-.separator {
-  width: 2px;
-  height: 36px;
-  background-color: #e0e0e0;
-  position: relative;
-}
-
-@media screen and (min-width: 620px) {
-  .balanceWrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .label-balance {
-    margin-top: 3px;
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(82, 85, 95, 0.7);
-  }
-
-  .form-balance {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .input-balance {
-    width: 125px;
+    height: 44px;
+    width: 140px;
+    padding: 0 16px;
     border: 2px solid #e0e0e0;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 700;
-    background-color: #ffffff;
-    color: var(--clr-primary-text);
-  }
-
-  .button-balance {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 125px;
-    border: 2px solid #e0e0e0;
-    border-radius: 16px;
-    font-size: 12px;
-    background-color: transparent;
-    color: rgba(82, 85, 95, 0.7);
-    transition: all 0.3s ease;
-  }
-
-  .separator {
-    display: none;
-  }
+    border-radius: 0 16px 16px 0;
+    border-left: none;
+    text-align: left;
+    cursor: pointer;
+}
+.button-balance:hover,
+.button-balance:focus {
+    border-color: var(--clr-accent);
+    border-radius: 0 16px 16px 0;
+    background-color: var(--clr-accent);
+    color: #ffffff;
 }
 
-@media screen and (min-width: 1280px) {
-  .balanceWrapper {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+@media (width >= 665px) {
+    .balance__container {
+        margin-left: 35px;
+    }
 
-  .input-balance,
-  .button-balance {
-    font-size: 12px;
-  }
+    .balance__form {
+        flex-direction: row;
+        gap: 21px;
+    }
 
-  .separator {
-    display: none;
-  }
+    .balance__input-container {
+        gap: 15px;
+    }
+
+    .balance__input,
+    .button-balance {
+        width: 125px;
+        border-radius: 16px;
+    }
+
+    .button-balance {
+        text-align: center;
+        border-left: 2px solid #e0e0e0;
+    }
+    .button-balance:hover,
+    .button-balance:focus {
+        border-radius: 16px;
+    }
+}
+
+@media (width >= 1280px) {
+    .balance__container {
+        margin-left: 0;
+    }
+}
+
+/* Typography */
+.balance__label {
+    font-size: 0.75rem;
+    font-weight: var(--font-medium);
+    letter-spacing: 0.02em;
+    color: var(--clr-primary-light);
+}
+
+.balance__input {
+    font-size: 0.75rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.02em;
+    color: #000000;
+}
+
+.button-balance {
+    font-size: 0.75rem;
+    font-weight: var(--font-regular);
+    letter-spacing: 0.02em;
+    color: var(--clr-primary-light);
+}
+
+/* Transitions */
+.button-balance {
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -111,6 +111,14 @@ main.reports-page::before {
         padding-top: 40px;
     }
 
+    main.home-page.container {
+        padding-inline: 91px;
+    }
+
+    main.reports-page.container {
+        padding-inline: 123px;
+    }
+
     main.home-page::before,
     main.reports-page::before {
         height: 526px;
