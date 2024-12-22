@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 // import {useState} from "react"
 import Balance from "../Balance/Balance";
-import CurrentPeriod from "../CurrentPeriod/CurrentPeriod";
+// import CurrentPeriod from "../CurrentPeriod/CurrentPeriod";
 import "./DataHeader.css";
+// import TopReports from '../Reports/TopReports';
 
 const DataHeader = () => {
 	const location = useLocation();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [date, setDate] = useState(null)
 
-	const dateParam = location.pathname.startsWith('/reports') ? searchParams.get('date') : null;
+	const dateParam = searchParams.get('date') ;
 
 	useEffect(() => {
 		if (dateParam) {
@@ -31,22 +32,14 @@ const DataHeader = () => {
 
 	return (
 		<div className="container_dataheader">
-			<Balance />
-			{location.pathname === "/home" ? (
-				<Link className="reportsLinkWrapper" to={`/reports/${formattedMonth}`}>
+
+					<Balance />
+					<Link className="reportsLinkWrapper" to={`/reports/${formattedMonth}`}>
 					<span className="reports">Reports</span>
 					<svg className="iconReports" width="24" height="24">
 						<use href="/sprite.svg#icon-reports"></use>
 					</svg>
-				</Link>
-			) : (
-				<>
-					<Link className="mainPageLinkWrapper" to="/home">
-						<span className="mainPage">Main page</span>
 					</Link>
-					<CurrentPeriod />
-				</>
-			)}
 		</div>
 	);
 };

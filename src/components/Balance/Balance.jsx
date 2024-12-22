@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import API_URL from "../../config/apiConfig";
+import API_URL from "../../../api/apiConfig";
 import "./Balance.css";
 import { BalanceModal } from "../BalanceModal/BalanceModal";
 

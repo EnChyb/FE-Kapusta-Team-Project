@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ExpensesIncome.css';
 import axios from 'axios';
-import API_URL from '../../config/apiConfig';
+import API_URL from '../../../api/apiConfig';
 import { useParams } from 'react-router-dom';
 
 const ExpensesIncome = () => {

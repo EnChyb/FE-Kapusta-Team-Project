@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import "./ExpensesIncomeStats.css";
-import API_URL from "../../../config/apiConfig";
+import API_URL from "../../../../api/apiConfig";
 
 const ExpensesList = () => {
   const { date } = useParams();
