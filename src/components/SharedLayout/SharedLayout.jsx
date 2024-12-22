@@ -57,7 +57,10 @@ const SharedLayout = ({ user, onLogout }) => {
         "/home": "home-page container",
         "/reports": "reports-page container",
     };
-    const mainClassName = routeClass[location.pathname] || "container";
+    const isReportWithDate = /^\/reports\/\d{4}-\d{2}$/.test(location.pathname);
+    const mainClassName = isReportWithDate
+        ? "reports-page container"
+        : routeClass[location.pathname] || "container";
 
     return (
         <>
