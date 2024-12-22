@@ -108,7 +108,7 @@ main.reports-page::before {
 @media (width >= 772px) {
   main.home-page,
   main.reports-page {
-    padding-top: 20px;
+    padding-top: 10px;
   }
 
   main.home-page::before,
