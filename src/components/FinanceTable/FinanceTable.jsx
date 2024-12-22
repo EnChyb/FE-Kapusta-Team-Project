@@ -1,6 +1,6 @@
 import "./FinanceTable.css";
 
-const FinanceTable = ({ data, onDelete }) => {
+const FinanceTable = ({ data=[], onDelete }) => {
   const rowesToDisplay = 12;
 
   const tableData = [
@@ -49,7 +49,7 @@ const FinanceTable = ({ data, onDelete }) => {
         </tbody>
         <tbody className="finance-table-body">
           {tableData.map((entry, index) => (
-            <tr key={index}>
+            <tr key={entry._id ||index}>
               <td>{formatDate(entry.date)}</td>
               <td>{entry.description}</td>
               <td>{entry.category}</td>
