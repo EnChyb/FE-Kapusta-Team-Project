@@ -33,7 +33,12 @@ const DataHeader = () => {
     return (
         <div className="data-header__container">
             <button className="data-header__btn">
-                <svg className="data-header__icon" width="18" height="18">
+                <svg
+                    className="data-header__icon"
+                    width="18"
+                    height="18"
+                    aria-hidden="true"
+                >
                     <use href="/sprite.svg#back-arrow"></use>
                 </svg>
                 To Transaction

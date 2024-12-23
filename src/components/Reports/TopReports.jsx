@@ -67,7 +67,7 @@ const TopReports = () => {
                     <p className="reports-header__month-selector-text">
                         Current period:
                     </p>
-                    <div className="reports-header__month-selector-nav-wrapper">
+                    <div className="reports-header__month-selector">
                         <button
                             className="reports-header__prev-month-btn"
                             onClick={() => changeMonth(-1)}

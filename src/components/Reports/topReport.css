@@ -40,9 +40,11 @@
     gap: 5px;
 }
 
-.reports-header__month-selector-nav-wrapper {
+.reports-header__month-selector {
+    min-width: 150px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .reports-header__next-month-btn,
