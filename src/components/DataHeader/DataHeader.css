@@ -4,11 +4,10 @@
 }
 
 .data-header__btn {
-    font-weight: var(--font-bold);
-    font-size: 0.625rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--clr-titles);
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    gap: 4px;
     margin-bottom: 17px;
 }
 
@@ -21,10 +20,7 @@
 }
 
 .data-header__text {
-    color: var(--clr-primary-light);
-    font-size: 0.75rem;
     line-height: 0;
-    letter-spacing: 0.04em;
     padding-top: 5px;
 }
 
@@ -69,4 +65,19 @@
         position: absolute;
         right: 0;
     }
+}
+
+/* Typography */
+.data-header__btn {
+    font-weight: var(--font-bold);
+    font-size: 0.625rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--clr-titles);
+}
+
+.data-header__text {
+    color: var(--clr-primary-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
 }

@@ -32,7 +32,12 @@ const DataHeader = () => {
 
     return (
         <div className="data-header__container">
-            <button className="data-header__btn">To Transaction</button>
+            <button className="data-header__btn">
+                <svg className="data-header__icon" width="18" height="18">
+                    <use href="/sprite.svg#back-arrow"></use>
+                </svg>
+                To Transaction
+            </button>
             <Link
                 className="data-header__link"
                 to={`/reports/${formattedMonth}`}
