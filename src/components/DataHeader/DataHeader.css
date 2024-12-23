@@ -1,74 +1,72 @@
-.container_dataheader {
+.data-header__container {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.data-header__btn {
+    font-weight: var(--font-bold);
+    font-size: 0.625rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--clr-titles);
+    margin-bottom: 17px;
+}
+
+.data-header__link {
     display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    gap: 15px;
+    margin-bottom: 32px;
 }
 
-.reportsLinkWrapper {
-    display: flex;
-    align-items: end;
-    margin-bottom: 25px;
-}
-
-.reports {
-    color: rgba(82, 85, 95, 0.7);
-    font-size: 12px;
-    line-height: 1.16;
+.data-header__text {
+    color: var(--clr-primary-light);
+    font-size: 0.75rem;
+    line-height: 0;
     letter-spacing: 0.04em;
-    text-decoration: none;
+    padding-top: 5px;
 }
 
-.iconReports {
-    margin-left: 15px;
-    color: rgba(82, 85, 95, 1);
+.data-header__icon {
+    fill: var(--clr-primary-text);
 }
 
-@media screen and (min-width: 665px) {
-    .container_dataheader {
-        flex-direction: row;
+@media (width >= 665px) {
+    .data-header__container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
         align-items: center;
-        justify-content: space-between;
-    }
-    .reportsLinkWrapper {
         margin-top: 15px;
-        margin-left: auto;
-        position: initial;
+    }
+
+    .data-header__btn {
+        display: none;
+    }
+
+    .data-header__link {
+        margin-bottom: 0;
         justify-content: space-between;
     }
-    .iconReports {
-        margin-inline-end: 30px;
+}
+
+@media (width >= 772px) {
+    .data-header__container {
+        margin-top: 0;
+        margin-bottom: 60px;
     }
 }
 
 @media screen and (min-width: 1280px) {
-    .container_dataheader {
+    .data-header__container {
         position: relative;
-        display: flex;
-        align-items: center;
         justify-content: center;
         margin-bottom: 8px;
     }
-    .reportsLinkWrapper {
+
+    .data-header__link {
         position: absolute;
-        right: 85px;
+        right: 0;
     }
-}
-
-.mainPageLinkWrapper {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 113px;
-}
-
-.mainPage {
-    color: var(--clr-primary-text);
-    font-size: 12px;
-    line-height: 1.16;
-    letter-spacing: 0.04em;
-    text-decoration: none;
 }
