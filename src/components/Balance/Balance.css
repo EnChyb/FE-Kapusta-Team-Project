@@ -108,7 +108,7 @@
 
 /* --------------------------------------------------------------------- */
 
-/* .reports-page .balance__container {
+.reports-page .balance__container {
     pointer-events: none;
 }
 
@@ -123,14 +123,27 @@
 }
 
 @media (width >= 665px) {
+    .reports-page .balance__form {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (width >= 772px) {
     .reports-page .balance__container {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+    }
+
+    .reports-page .balance__form {
+        flex-direction: row;
+        gap: 21px;
     }
 
     .reports-page .balance__input {
         width: 125px;
     }
 }
- */
