@@ -68,7 +68,7 @@ const FinanceTable = ({ data=[], onDelete }) => {
                     aria-label="Delete entry"
                   >
                     <svg width="32" height="32" viewBox="0 0 32 32">
-                      <use href="/public/sprite.svg#trash" />
+                      <use href="/sprite.svg#trash" />
                     </svg>
                   </button>
                 )}
