@@ -130,7 +130,8 @@
 }
 
 @media (width >= 772px) {
-    .reports-page .balance__container {
+    .reports-page .balance__container,
+    .reports-page .balance__loading-placeholder {
         position: absolute;
         top: 40px;
         left: 50%;
