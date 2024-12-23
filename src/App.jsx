@@ -8,6 +8,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 import MainPage from "./pages/MainPage";
 import HomePage from "./pages/HomePage";
 import ReportsPage from "./pages/ReportsPage";
+import PageNotFound from "./components/PageNotFound/PageNotFound"; 
 import { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -41,7 +42,7 @@ const App = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh"
+          height: "100vh",
         }}
       >
         <ClipLoader color="#36d7b7" size={50} />
@@ -74,6 +75,7 @@ const App = () => {
             path="/reports"
             element={user ? <ReportsPage /> : <Navigate to="/" replace />}
           />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </Router>

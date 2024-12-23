@@ -1,0 +1,87 @@
+.page-not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f6fb; 
+    text-align: center;
+  }
+  
+  .content-wrapper {
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  .page-not-found h1 {
+    font-size: 4rem;
+    color: #52555f;
+    margin-bottom: 20px;
+  }
+  
+  .page-not-found p {
+    font-size: 1.5rem;
+    color: #767676;
+    margin-bottom: 30px;
+  }
+  
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #ff751d; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #e64a19;
+  }
+  
+  /* Mobile */
+  @media (max-width: 767px) {
+    .page-not-found h1 {
+      font-size: 3rem;
+    }
+  
+    .page-not-found p {
+      font-size: 1.2rem;
+    }
+  
+    .back-button {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Tablet */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .page-not-found h1 {
+      font-size: 4rem;
+    }
+  
+    .page-not-found p {
+      font-size: 1.4rem;
+    }
+  
+    .back-button {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 1200px) {
+    .page-not-found h1 {
+      font-size: 5rem;
+    }
+  
+    .page-not-found p {
+      font-size: 1.6rem;
+    }
+  
+    .back-button {
+      font-size: 1.1rem;
+    }
+  }
+  
