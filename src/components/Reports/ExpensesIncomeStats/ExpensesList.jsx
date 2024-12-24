@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react";
-<<<<<<< Updated upstream
-=======
-import { useParams } from "react-router-dom";
->>>>>>> Stashed changes
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import BarChartComponent from "./BarChartComponent";
@@ -13,10 +9,7 @@ const ExpensesList = ({ selectedDate }) => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-<<<<<<< Updated upstream
-=======
   const [selectedCategory, setSelectedCategory] = useState(null);
->>>>>>> Stashed changes
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -33,37 +26,12 @@ const ExpensesList = ({ selectedDate }) => {
           throw new Error("No authorization token.");
         }
 
-<<<<<<< Updated upstream
-        const response = await axios.get(`${API_URL}/transaction/expense`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            date, // Nowy parametr w formacie YYYY-MM
-          },
-        });
-
-        console.log("Fetched expenses:", response.data.expenses);
-
-        const summedExpenses = response.data.expenses.reduce((acc, expense) => {
-          const category = expense.category;
-          if (!acc[category]) {
-            acc[category] = { ...expense, amount: expense.amount };
-          } else {
-            acc[category].amount += expense.amount;
-          }
-          return acc;
-        }, {});
-
-        setExpenses(Object.values(summedExpenses));
-=======
         const response = await axios.get(`${API_URL}/transaction/period-data`, {
           headers: { Authorization: `Bearer ${token}` },
           params: { date },
         });
 
         setExpenses(response.data.expenses.incomesData || {});
->>>>>>> Stashed changes
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");
@@ -93,22 +61,6 @@ const ExpensesList = ({ selectedDate }) => {
   if (error) return <li>Can't load expenses</li>;
 
   return (
-<<<<<<< Updated upstream
-    <ul className="eiList">
-      {expenses.map((expense) => (
-        <li key={expense._id || expense.category}>
-          <span className="eiIconDescription">{expense.amount.toFixed(2)}</span>
-          <svg className="eiIcon">
-            <use
-              href={`${Svg}#${
-                expenseIcons[expense.category] || "icon-other"
-              }`}></use>
-          </svg>
-          <span className="eiIconDescription">{expense.category}</span>
-        </li>
-      ))}
-    </ul>
-=======
     <>
       <ul className="eiList">
         {Object.entries(expenses).map(([category, details]) => (
@@ -133,7 +85,6 @@ const ExpensesList = ({ selectedDate }) => {
         />
       )}
     </>
->>>>>>> Stashed changes
   );
 };
 

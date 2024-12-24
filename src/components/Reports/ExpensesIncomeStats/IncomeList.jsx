@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react";
-<<<<<<< Updated upstream
-=======
-import { useParams } from "react-router-dom";
->>>>>>> Stashed changes
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import BarChartComponent from "./BarChartComponent";
@@ -13,10 +9,7 @@ const IncomeList = ({ selectedDate }) => {
   const [incomes, setIncomes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-<<<<<<< Updated upstream
-=======
   const [selectedCategory, setSelectedCategory] = useState(null);
->>>>>>> Stashed changes
 
   useEffect(() => {
     const fetchIncomes = async () => {
@@ -33,37 +26,12 @@ const IncomeList = ({ selectedDate }) => {
           throw new Error("No authorization token.");
         }
 
-<<<<<<< Updated upstream
-        const response = await axios.get(`${API_URL}/transaction/income`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            date, // Wysyłanie daty w odpowiednim formacie
-          },
-        });
-
-        console.log("Fetched incomes:", response.data.incomes);
-
-        const summedIncome = response.data.incomes.reduce((acc, income) => {
-          const category = income.category;
-          if (!acc[category]) {
-            acc[category] = { ...income, amount: income.amount };
-          } else {
-            acc[category].amount += income.amount;
-          }
-          return acc;
-        }, {});
-
-        setIncomes(Object.values(summedIncome));
-=======
         const response = await axios.get(`${API_URL}/transaction/period-data`, {
           headers: { Authorization: `Bearer ${token}` },
           params: { date },
         });
 
         setIncomes(response.data.incomes.incomesData || {});
->>>>>>> Stashed changes
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");
@@ -85,22 +53,6 @@ const IncomeList = ({ selectedDate }) => {
   if (error) return <li>Can't load incomes</li>;
 
   return (
-<<<<<<< Updated upstream
-    <ul className="eiList">
-      {incomes.map((income) => (
-        <li key={income._id || income.category}>
-          <span className="eiIconDescription">{income.amount.toFixed(2)}</span>
-          <svg className="eiIcon">
-            <use
-              href={`${Svg}#${
-                incomeIcons[income.category] || "icon-other"
-              }`}></use>
-          </svg>
-          <span className="eiIconDescription">{income.category}</span>
-        </li>
-      ))}
-    </ul>
-=======
     <>
       <ul className="eiList">
         {Object.entries(incomes).map(([category, details]) => (
@@ -125,7 +77,6 @@ const IncomeList = ({ selectedDate }) => {
         />
       )}
     </>
->>>>>>> Stashed changes
   );
 };
 
