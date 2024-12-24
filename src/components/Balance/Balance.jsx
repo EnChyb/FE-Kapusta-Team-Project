@@ -121,7 +121,7 @@ const Balance = () => {
     };
 
     if (isLoading) {
-        return <div className="loading-placeholder">Loading...</div>;
+        return <div className="balance__loading-placeholder">Loading...</div>;
     }
 
     return (
