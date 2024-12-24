@@ -1,72 +1,66 @@
-import { useEffect, useState } from 'react';
-import './ExpensesIncome.css';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import "./ExpensesIncome.css";
+import axios from "axios";
+import API_URL from "../../../api/apiConfig";
+import { useParams } from "react-router-dom";
 
 const ExpensesIncome = () => {
-  const [income, setIncome] = useState([]);
-  const [expense, setExpense] = useState([]);
-  const [error, setError] = useState(null);
+    const { date } = useParams();
+    const [income, setIncome] = useState(0);
+    const [expense, setExpense] = useState(0);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchIncome = async () => {
-      try {
-        const response = await axios.get('https://kapusta-backend.goit.global/transaction/income');
-        setIncome(response.data.incomes);
-      } catch (err) {
-        setError(err.message || "Błąd podczas pobierania dochodów");
-      }
-    };
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            throw new Error("No authorization token.");
+        }
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(
+                    `${API_URL}/transaction/period-data`,
+                    {
+                        headers: { Authorization: `Bearer ${token}` },
+                        params: { date },
+                    }
+                );
+                console.log("response", response.data);
 
-    const fetchExpense = async () => {
-      try {
-        const response = await axios.get('https://kapusta-backend.goit.global/transaction/expense');
-        setExpense(response.data.expense);
-      } catch (err) {
-        setError(err.message || "Błąd podczas pobierania wydatków");
-      }
-    };
+                const totalIncome = response.data.incomes.total;
+                setIncome(totalIncome);
 
-    fetchIncome();
-    fetchExpense();
-  }, []);
+                const totalExpense = response.data.expenses.total;
+                setExpense(totalExpense);
+            } catch (err) {
+                setError(err.message || "Błąd podczas pobierania danych.");
+            }
+        };
+        fetchData();
+    }, [date]);
 
-  const renderIncome = () => {
-    if (Array.isArray(income)) {
-      return income.reduce((sum, item) => sum + item.amount, 0);
+    if (error) {
+        return <p>Błąd: {error}</p>;
     }
-    return income; 
-  };
 
-  const renderExpense = () => {
-    if (Array.isArray(expense)) {
-      return expense.reduce((sum, item) => sum + item.amount, 0);
-    }
-    return expense; 
-  };
+    return (
+        <section className="reports-overview">
+            <p className="reports-overview__expense">
+                Expenses:
+                <span className="reports-overview__expense-highlight">
+                    - {expense.toFixed(2)} EUR
+                </span>
+            </p>
 
-  // if (error) {
-  //   return <p>Błąd: {error}</p>;
-  // }
+            <div className="reports-overview__divider"></div>
 
-  return (
-    <div className="main-expenses-income-div">
-      <section className="expenses-income-section">
-        <p className="expenses-income-txt">Income:</p>
-        <p className="expenses-income-txt income-extention-txt">
-          + {renderIncome()} UAH
-        </p>
-      </section>
-
-      <div className="expenses-and-income-divider"></div>
-
-      <section className="expenses-income-section">
-        <p className="expenses-income-txt">Expenses:</p>
-        <p className="expenses-income-txt expenses-extention-txt">
-          - {renderExpense()} UAH
-        </p>
-      </section>
-    </div>
-  );
+            <p className="reports-overview__income">
+                Income:
+                <span className="reports-overview__income-highlight">
+                    + {income.toFixed(2)} EUR
+                </span>
+            </p>
+        </section>
+    );
 };
 
 export default ExpensesIncome;

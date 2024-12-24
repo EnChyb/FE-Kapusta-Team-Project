@@ -1,63 +1,71 @@
-.main-expenses-income-div {
+.reports-overview {
     display: flex;
-    gap: 20px;
     justify-content: center;
-    box-shadow: 0px 10px 60px 0px #AAB2C533;
-    padding: 15px 0;
-    border-radius: 30px;
-    margin: 32px 123px;
-}
-
-.expenses-and-income-divider {
-    width: 1px;
-    height: 36px;
-    border: 1px solid;
-    opacity: 0.1;
-    border-radius: 20px;
-}
-
-.expenses-income-section {
-    display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+    padding: 20px 10px 25px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+    position: relative;
 }
 
-.expenses-income-txt {
-    font-family: Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16.41px;
-    letter-spacing: 0.004em;
-    color: #52555F;
+.reports-overview__divider {
+    width: 1px;
+    height: 70px;
+    background-color: #e0e5eb;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.income-extention-txt {
-    color: #407946;
+.reports-overview__income,
+.reports-overview__expense {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.expenses-extention-txt {
-    color: #E53935;
-}
-
-@media only screen and (max-width: 767px) {
-    .expenses-and-income-divider {
-        height: 70px;
+@media (width >= 772px) {
+    .reports-overview {
+        gap: 40px;
+        padding: 15px;
+        box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
     }
 
-    .main-expenses-income-div {
-        padding: 7px 10px;
-        margin: 32px 20px;
+    .reports-overview__divider {
+        height: 36px;
     }
 
-    .expenses-income-section {
-        flex-direction: column;
-        gap: 0;
-        justify-content: center;
+    .reports-overview__income,
+    .reports-overview__expense {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .reports-overview__expense {
+        justify-content: end;
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1279px) {
-    .main-expenses-income-div {
-        margin: 32px 32px;
-    }
+/* Typography */
+.reports-overview__income,
+.reports-overview__expense {
+    font-weight: var(--font-bold);
+    font-size: 0.875rem;
+    color: var(--clr-primary-text);
+}
+
+.reports-overview__expense-highlight {
+    color: var(--clr-expense);
+    letter-spacing: 0.04em;
+}
+
+.reports-overview__income-highlight {
+    color: var(--clr-income);
+    letter-spacing: 0.04em;
 }

@@ -31,10 +31,20 @@
                 d="m2.286 2.286 27.429 27.429M2.286 29.714 29.715 2.285" />
         </symbol>
 
-        <symbol id="icon-reports" viewBox="0 0 24 24">
-            <g clip-path="url(#clip0_19402_517)">
-                <path d="M5 9.2H8V19H5V9.2ZM10.6 5H13.4V19H10.6V5ZM16.2 13H19V19H16.2V13Z" />
-            </g>
+        <symbol id="reports" viewBox="0 0 32 32">
+            <path fill="#52555f" d="M6.667 12.267h4v13.067h-4V12.267zm7.466-5.6h3.733v18.667h-3.733V6.667zM21.6 17.333h3.733v8H21.6v-8z"/>
+        </symbol>
+
+        <symbol id="back-arrow" viewBox="0 0 32 32">
+            <path fill="#ff751d" d="M28 14.667H9.107L13.88 9.88 12 8l-8 8 8 8 1.88-1.88-4.773-4.787H28v-2.667z"/>
+        </symbol>
+
+        <symbol id="next" viewBox="0 0 19 32">
+            <path fill="none" stroke="#ff751d" stroke-width="5.333" d="M2.667 2.667 13.334 16 2.667 29.333"/>
+        </symbol>
+
+        <symbol id="prev" viewBox="0 0 19 32">
+            <path fill="none" stroke="#ff751d" stroke-width="5.333" d="M16 2.667 5.333 16 16 29.333"/>
         </symbol>
 
         <symbol id="calendar" viewBox="0 0 32 32">

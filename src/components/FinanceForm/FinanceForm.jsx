@@ -173,8 +173,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="calculator-icon"
               >
-                {/* Z JAKIEGOŚ POWODU NIE POJAWIA MI SIĘ BEZ /PUBLIC/ NIE USUWAĆ */}
-                <use href="/public/sprite.svg#calculator" />
+                <use href="/sprite.svg#calculator" />
               </svg>
               <Field
                 type="number"

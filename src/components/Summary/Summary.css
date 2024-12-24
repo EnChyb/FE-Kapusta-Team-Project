@@ -31,6 +31,21 @@
   border: 2px solid white;
   border-left: none;
   border-right: none;
+  max-height: calc(6 * 40px + 1px); /* 6 rows * 40px height per row */
+  overflow-y: auto;
+}
+
+.summary-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.summary-content::-webkit-scrollbar-track {
+  background: #f5f6fb;
+}
+
+.summary-content::-webkit-scrollbar-thumb {
+  background: #ff751d;
+  border-radius: 2px;
 }
 
 .summary-row {
@@ -38,20 +53,35 @@
   justify-content: space-between;
   padding: 12px;
   border-bottom: 2px solid #ffffff;
+  height: 40px;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .summary-row:last-child {
   border-bottom: none;
 }
 
+.summary-year {
+  width: 20%;
+  font-size: 12px;
+  color: #52555f;
+}
+
 .summary-month {
-  width: 50%;
+  width: 40%;
   font-size: 12px;
   color: #52555f;
 }
 
 .summary-amount {
-  width: 50%;
+  width: 40%;
   font-size: 12px;
   color: #52555f;
+}
+
+@media only screen and (min-width: 772px) and (max-width: 1279px) {
+  .summary-container {
+    margin: 40px 0;
+  }
 }

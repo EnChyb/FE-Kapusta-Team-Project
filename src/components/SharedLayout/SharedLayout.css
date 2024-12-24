@@ -1,0 +1,162 @@
+main.login-page {
+    position: relative;
+    padding-top: 86px;
+    padding-bottom: min(
+        155px,
+        calc(105px + (155 - 105) * ((100vw - 320px) / (772 - 320)))
+    );
+}
+
+main.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: min(
+        526px,
+        calc(286px + (526 - 286) * ((100vw - 320px) / (772 - 320)))
+    );
+    background-color: var(--clr-background);
+    border-radius: 0 0 0 105px;
+    z-index: -1;
+}
+
+main.login-page::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/background-cabbage/cabbage-mobile.webp),
+        url(../../assets/images/background-cabbage/cabbage-mobile-bottom.webp);
+    background-repeat: no-repeat;
+    background-size: 83px;
+    background-position: top 104px right -34px, bottom 0px left 35px;
+    z-index: -1;
+}
+
+@media (width >= 772px) {
+    main.login-page {
+        padding-top: 80px;
+    }
+
+    main.login-page::before {
+        background-image: url(../../assets/images/background-cabbage/cabbage-desktop.webp);
+        background-repeat: repeat-x;
+        background-size: 1334px;
+        background-position: top 28px left 10px;
+    }
+
+    main.login-page::after {
+        background-image: url(../../assets/images/background-cabbage/cabbage-tablet-bottom.webp);
+        background-size: 183px;
+        background-position: bottom 56px left
+            calc(103px + (230 - 103) * ((100vw - 773px) / (1280 - 773)));
+    }
+}
+
+@media (width >= 1280px) {
+    main.login-page {
+        padding-inline: 90px;
+        padding-top: 117px;
+        padding-bottom: 125px;
+
+        display: flex;
+        justify-content: center;
+        gap: 157px;
+    }
+
+    main.login-page::before {
+        border-radius: 0 0 0 115px;
+    }
+
+    main.login-page::after {
+        background-position: bottom 50px left
+            calc(103px + (230 - 103) * ((100vw - 773px) / (1280 - 773)));
+    }
+}
+
+@media (width >= 1334px) {
+    main.login-page::after {
+        background-position: bottom 50px left calc(250px + (100vw - 1334px) / 2);
+    }
+}
+
+/* --------------------------------------------------------------------------- */
+
+main.home-page,
+main.reports-page {
+    position: relative;
+    padding-top: 16px;
+}
+
+main.home-page::before,
+main.reports-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 286px;
+    background-color: var(--clr-background);
+    border-radius: 0 0 0 105px;
+    z-index: -1;
+}
+
+@media (width >= 772px) {
+    main.home-page,
+    main.reports-page {
+        padding-top: 40px;
+    }
+
+    main.home-page.container {
+        padding-inline: min(
+            91px,
+            calc(32px + (91 - 32) * ((100vw - 772px) / (1280 - 772)))
+        );
+    }
+
+    main.reports-page.container {
+        padding-inline: min(
+            123px,
+            calc(32px + (123 - 32) * ((100vw - 772px) / (1280 - 772)))
+        );
+    }
+
+    main.home-page::before,
+    main.reports-page::before {
+        height: 526px;
+    }
+
+    main.home-page::after,
+    main.reports-page::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/images/background-cabbage/cabbage-tablet-bottom.webp);
+        background-repeat: no-repeat;
+        background-size: 183px;
+        background-position: bottom 60px right 88px;
+        z-index: -1;
+    }
+
+    main.reports-page::after {
+        background-position: bottom -39px right 88px;
+    }
+}
+
+@media (width >= 1280px) {
+    main.home-page::after,
+    main.reports-page::after {
+        background-image: url(../../assets/images/background-cabbage/cabbage-desktop-bottom.webp);
+        background-repeat: repeat-x;
+        background-size: auto 232px;
+        background-position: bottom 0px left 10px;
+        z-index: -1;
+    }
+}
