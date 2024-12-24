@@ -9,8 +9,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 const MainPage = lazy(() => import("./pages/MainPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ReportsPage = lazy(() => import("./pages/ReportsPage"));
-// const NotFound = lazy(() => import("./pages/NotFoundPage"));
-
+const PageNotFound = lazy(() => import("./components/PageNotFound/PageNotFound"));
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -60,11 +59,10 @@ const App = () => {
               path="/reports/:date"
               element={user ? <ReportsPage /> : <Navigate to="/" replace />}
             />
-                
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </Suspense>
-
     </Router>
   );
 };
