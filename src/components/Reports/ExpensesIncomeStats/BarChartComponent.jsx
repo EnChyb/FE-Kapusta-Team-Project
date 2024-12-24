@@ -8,7 +8,7 @@ import {
   Cell,
 } from "recharts";
 
-const BarChartComponent = ({ category, details }) => {
+const BarChartComponent = ({ details }) => {
   const data = Object.entries(details)
     .filter(([key]) => key !== "total")
     .map(([description, amount]) => ({
@@ -26,7 +26,6 @@ const BarChartComponent = ({ category, details }) => {
     <div
       className="barChartContainer"
       style={{ textAlign: "center", marginTop: "20px" }}>
-      <h3>{category} Overview</h3>
       <BarChart
         width={800}
         height={400}
