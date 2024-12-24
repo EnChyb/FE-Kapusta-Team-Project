@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.balance__input-wrapper {
+.balance__input_wrapper {
     position: relative;
     display: flex;
     justify-content: center;
@@ -140,3 +140,33 @@
 .button-balance {
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+
+/* --------------------------------------------------------------------- */
+
+/* .reports-page .balance__container {
+    pointer-events: none;
+}
+
+.reports-page .balance__input {
+    border-radius: 16px;
+    text-align: center;
+    width: 183px;
+}
+
+.reports-page .button-balance {
+    display: none;
+}
+
+@media (width >= 665px) {
+    .reports-page .balance__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .reports-page .balance__input {
+        width: 125px;
+    }
+}
+ */
