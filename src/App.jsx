@@ -50,7 +50,16 @@ const App = () => {
 						path="/"
 						element={<SharedLayout user={user} onLogout={handleLogout} />}
 					>
-						<Route index element={<MainPage onLogin={handleLogin} />} />
+						<Route
+							index
+							element={
+								user ? (
+									<Navigate to="/home" replace />
+								) : (
+									<MainPage onLogin={handleLogin} />
+								)
+							}
+						/>
 						<Route
 							path="/home"
 							element={user ? <HomePage /> : <Navigate to="/" replace />}
