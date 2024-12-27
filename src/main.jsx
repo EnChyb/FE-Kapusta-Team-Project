@@ -5,9 +5,9 @@ import { BalanceProvider } from "./context/BalanceContext";
 import "./assets/styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BalanceProvider>
-      <App />
-    </BalanceProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<BalanceProvider>
+			<App />
+		</BalanceProvider>
+	</React.StrictMode>
 );
