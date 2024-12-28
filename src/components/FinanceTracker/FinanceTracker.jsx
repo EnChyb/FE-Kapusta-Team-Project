@@ -31,16 +31,26 @@ const FinanceTracker = () => {
 			console.log(`Data fetched for ${section}:`, response.data);
 
 			if (section === "expense") {
-				setExpenses(response.data.expenses);
+				setExpenses(
+					response.data.expenses.map((transaction) => ({
+						...transaction,
+						amount: -Math.abs(transaction.amount),
+					}))
+				);
 			} else if (section === "income") {
-				setIncome(response.data.incomes);
+				setIncome(
+					response.data.incomes.map((transaction) => ({
+						...transaction,
+						amount: Math.abs(transaction.amount),
+					}))
+				);
 			}
 		} catch (error) {
 			console.error(`Error fetching ${section} data:`, error.message);
 		}
 	};
 
-	const deleteEntry = async (transactionId, amount) => {
+	const deleteEntry = async (transactionId) => {
 		const token = localStorage.getItem("token");
 		if (!token) {
 			console.error("No authorization token.");
@@ -48,6 +58,15 @@ const FinanceTracker = () => {
 		}
 
 		try {
+			const transactions = activeSection === "expenses" ? expenses : income;
+			const transactionToDelete = transactions.find(
+				(transaction) => transaction._id === transactionId
+			);
+
+			if (!transactionToDelete) {
+				throw new Error("Transaction not found.");
+			}
+
 			await axios.delete(`${API_URL}/transaction/${transactionId}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -55,10 +74,21 @@ const FinanceTracker = () => {
 			});
 			console.log(`Deleted entry with ID: ${transactionId}`);
 
-			const adjustment = activeSection === "expenses" ? amount : -amount;
+			const adjustment =
+				activeSection === "expenses"
+					? Math.abs(transactionToDelete.amount)
+					: -Math.abs(transactionToDelete.amount);
 			await updateBalance(parseFloat(balance) + adjustment);
 
-			fetchData(activeSection === "expenses" ? "expense" : "income");
+			if (activeSection === "expenses") {
+				setExpenses((prev) =>
+					prev.filter((transaction) => transaction._id !== transactionId)
+				);
+			} else {
+				setIncome((prev) =>
+					prev.filter((transaction) => transaction._id !== transactionId)
+				);
+			}
 		} catch (error) {
 			console.error(
 				`Error deleting entry with ID ${transactionId}:`,

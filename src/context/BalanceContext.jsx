@@ -82,13 +82,59 @@ export const BalanceProvider = ({ children }) => {
 		}
 	};
 
+	const calculateTransactionTotal = async () => {
+		try {
+			const token = localStorage.getItem("token");
+			if (!token) {
+				throw new Error("User is not authenticated.");
+			}
+
+			const [expensesResponse, incomeResponse] = await Promise.all([
+				fetch(`${API_URL}/transaction/expense`, {
+					headers: { Authorization: `Bearer ${token}` },
+				}),
+				fetch(`${API_URL}/transaction/income`, {
+					headers: { Authorization: `Bearer ${token}` },
+				}),
+			]);
+
+			if (!expensesResponse.ok || !incomeResponse.ok) {
+				throw new Error("Failed to fetch transactions");
+			}
+
+			const expensesData = await expensesResponse.json();
+			const incomeData = await incomeResponse.json();
+
+			const expensesTotal = expensesData.expenses.reduce(
+				(acc, transaction) => acc - transaction.amount,
+				0
+			);
+			const incomeTotal = incomeData.incomes.reduce(
+				(acc, transaction) => acc + transaction.amount,
+				0
+			);
+
+			return incomeTotal + expensesTotal;
+		} catch (error) {
+			console.error("Error calculating transaction total:", error.message);
+			toast.error("Failed to calculate transaction total!");
+			return 0;
+		}
+	};
+
 	useEffect(() => {
 		fetchBalance();
 	}, [fetchBalance]);
 
 	return (
 		<BalanceContext.Provider
-			value={{ balance, loading, updateBalance, fetchBalance }}
+			value={{
+				balance,
+				loading,
+				updateBalance,
+				fetchBalance,
+				calculateTransactionTotal,
+			}}
 		>
 			{children}
 		</BalanceContext.Provider>
