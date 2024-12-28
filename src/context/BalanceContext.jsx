@@ -71,13 +71,7 @@ export const BalanceProvider = ({ children }) => {
 			}
 
 			const data = await response.json();
-			const updatedBalance = parseFloat(data.balance);
-
-			if (isNaN(updatedBalance)) {
-				throw new Error("Invalid balance returned from server");
-			}
-
-			setBalance(updatedBalance.toFixed(2));
+			setBalance(parseFloat(data.balance).toFixed(2));
 			toast.success("Balance updated successfully!", {
 				autoClose: 2000,
 				theme: "colored",
@@ -100,7 +94,3 @@ export const BalanceProvider = ({ children }) => {
 		</BalanceContext.Provider>
 	);
 };
-
-
-
-

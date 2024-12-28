@@ -64,7 +64,7 @@ const FinanceTable = ({ data = [], onDelete }) => {
 								{entry.amount !== null && (
 									<button
 										className="delete-btn"
-										onClick={() => onDelete && onDelete(index)}
+										onClick={() => onDelete(index, entry.amount)}
 										aria-label="Delete entry"
 									>
 										<svg width="32" height="32" viewBox="0 0 32 32">

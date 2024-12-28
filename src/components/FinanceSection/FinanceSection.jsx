@@ -22,11 +22,11 @@ const FinanceSection = ({ data, setData, activeSection, onDelete }) => {
 	const deleteEntry = (index) => {
 		const entryToDelete = data[index];
 		if (entryToDelete && entryToDelete._id) {
-			onDelete(entryToDelete._id);
+			onDelete(entryToDelete._id, entryToDelete.amount);
 		}
 		setData((prevData) => prevData.filter((_, i) => i !== index));
-		fetchBalance();
 	};
+
 	return (
 		<div className="finance-section">
 			<FinanceForm onAdd={addEntry} activeSection={activeSection} />
