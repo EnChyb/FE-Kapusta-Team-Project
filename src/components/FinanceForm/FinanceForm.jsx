@@ -14,8 +14,8 @@ const FinanceForm = ({ onAdd, activeSection }) => {
     { value: "Entertainment", label: "Entertainment" },
     { value: "Housing", label: "Housing" },
     { value: "Technique", label: "Technique" },
-    { value: "Communal, communication", label: "Communal, communication" },
-    { value: "Sports, hobbies", label: "Sports, hobbies" },
+    { value: "Communal, Communication", label: "Communal, Communication" },
+    { value: "Sports, Hobbies", label: "Sports, Hobbies" },
     { value: "Other", label: "Other" },
   ];
 
