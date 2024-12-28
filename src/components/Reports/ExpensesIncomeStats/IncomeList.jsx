@@ -46,6 +46,8 @@ const IncomeList = () => {
         }));
 
         setIncomes(transformedIncomes);
+        setSelectedCategory(null);
+        setSelectedKey(null);
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");

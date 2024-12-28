@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import SvgBackground from "../../../assets/svg/ExpensesIncome/Rectangle 38.svg";
@@ -7,8 +6,7 @@ import "./ExpensesIncomeStats.css";
 import API_URL from "../../../../api/apiConfig";
 import BarChartComponent from "../../BarChartComponent/BarChartComponent";
 
-const ExpensesList = () => {
-  const { date } = useParams();
+const ExpensesList = ({ date }) => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,6 +44,8 @@ const ExpensesList = () => {
         }));
 
         setExpenses(transformedExpenses);
+        setSelectedCategory(null);
+        setSelectedKey(null);
       } catch (err) {
         console.error("Fetching error: ", err.message);
         setError(err.message || "Something went wrong");

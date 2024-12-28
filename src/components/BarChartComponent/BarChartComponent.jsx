@@ -60,7 +60,7 @@ const BarChartComponent = ({ details }) => {
               tick={{ fontSize: 14 }}
               tickLine={false}
               axisLine={{ stroke: "#aaa" }}
-              unit=" UAH"
+              unit=" EUR"
             />
           </>
         ) : (
@@ -75,12 +75,12 @@ const BarChartComponent = ({ details }) => {
               tick={{ fontSize: 14 }}
               tickLine={false}
               axisLine={{ stroke: "#aaa" }}
-              unit=" UAH"
+              unit=" EUR"
             />
           </>
         )}
         <Tooltip
-          formatter={(value) => `${value} UAH`}
+          formatter={(value) => `${value} EUR`}
           itemStyle={{ fontSize: "14px" }}
         />
         <Bar
@@ -92,7 +92,7 @@ const BarChartComponent = ({ details }) => {
             position: isMobile ? "right" : "top",
             fill: "#000",
             fontSize: 14,
-            formatter: (value) => `${value} UAH`,
+            formatter: (value) => `${value} EUR`,
             style: { whiteSpace: "nowrap" },
           }}>
           {data.map((entry, index) => (
