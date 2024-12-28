@@ -3,6 +3,7 @@ import Select from "react-select";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import API_URL from "../../../api/apiConfig";
 
 const FinanceForm = ({ onAdd, activeSection }) => {
   const selectExpenses = [
@@ -54,8 +55,8 @@ const FinanceForm = ({ onAdd, activeSection }) => {
 
       const endpoint =
         activeSection === "expenses"
-          ? "https://be-kapusta-team-project.onrender.com/transaction/expense"
-          : "https://be-kapusta-team-project.onrender.com/transaction/income";
+          ? "/transaction/expense"
+          : "/transaction/income";
 
       console.log("Data being sent to the backend:", {
         date: values.date,
@@ -65,7 +66,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
       });
 
       const response = await axios.post(
-        endpoint,
+        `${API_URL}${endpoint}`,
         {
           date: values.date,
           description: values.description,
