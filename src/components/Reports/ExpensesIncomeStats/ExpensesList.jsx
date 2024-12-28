@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
+import SvgBackground from "../../../assets/svg/ExpensesIncome/Rectangle 38.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../../api/apiConfig";
 import BarChartComponent from "../../BarChartComponent/BarChartComponent";
@@ -12,7 +13,7 @@ const ExpensesList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  console.log(expenses)
+  const [selectedKey, setSelectedKey] = useState(null);
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -29,17 +30,20 @@ const ExpensesList = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          params: { date }
+          params: { date },
         });
 
-        console.log("Expenses in list", response)
-
-        const transformedExpenses = Object
-          .entries(response.data.expenses.incomesData || {})
-          .map(([category, data]) => ({
-            category,
-            details: { ...data, ...Object.fromEntries(Object.entries(data).filter(([key]) => key !== "total")) }
-          }));
+        const transformedExpenses = Object.entries(
+          response.data.expenses.incomesData || {}
+        ).map(([category, data]) => ({
+          category,
+          details: {
+            ...data,
+            ...Object.fromEntries(
+              Object.entries(data).filter(([key]) => key !== "total")
+            ),
+          },
+        }));
 
         setExpenses(transformedExpenses);
       } catch (err) {
@@ -72,21 +76,29 @@ const ExpensesList = () => {
 
   return (
     <>
-    <ul className="eiList">
-      {expenses.map(({ category, details }) => (
-        <li
-          key={category}
-          onClick={() => setSelectedCategory({ category, details })}
-        >
-          <span className="eiIconDescription">{details.total ? details.total.toFixed(2) : "N/A"}</span>
-          <svg className="eiIcon">
-            <use
-              href={`${Svg}#${expenseIcons[category] || "icon-other"}`}
-            ></use>
-          </svg>
-          <span className="eiIconDescription">{category}</span>
-        </li>
-      ))}
+      <ul className="eiList">
+        {expenses.map(({ category, details }, index) => (
+          <li
+            key={category}
+            onClick={() => {
+              setSelectedCategory({ category, details });
+              setSelectedKey(index);
+            }}>
+            <span className="eiIconDescription">
+              {details.total ? details.total.toFixed(2) : "N/A"}
+            </span>
+            <div className="eiIconWithBackground">
+              <img src={SvgBackground} className="svgBackground" />
+              <svg
+                className={`eiIcon ${selectedKey === index ? "selected" : ""}`}>
+                <use
+                  href={`${Svg}#${expenseIcons[category] || "icon-other"}`}
+                />
+              </svg>
+            </div>
+            <span className="eiIconDescription">{category}</span>
+          </li>
+        ))}
       </ul>
       {selectedCategory && (
         <BarChartComponent
@@ -94,7 +106,7 @@ const ExpensesList = () => {
           details={selectedCategory.details}
         />
       )}
-      </>
+    </>
   );
 };
 
