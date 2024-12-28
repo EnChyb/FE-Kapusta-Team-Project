@@ -58,11 +58,16 @@ const FinanceForm = ({ onAdd, activeSection }) => {
           ? "/transaction/expense"
           : "/transaction/income";
 
+      const amount =
+        activeSection === "expenses"
+          ? -Math.abs(values.amount)
+          : Math.abs(values.amount);
+
       console.log("Data being sent to the backend:", {
         date: values.date,
         description: values.description,
         category: values.category,
-        amount: values.amount,
+        amount: amount,
       });
 
       const response = await axios.post(
@@ -71,7 +76,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
           date: values.date,
           description: values.description,
           category: values.category,
-          amount: values.amount,
+          amount: amount,
         },
         {
           headers: {
