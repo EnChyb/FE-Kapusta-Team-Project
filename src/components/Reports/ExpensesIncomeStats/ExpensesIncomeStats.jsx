@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import "./ExpensesIncomeStats.css";
 import ExpensesList from "./ExpensesList";
 import IncomeList from "./IncomeList";
@@ -7,7 +7,7 @@ import upArrow from "../../../assets/svg/Vector 16.svg";
 import backArrow from "../../../assets/svg/Vector 15.svg";
 
 const ExpensesIncomeStats = () => {
-  const { date } = useParams();
+  // const { date } = useParams();
   const [label, setLabel] = useState("Expenses");
 
   const handleButton = () => {
@@ -27,9 +27,9 @@ const ExpensesIncomeStats = () => {
       </div>
 
       {label === "Expenses" ? (
-        <ExpensesList date={date} />
+        <ExpensesList />
       ) : (
-        <IncomeList date={date} />
+        <IncomeList />
       )}
     </div>
   );
