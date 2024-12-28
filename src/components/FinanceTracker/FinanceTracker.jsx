@@ -28,8 +28,6 @@ const FinanceTracker = () => {
 				},
 			});
 
-			console.log(`Data fetched for ${section}:`, response.data);
-
 			if (section === "expense") {
 				setExpenses(
 					response.data.expenses.map((transaction) => ({
@@ -46,7 +44,15 @@ const FinanceTracker = () => {
 				);
 			}
 		} catch (error) {
-			console.error(`Error fetching ${section} data:`, error.message);
+			if (error.response?.status === 404) {
+				if (section === "expense") {
+					setExpenses([]);
+				} else if (section === "income") {
+					setIncome([]);
+				}
+			} else {
+				console.error(`Error fetching ${section} data:`, error.message);
+			}
 		}
 	};
 
