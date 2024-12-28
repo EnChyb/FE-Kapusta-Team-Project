@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'
 import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import SvgBackground from "../../../assets/svg/ExpensesIncome/Rectangle 38.svg";
@@ -7,6 +8,7 @@ import API_URL from "../../../../api/apiConfig";
 import BarChartComponent from "../../BarChartComponent/BarChartComponent";
 
 const ExpensesList = ({ date }) => {
+  const { date } = useParams();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
