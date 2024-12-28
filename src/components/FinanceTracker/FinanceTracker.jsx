@@ -15,7 +15,7 @@ const FinanceTracker = () => {
   };
 
   const fetchData = async (section) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       console.error("No authorization token.");
       return;
@@ -27,7 +27,7 @@ const FinanceTracker = () => {
         },
       });
 
-  console.log(`Data fetched for ${section}:`, response.data);
+      console.log(`Data fetched for ${section}:`, response.data);
 
       if (section === "expense") {
         setExpenses(response.data.expenses);
@@ -40,13 +40,12 @@ const FinanceTracker = () => {
   };
 
   const deleteEntry = async (transactionId) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       console.error("No authorization token.");
-      return; 
-      
+      return;
     }
-    
+
     try {
       await axios.delete(`${API_URL}/transaction/${transactionId}`, {
         headers: {
@@ -54,21 +53,23 @@ const FinanceTracker = () => {
         },
       });
       console.log(`Deleted entry with ID: ${transactionId}`);
-      // Po usunięciu wpisu, odśwież dane 
+      // Po usunięciu wpisu, odśwież dane
       fetchData(activeSection === "expenses" ? "expense" : "income");
     } catch (error) {
-      console.error(`Error deleting entry with ID ${transactionId}:`, error.message);
+      console.error(
+        `Error deleting entry with ID ${transactionId}:`,
+        error.message
+      );
     }
   };
-  
+
   useEffect(() => {
     fetchData(activeSection === "expenses" ? "expense" : "income");
   }, [activeSection]);
 
   useEffect(() => {
-    console.log('Current income state:', income);
+    console.log("Current income state:", income);
   }, [income]);
-
 
   return (
     <div className="tracker-container">
