@@ -9,7 +9,9 @@ const ExpensesIncomeStats = () => {
   const [label, setLabel] = useState("Expenses");
 
   const handleButton = () => {
+    console.log("Switching label from", label);
     setLabel((prevLabel) => (prevLabel === "Expenses" ? "Income" : "Expenses"));
+    console.log("New label is", label === "Expenses" ? "Income" : "Expenses");
   };
 
   return (

@@ -4,12 +4,14 @@ import axios from "axios";
 import Svg from "../../../assets/svg/ExpensesIncome/symbol-defs.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../../api/apiConfig";
+import BarChartComponent from "../../BarChartComponent/BarChartComponent";
 
 const ExpensesList = () => {
   const { date } = useParams();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   console.log(expenses)
 
   useEffect(() => {
@@ -32,7 +34,12 @@ const ExpensesList = () => {
 
         console.log("Expenses in list", response)
 
-        const transformedExpenses = Object.entries(response.data.expenses.incomesData || {}).map(([category, data]) => ({ category, total: data.total }));
+        const transformedExpenses = Object
+          .entries(response.data.expenses.incomesData || {})
+          .map(([category, data]) => ({
+            category,
+            details: { ...data, ...Object.fromEntries(Object.entries(data).filter(([key]) => key !== "total")) }
+          }));
 
         setExpenses(transformedExpenses);
       } catch (err) {
@@ -64,19 +71,30 @@ const ExpensesList = () => {
   if (error) return <li>Error: {error}</li>;
 
   return (
+    <>
     <ul className="eiList">
-      {expenses.map((expense) => (
-        <li key={expense.category}>
-          <span className="eiIconDescription">{expense.total ? expense.total.toFixed(2) : "N/A"}</span>
+      {expenses.map(({ category, details }) => (
+        <li
+          key={category}
+          onClick={() => setSelectedCategory({ category, details })}
+        >
+          <span className="eiIconDescription">{details.total ? details.total.toFixed(2) : "N/A"}</span>
           <svg className="eiIcon">
             <use
-              href={`${Svg}#${expenseIcons[expense.category] || "icon-other"}`}
+              href={`${Svg}#${expenseIcons[category] || "icon-other"}`}
             ></use>
           </svg>
-          <span className="eiIconDescription">{expense.category}</span>
+          <span className="eiIconDescription">{category}</span>
         </li>
       ))}
-    </ul>
+      </ul>
+      {selectedCategory && (
+        <BarChartComponent
+          category={selectedCategory.category}
+          details={selectedCategory.details}
+        />
+      )}
+      </>
   );
 };
 
