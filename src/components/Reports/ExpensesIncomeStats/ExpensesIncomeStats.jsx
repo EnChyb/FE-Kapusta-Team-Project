@@ -1,4 +1,5 @@
 import { useState } from "react";
+//import { useParams } from "react-router-dom";
 import "./ExpensesIncomeStats.css";
 import ExpensesList from "./ExpensesList";
 import IncomeList from "./IncomeList";
@@ -6,12 +7,11 @@ import upArrow from "../../../assets/svg/Vector 16.svg";
 import backArrow from "../../../assets/svg/Vector 15.svg";
 
 const ExpensesIncomeStats = () => {
+  // const { date } = useParams();
   const [label, setLabel] = useState("Expenses");
 
   const handleButton = () => {
-    console.log("Switching label from", label);
     setLabel((prevLabel) => (prevLabel === "Expenses" ? "Income" : "Expenses"));
-    console.log("New label is", label === "Expenses" ? "Income" : "Expenses");
   };
 
   return (
@@ -26,7 +26,11 @@ const ExpensesIncomeStats = () => {
         </button>
       </div>
 
-      {label === "Expenses" ? <ExpensesList /> : <IncomeList />}
+      {label === "Expenses" ? (
+        <ExpensesList />
+      ) : (
+        <IncomeList />
+      )}
     </div>
   );
 };
