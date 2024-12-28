@@ -5,10 +5,12 @@ import "./Balance.css";
 import { BalanceModal } from "../BalanceModal/BalanceModal";
 
 const Balance = () => {
-	const { balance, loading, updateBalance } = useBalance();
+	const { balance, loading, updateBalance, calculateTransactionTotal } =
+		useBalance();
 	const [input, setInput] = useState(balance || "00.00");
 	const [isEditing, setIsEditing] = useState(false);
 	const [showModal, setShowModal] = useState(false);
+	const [initialBalance, setInitialBalance] = useState(balance || "00.00");
 
 	useEffect(() => {
 		if (!loading && parseFloat(balance) === 0) {
@@ -26,9 +28,7 @@ const Balance = () => {
 	};
 
 	const handleFocus = () => {
-		if (input === "00.00") {
-			setInput("");
-		}
+		setInput(initialBalance);
 		setIsEditing(true);
 	};
 
@@ -42,9 +42,9 @@ const Balance = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const newBalance = parseFloat(input);
+		const newInitialBalance = parseFloat(input);
 
-		if (isNaN(newBalance) || newBalance <= 0) {
+		if (isNaN(newInitialBalance) || newInitialBalance <= 0) {
 			toast.error("Please enter a valid balance!", {
 				autoClose: 2000,
 				theme: "colored",
@@ -52,8 +52,19 @@ const Balance = () => {
 			return;
 		}
 
-		await updateBalance(newBalance);
-		document.activeElement.blur();
+		try {
+			const totalTransactions = await calculateTransactionTotal();
+
+			const updatedBalance = newInitialBalance + totalTransactions;
+
+			await updateBalance(updatedBalance);
+
+			setInitialBalance(newInitialBalance);
+
+			document.activeElement.blur();
+		} catch (error) {
+			console.error("Error updating balance:", error.message);
+		}
 	};
 
 	return (

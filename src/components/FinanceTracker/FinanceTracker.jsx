@@ -3,119 +3,149 @@ import FinanceSection from "../FinanceSection/FinanceSection";
 import "./FinanceTracker.css";
 import axios from "axios";
 import API_URL from "../../../api/apiConfig";
+import { useBalance } from "../../context/BalanceContext";
 
 const FinanceTracker = () => {
-  const [activeSection, setActiveSection] = useState("expenses");
+	const [activeSection, setActiveSection] = useState("expenses");
+	const [expenses, setExpenses] = useState([]);
+	const [income, setIncome] = useState([]);
+	const { balance, updateBalance } = useBalance();
 
-  const [expenses, setExpenses] = useState([]);
-  const [income, setIncome] = useState([]);
+	const handleSwitchSection = (section) => {
+		setActiveSection(section);
+	};
 
-  const handleSwitchSection = (section) => {
-    setActiveSection(section);
-  };
+	const fetchData = async (section) => {
+		const token = localStorage.getItem("token");
+		if (!token) {
+			console.error("No authorization token.");
+			return;
+		}
+		try {
+			const response = await axios.get(`${API_URL}/transaction/${section}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 
-  const fetchData = async (section) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No authorization token.");
-      return;
-    }
-    try {
-      const response = await axios.get(`${API_URL}/transaction/${section}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+			console.log(`Data fetched for ${section}:`, response.data);
 
-      console.log(`Data fetched for ${section}:`, response.data);
+			if (section === "expense") {
+				setExpenses(
+					response.data.expenses.map((transaction) => ({
+						...transaction,
+						amount: -Math.abs(transaction.amount),
+					}))
+				);
+			} else if (section === "income") {
+				setIncome(
+					response.data.incomes.map((transaction) => ({
+						...transaction,
+						amount: Math.abs(transaction.amount),
+					}))
+				);
+			}
+		} catch (error) {
+			console.error(`Error fetching ${section} data:`, error.message);
+		}
+	};
 
-      if (section === "expense") {
-        setExpenses(response.data.expenses);
-      } else if (section === "income") {
-        setIncome(response.data.incomes);
-      }
-    } catch (error) {
-      console.error(`Error fetching ${section} data:`, error.message);
-    }
-  };
+	const deleteEntry = async (transactionId) => {
+		const token = localStorage.getItem("token");
+		if (!token) {
+			console.error("No authorization token.");
+			return;
+		}
 
-  const deleteEntry = async (transactionId) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.error("No authorization token.");
-      return;
-    }
+		try {
+			const transactions = activeSection === "expenses" ? expenses : income;
+			const transactionToDelete = transactions.find(
+				(transaction) => transaction._id === transactionId
+			);
 
-    try {
-      await axios.delete(`${API_URL}/transaction/${transactionId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(`Deleted entry with ID: ${transactionId}`);
-      // Po usunięciu wpisu, odśwież dane
-      fetchData(activeSection === "expenses" ? "expense" : "income");
-    } catch (error) {
-      console.error(
-        `Error deleting entry with ID ${transactionId}:`,
-        error.message
-      );
-    }
-  };
+			if (!transactionToDelete) {
+				throw new Error("Transaction not found.");
+			}
 
-  useEffect(() => {
-    fetchData(activeSection === "expenses" ? "expense" : "income");
-  }, [activeSection]);
+			await axios.delete(`${API_URL}/transaction/${transactionId}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log(`Deleted entry with ID: ${transactionId}`);
 
-  useEffect(() => {
-    console.log("Current income state:", income);
-  }, [income]);
+			const adjustment =
+				activeSection === "expenses"
+					? Math.abs(transactionToDelete.amount)
+					: -Math.abs(transactionToDelete.amount);
+			await updateBalance(parseFloat(balance) + adjustment);
 
-  return (
-    <div className="tracker-container">
-      <div className="button-container">
-        <div className="button-single">
-          <button
-            className={`switch-button ${
-              activeSection === "expenses" ? "active" : ""
-            }`}
-            onClick={() => handleSwitchSection("expenses")}
-          >
-            EXPENSES
-          </button>
-        </div>
-        <div className="button-single">
-          <button
-            className={`switch-button ${
-              activeSection === "income" ? "active" : ""
-            }`}
-            onClick={() => handleSwitchSection("income")}
-          >
-            INCOME
-          </button>
-        </div>
-      </div>
+			if (activeSection === "expenses") {
+				setExpenses((prev) =>
+					prev.filter((transaction) => transaction._id !== transactionId)
+				);
+			} else {
+				setIncome((prev) =>
+					prev.filter((transaction) => transaction._id !== transactionId)
+				);
+			}
+		} catch (error) {
+			console.error(
+				`Error deleting entry with ID ${transactionId}:`,
+				error.message
+			);
+		}
+	};
 
-      {activeSection === "expenses" && (
-        <FinanceSection
-          title="Expenses"
-          data={expenses}
-          setData={setExpenses}
-          activeSection={activeSection}
-          onDelete={deleteEntry}
-        />
-      )}
-      {activeSection === "income" && (
-        <FinanceSection
-          title="Income"
-          data={income}
-          setData={setIncome}
-          activeSection={activeSection}
-          onDelete={deleteEntry}
-        />
-      )}
-    </div>
-  );
+	useEffect(() => {
+		fetchData(activeSection === "expenses" ? "expense" : "income");
+	}, [activeSection]);
+
+	return (
+		<div className="tracker-container">
+			<div className="button-container">
+				<div className="button-single">
+					<button
+						className={`switch-button ${
+							activeSection === "expenses" ? "active" : ""
+						}`}
+						onClick={() => handleSwitchSection("expenses")}
+					>
+						EXPENSES
+					</button>
+				</div>
+				<div className="button-single">
+					<button
+						className={`switch-button ${
+							activeSection === "income" ? "active" : ""
+						}`}
+						onClick={() => handleSwitchSection("income")}
+					>
+						INCOME
+					</button>
+				</div>
+			</div>
+
+			{activeSection === "expenses" && (
+				<FinanceSection
+					title="Expenses"
+					data={expenses}
+					setData={setExpenses}
+					activeSection={activeSection}
+					onDelete={deleteEntry}
+				/>
+			)}
+			{activeSection === "income" && (
+				<FinanceSection
+					title="Income"
+					data={income}
+					setData={setIncome}
+					activeSection={activeSection}
+					onDelete={deleteEntry}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default FinanceTracker;
