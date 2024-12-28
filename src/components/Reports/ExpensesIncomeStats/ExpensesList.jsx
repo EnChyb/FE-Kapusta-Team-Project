@@ -7,7 +7,7 @@ import "./ExpensesIncomeStats.css";
 import API_URL from "../../../../api/apiConfig";
 import BarChartComponent from "../../BarChartComponent/BarChartComponent";
 
-const ExpensesList = ({ date }) => {
+const ExpensesList = () => {
   const { date } = useParams();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
