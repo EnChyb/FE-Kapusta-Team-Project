@@ -6,6 +6,7 @@ import SvgBackground from "../../../assets/svg/ExpensesIncome/Rectangle 38.svg";
 import "./ExpensesIncomeStats.css";
 import API_URL from "../../../../api/apiConfig";
 import BarChartComponent from "../../BarChartComponent/BarChartComponent";
+import Loader from "../../Loader/Loader";
 
 const ExpensesList = () => {
   const { date } = useParams();
@@ -73,7 +74,7 @@ const ExpensesList = () => {
     Other: "icon-other",
   };
 
-  if (loading) return <li>Fetching expenses...</li>;
+  if (loading) return <Loader />;
   if (error) return <li>Error: {error}</li>;
 
   return (
