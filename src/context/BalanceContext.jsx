@@ -126,11 +126,38 @@ export const BalanceProvider = ({ children }) => {
 		const token = localStorage.getItem("token");
 		if (token) {
 			fetchBalance();
+
+			checkTransactions();
 		} else {
 			setBalance("00.00");
 			setLoading(false);
 		}
 	}, [fetchBalance]);
+
+	const checkTransactions = async () => {
+		try {
+			const token = localStorage.getItem("token");
+			if (!token) return;
+
+			const [expensesResponse, incomeResponse] = await Promise.all([
+				fetch(`${API_URL}/transaction/expense`, {
+					headers: { Authorization: `Bearer ${token}` },
+				}),
+				fetch(`${API_URL}/transaction/income`, {
+					headers: { Authorization: `Bearer ${token}` },
+				}),
+			]);
+
+			const expenses = await expensesResponse.json();
+			const incomes = await incomeResponse.json();
+
+			if (expenses.length === 0 && incomes.length === 0) {
+				localStorage.removeItem("balanceConfirmed");
+			}
+		} catch (error) {
+			console.error("Error checking transactions:", error.message);
+		}
+	};
 
 	return (
 		<BalanceContext.Provider
