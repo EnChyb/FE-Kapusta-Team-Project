@@ -122,6 +122,7 @@ const LoginForm = ({ onLogin }) => {
 							id="email"
 							name="email"
 							placeholder="Enter your email"
+							autocomplete="email"
 						/>
 						<ErrorMessage name="email" component="p" className="error" />
 					</div>
@@ -135,6 +136,7 @@ const LoginForm = ({ onLogin }) => {
 							id="password"
 							name="password"
 							placeholder="Enter your password"
+							autocomplete="current-password"
 						/>
 						<ErrorMessage name="password" component="p" className="error" />
 					</div>

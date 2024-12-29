@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -7,8 +8,22 @@ import {
   CartesianGrid,
   Cell,
 } from "recharts";
+import "./BarChartComponent.css";
 
 const BarChartComponent = ({ details }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", updateLayout);
+    updateLayout();
+
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
+
   const data = Object.entries(details)
     .filter(([key]) => key !== "total")
     .map(([description, amount]) => ({
@@ -23,27 +38,47 @@ const BarChartComponent = ({ details }) => {
   };
 
   return (
-    <div
-      className="barChartContainer"
-      style={{ textAlign: "center", marginTop: "20px" }}>
+    <div className="barChartContainer">
       <BarChart
-        width={800}
-        height={400}
+        width={isMobile ? 350 : 800}
+        height={isMobile ? 500 : 400}
         data={data}
+        layout={isMobile ? "vertical" : "horizontal"}
         margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
-        <XAxis
-          dataKey="name"
-          tick={{ fontSize: 14, angle: 0 }}
-          tickLine={false}
-          axisLine={{ stroke: "#aaa" }}
-        />
-        <YAxis
-          tick={{ fontSize: 14 }}
-          tickLine={false}
-          axisLine={{ stroke: "#aaa" }}
-          unit=" EUR"
-        />
+        {isMobile ? (
+          <>
+            <YAxis
+              type="category"
+              dataKey="name"
+              tick={{ fontSize: 14 }}
+              tickLine={false}
+              axisLine={{ stroke: "#aaa" }}
+            />
+            <XAxis
+              type="number"
+              tick={{ fontSize: 14 }}
+              tickLine={false}
+              axisLine={{ stroke: "#aaa" }}
+              unit=" EUR"
+            />
+          </>
+        ) : (
+          <>
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 14 }}
+              tickLine={false}
+              axisLine={{ stroke: "#aaa" }}
+            />
+            <YAxis
+              tick={{ fontSize: 14 }}
+              tickLine={false}
+              axisLine={{ stroke: "#aaa" }}
+              unit=" EUR"
+            />
+          </>
+        )}
         <Tooltip
           formatter={(value) => `${value} EUR`}
           itemStyle={{ fontSize: "14px" }}
@@ -52,9 +87,9 @@ const BarChartComponent = ({ details }) => {
           dataKey="amount"
           fillOpacity={1}
           radius={[10, 10, 0, 0]}
-          barSize={40}
+          barSize={isMobile ? 20 : 40}
           label={{
-            position: "top",
+            position: isMobile ? "right" : "top",
             fill: "#000",
             fontSize: 14,
             formatter: (value) => `${value} EUR`,

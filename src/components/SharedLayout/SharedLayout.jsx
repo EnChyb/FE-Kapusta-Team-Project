@@ -14,18 +14,18 @@ const SharedLayout = ({ user, onLogout }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const storedToken = localStorage.getItem("token");
-		const storedUser = localStorage.getItem("user");
-
-		if (storedToken && storedUser) {
-			setToken(storedToken);
+		const token = localStorage.getItem("token");
+		const user = localStorage.getItem("user");
+	  
+		if (!token || !user) {
+		  onLogout();
+		  navigate("/");
 		} else {
-			onLogout();
-			navigate("/");
+		  setToken(token);
 		}
-
+	  
 		setLoading(false);
-	}, [navigate, onLogout]);
+	  }, [navigate, onLogout]);
 
 	useEffect(() => {
 		if (token && location.pathname === "/") {
