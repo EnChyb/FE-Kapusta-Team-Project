@@ -1,39 +1,38 @@
 import "./FinanceTable.css";
 
 const FinanceTable = ({ data = [], onDelete }) => {
-	const rowesToDisplay = 12;
+  const rowesToDisplay = 12;
 
-	const tableData = [
-		...data,
-		...Array.from(
-			{ length: Math.max(rowesToDisplay - data.length, 0) },
-			() => ({
-				date: "",
-				description: "",
-				category: "",
-				amount: null,
-			})
-		),
-	];
+  const sortedData = [...data].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
-	const formatDate = (dateString) => {
-		if (!dateString) return "";
-		const date = new Date(dateString);
-		return date
-			.toLocaleDateString("en-GB", {
-				day: "2-digit",
-				month: "2-digit",
-				year: "numeric",
-			})
-			.split("/")
-			.join(".");
-	};
+  const tableData = [
+    ...data,
+    ...sortedData,
+    ...Array.from(
+      { length: Math.max(rowesToDisplay - data.length, 0) },
+      () => ({
+        date: "",
+        description: "",
+        category: "",
+        amount: null,
+      })
+    ),
+  ];
 
-	const formatAmount = (amount) => {
-		if (amount === null) return "";
-		const absAmount = Math.abs(amount);
-		return `${amount < 0 ? "- " : ""}${absAmount.toFixed(2)} EUR`;
-	};
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+      .split("/")
+      .join(".");
+  };
 
 	return (
 		<div className="finance-table-container">
