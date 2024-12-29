@@ -49,15 +49,6 @@ const LoginForm = ({ onLogin }) => {
 
 	const handleSubmit = async (values, actionType) => {
 		try {
-			if (!values.email || !values.password) {
-				iziToast.error({
-					title: "Validation Error",
-					message: "Email and password are required.",
-					position: "topRight",
-					timeout: 3000,
-				});
-				return;
-			}
 			const endpoint =
 				actionType === "register" ? "/auth/register" : "/auth/login";
 			const response = await axios.post(`${API_URL}${endpoint}`, values);
@@ -69,6 +60,10 @@ const LoginForm = ({ onLogin }) => {
 			const userData = { email: values.email };
 			localStorage.setItem("token", response.data.accessToken);
 			localStorage.setItem("user", JSON.stringify(userData));
+
+			if (actionType === "register") {
+				localStorage.setItem("balanceConfirmed", "false");
+			}
 
 			iziToast.success({
 				title:
@@ -85,7 +80,6 @@ const LoginForm = ({ onLogin }) => {
 			navigate("/home");
 		} catch (error) {
 			console.error("Error during login/register:", error);
-
 			iziToast.error({
 				title: "Error",
 				message:
@@ -122,7 +116,7 @@ const LoginForm = ({ onLogin }) => {
 							id="email"
 							name="email"
 							placeholder="Enter your email"
-							autocomplete="email"
+							autoComplete="email"
 						/>
 						<ErrorMessage name="email" component="p" className="error" />
 					</div>
@@ -136,7 +130,7 @@ const LoginForm = ({ onLogin }) => {
 							id="password"
 							name="password"
 							placeholder="Enter your password"
-							autocomplete="current-password"
+							autoComplete="current-password"
 						/>
 						<ErrorMessage name="password" component="p" className="error" />
 					</div>

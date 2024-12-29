@@ -7,13 +7,14 @@ import { BalanceModal } from "../BalanceModal/BalanceModal";
 const Balance = () => {
 	const { balance, loading, updateBalance, calculateTransactionTotal } =
 		useBalance();
-	const [input, setInput] = useState(balance || "00.00");
+	const [input, setInput] = useState(balance || "0.00");
 	const [isEditing, setIsEditing] = useState(false);
 	const [showModal, setShowModal] = useState(false);
-	const [initialBalance, setInitialBalance] = useState(balance || "00.00");
+	const [initialBalance, setInitialBalance] = useState(balance || "0.00");
 
 	useEffect(() => {
-		if (!loading && parseFloat(balance) === 0) {
+		const balanceConfirmed = localStorage.getItem("balanceConfirmed");
+		if (!loading && parseFloat(balance) === 0 && balanceConfirmed !== "true") {
 			setShowModal(true);
 		} else {
 			setShowModal(false);
@@ -44,7 +45,7 @@ const Balance = () => {
 		e.preventDefault();
 		const newInitialBalance = parseFloat(input);
 
-		if (isNaN(newInitialBalance) || newInitialBalance <= 0) {
+		if (isNaN(newInitialBalance) || newInitialBalance < 0) {
 			toast.error("Please enter a valid balance!", {
 				autoClose: 2000,
 				theme: "colored",
@@ -54,13 +55,14 @@ const Balance = () => {
 
 		try {
 			const totalTransactions = await calculateTransactionTotal();
-
 			const updatedBalance = newInitialBalance + totalTransactions;
 
 			await updateBalance(updatedBalance);
 
 			setInitialBalance(newInitialBalance);
 
+			localStorage.setItem("balanceConfirmed", "true");
+			setShowModal(false);
 			document.activeElement.blur();
 		} catch (error) {
 			console.error("Error updating balance:", error.message);
