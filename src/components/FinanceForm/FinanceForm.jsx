@@ -198,6 +198,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                         <div className="tracker__amount-input-container">
                             <Field
                                 type="number"
+                                inputmode="decimal"
                                 name="amount"
                                 placeholder="0.00"
                                 className="tracker__amount-input"

@@ -60,6 +60,7 @@
     border-radius: 16px 16px 0 0;
     padding-inline: 20px;
     line-height: 0;
+    cursor: text;
 }
 
 .tracker__description-input-container .error {
@@ -86,6 +87,7 @@
     border-radius: 0 0 16px 0;
     background-color: var(--clr-background);
     box-shadow: none;
+    cursor: pointer;
 }
 
 .tracker__select-input-container .css-hlgwow {
@@ -126,6 +128,7 @@
 .tracker__select-input-container .select-option--is-not-selected,
 .tracker__select-input-container .select-option--is-selected {
     padding: 8px 19px;
+    cursor: pointer;
 }
 
 .tracker__select-input-container .select-option--is-selected {
@@ -165,6 +168,15 @@
     border-right: 2px solid #e0e0e0;
     padding-inline: 16px;
     text-align: right;
+    cursor: text;
+}
+.tracker__amount-input::-webkit-outer-spin-button,
+.tracker__amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.tracker__amount-input {
+    -moz-appearance: textfield;
 }
 
 .tracker__amount-input-container .error {
