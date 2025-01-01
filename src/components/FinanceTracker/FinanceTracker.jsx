@@ -121,7 +121,7 @@ const FinanceTracker = () => {
     };
 
     return (
-        <div className="tracker">
+        <section className="tracker">
             <button
                 className="tracker__add-transaction-btn"
                 onClick={mobileHamburgerToggle}
@@ -173,7 +173,7 @@ const FinanceTracker = () => {
                     onDelete={deleteEntry}
                 />
             )}
-        </div>
+        </section>
     );
 };
 

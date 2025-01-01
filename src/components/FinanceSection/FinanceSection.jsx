@@ -30,7 +30,7 @@ const FinanceSection = ({ data, setData, activeSection, onDelete }) => {
     return (
         <div className="tracker__finance-section">
             <FinanceForm onAdd={addEntry} activeSection={activeSection} />
-            <div className="finance-details">
+            <div className="tracker__finance-section-details">
                 <FinanceTable data={data} onDelete={deleteEntry} />
                 <Summary data={data} />
             </div>

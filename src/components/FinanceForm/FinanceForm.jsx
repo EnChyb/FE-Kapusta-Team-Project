@@ -119,7 +119,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             onSubmit={(values, actions) => handleFormSubmit(values, actions)}
         >
             {({ setFieldValue, values }) => (
-                <Form className="tracker__form">
+                <Form className="tracker__form is-open">
                     <button
                         type="button"
                         className="tracker__mobile-back-btn"
@@ -147,7 +147,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                             />
                             <ErrorMessage
                                 name="date"
-                                component="div"
+                                component="p"
                                 className="error"
                             />
                         </div>
@@ -160,7 +160,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                             />
                             <ErrorMessage
                                 name="description"
-                                component="div"
+                                component="p"
                                 className="error"
                             />
                         </div>
@@ -190,7 +190,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                             />
                             <ErrorMessage
                                 name="category"
-                                component="div"
+                                component="p"
                                 className="error"
                             />
                         </div>
@@ -205,7 +205,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                             />
                             <ErrorMessage
                                 name="amount"
-                                component="div"
+                                component="p"
                                 className="error"
                             />
                             <svg
