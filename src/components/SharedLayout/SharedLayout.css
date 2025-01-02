@@ -105,6 +105,12 @@ main.reports-page::before {
     z-index: -1;
 }
 
+@media (width >= 665px) {
+    main.home-page::before {
+        height: 187px;
+    }
+}
+
 @media (width >= 772px) {
     main.home-page,
     main.reports-page {

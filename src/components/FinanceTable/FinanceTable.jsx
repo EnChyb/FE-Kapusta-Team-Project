@@ -1,7 +1,7 @@
 import "./FinanceTable.css";
 
 const FinanceTable = ({ data = [], onDelete }) => {
-    const rowesToDisplay = 12;
+    const rowsToDisplay = 9;
 
     const sortedData = [...data].sort(
         (a, b) => new Date(b.date) - new Date(a.date)
@@ -10,7 +10,7 @@ const FinanceTable = ({ data = [], onDelete }) => {
     const tableData = [
         ...sortedData,
         ...Array.from(
-            { length: Math.max(rowesToDisplay - sortedData.length, 0) },
+            { length: Math.max(rowsToDisplay - sortedData.length, 0) },
             () => ({
                 date: "",
                 description: "",
@@ -23,62 +23,79 @@ const FinanceTable = ({ data = [], onDelete }) => {
     const formatDate = (dateString) => {
         if (!dateString) return "";
         const date = new Date(dateString);
-        return date
-            .toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-            })
-            .split("/")
-            .join(".");
+        return date.toLocaleDateString("pl-PL", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
     };
 
     const formatAmount = (amount) => {
         if (amount === null) return "";
-        const absAmount = Math.abs(amount);
-        return `${amount < 0 ? "- " : ""}${absAmount.toFixed(2)} EUR`;
+        return new Intl.NumberFormat("fr-FR", {
+            style: "currency",
+            currency: "EUR",
+        }).format(amount);
     };
 
     return (
-        <div className="finance-table-container">
-            <table className="finance-table">
-                <tbody className="finance-table-header">
+        <div className="tracker__table-wrapper">
+            <h2 className="visually-hidden">Transaction tracker</h2>
+            <table className="tracker__table">
+                <caption className="visually-hidden">
+                    A list of recorded transactions
+                </caption>
+                <thead className="tracker__table-header">
                     <tr>
-                        <th>DATE</th>
-                        <th>DESCRIPTION</th>
-                        <th>CATEGORY</th>
-                        <th>SUM</th>
-                        <th></th>
+                        <th scope="col">DATE</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">CATEGORY</th>
+                        <th scope="col">SUM</th>
+                        <th scope="col" aria-hidden="true"></th>
                     </tr>
-                </tbody>
-                <tbody className="finance-table-body">
+                </thead>
+
+                <tbody className="tracker__table-body">
                     {tableData.map((entry, index) => (
-                        <tr key={entry._id || index}>
-                            <td>{formatDate(entry.date)}</td>
-                            <td>{entry.description}</td>
-                            <td>{entry.category}</td>
+                        <tr
+                            key={entry._id || index}
+                            className="tracker__table-entry"
+                        >
+                            <td className="tracker__table-entry-date">
+                                {formatDate(entry.date)}
+                            </td>
+                            <td className="tracker__table-entry-description">
+                                {entry.description}
+                            </td>
+                            <td className="tracker__table-entry-category">
+                                {entry.category}
+                            </td>
                             <td
                                 className={
                                     entry.amount < 0
-                                        ? "negative-amount"
-                                        : "positive-amount"
+                                        ? "tracker__table-entry-negative-amount"
+                                        : "tracker__table-entry-positive-amount"
                                 }
                             >
                                 {formatAmount(entry.amount)}
                             </td>
-                            <td>
+                            <td className="tracker__table-entry-delete">
                                 {entry.amount !== null && (
                                     <button
-                                        className="delete-btn"
+                                        className="tracker__table-entry-delete-btn"
+                                        type="button"
                                         onClick={() =>
                                             onDelete(index, entry.amount)
                                         }
-                                        aria-label="Delete entry"
+                                        aria-label={`Delete entry for ${
+                                            entry.description
+                                        } on ${formatDate(entry.date)}`}
                                     >
                                         <svg
-                                            width="32"
-                                            height="32"
-                                            viewBox="0 0 32 32"
+                                            width="18"
+                                            height="18"
+                                            aria-hidden="true"
+                                            className="tracker__table-entry-delete-btn-icon"
                                         >
                                             <use href="/sprite.svg#trash" />
                                         </svg>

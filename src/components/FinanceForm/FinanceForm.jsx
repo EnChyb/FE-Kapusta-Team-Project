@@ -119,7 +119,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
             onSubmit={(values, actions) => handleFormSubmit(values, actions)}
         >
             {({ setFieldValue, values }) => (
-                <Form className="tracker__form is-open">
+                <Form className="tracker__form">
                     <button
                         type="button"
                         className="tracker__mobile-back-btn"
@@ -198,7 +198,7 @@ const FinanceForm = ({ onAdd, activeSection }) => {
                         <div className="tracker__amount-input-container">
                             <Field
                                 type="number"
-                                inputmode="decimal"
+                                inputMode="decimal"
                                 name="amount"
                                 placeholder="0.00"
                                 className="tracker__amount-input"
