@@ -9,6 +9,15 @@
         border-radius: 0 30px 30px 30px;
         box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
     }
+
+    .tracker__finance-section-details {
+        position: relative;
+    }
+    .summary__container {
+        position: absolute;
+        bottom: -352px;
+        left: -40px;
+    }
 }
 
 @media (width >= 1280px) {
@@ -20,5 +29,12 @@
     .tracker__finance-section-details {
         display: flex;
         gap: 75px;
+    }
+    .tracker__table-wrapper {
+        flex: 1;
+    }
+    .summary__container {
+        position: static;
+        flex: 0;
     }
 }

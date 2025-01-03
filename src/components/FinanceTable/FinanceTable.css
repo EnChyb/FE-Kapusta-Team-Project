@@ -1,6 +1,7 @@
 .tracker__table {
     width: 100%;
     table-layout: fixed;
+    margin-bottom: 53px;
 }
 
 .tracker__table-header {
@@ -146,6 +147,8 @@
 
 @media (width >= 772px) {
     .tracker__table {
+        margin-bottom: 0;
+
         border-collapse: collapse;
         table-layout: fixed;
         width: 100%;

@@ -122,6 +122,7 @@ main.reports-page::before {
             91px,
             calc(32px + (91 - 32) * ((100vw - 772px) / (1280 - 772)))
         );
+        padding-bottom: 310px;
     }
 
     main.reports-page.container {
@@ -147,7 +148,7 @@ main.reports-page::before {
         background-image: url(../../assets/images/background-cabbage/cabbage-tablet-bottom.webp);
         background-repeat: no-repeat;
         background-size: 183px;
-        background-position: bottom 60px right 88px;
+        background-position: bottom 60px right 12vw;
         z-index: -1;
     }
 
@@ -157,6 +158,10 @@ main.reports-page::before {
 }
 
 @media (width >= 1280px) {
+    main.home-page.container {
+        padding-bottom: 1px;
+    }
+
     main.home-page::after,
     main.reports-page::after {
         background-image: url(../../assets/images/background-cabbage/cabbage-desktop-bottom.webp);
