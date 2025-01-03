@@ -1,37 +1,93 @@
-.tracker-container {
-  /* padding: 20px; */
-  font-family: Arial, sans-serif;
-  margin: 0 59px;
+.tracker__add-transaction-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 auto;
+    margin-bottom: 36px;
+    min-height: 40px;
 }
 
-.button-container {
-  display: flex;
-  flex-direction: row;
+.tracker__btn-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    z-index: 1;
 }
 
-.switch-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 15px 15px 0 0;
-  cursor: pointer;
-  background-color: #fafbfd;
-  color: #000;
-  font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.tracker__btns-separator {
+    width: 4px;
+    background-color: #ffffff;
 }
 
-.switch-button.active {
-  background-color: #fefefe;
-  color: #ff751d;
+.tracker__selection-btn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 53px;
+    background-color: var(--clr-background);
+    cursor: pointer;
+    line-height: 0;
 }
 
-.switch-button:hover {
-  background-color: #ff751d;
-  color: #fefefe;
+.tracker__selection-btn.tracker__selection-btn--is-active {
+    background-color: var(--clr-accent);
+    color: #ffffff;
 }
 
-@media only screen and (min-width: 772px) and (max-width: 1279px) {
-  .tracker-container {
-    margin: 0px;
-  }
+@media (width >= 772px) {
+    .tracker__add-transaction-btn {
+        display: none;
+    }
+
+    .tracker__btn-container {
+        position: static;
+    }
+
+    .tracker__btns-separator {
+        display: none;
+    }
+
+    .tracker__selection-btn {
+        flex: unset;
+        min-height: 40px;
+        width: 138px;
+        border-radius: 20px 20px 0 0;
+        background-color: #fafbfd;
+    }
+
+    .tracker__selection-btn.tracker__selection-btn--is-active {
+        background-color: #fefefe;
+        color: var(--clr-accent);
+    }
+}
+
+/* Typography */
+.tracker__add-transaction-btn {
+    color: var(--clr-primary-light);
+    font-size: 0.75rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.04em;
+}
+
+.tracker__selection-btn {
+    color: var(--clr-titles);
+    font-size: 0.75rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.02em;
+}
+
+/* Animations */
+.tracker__selection-btn {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (width >= 772px) {
+    .tracker__selection-btn:hover {
+        background-color: #ff751d;
+        color: #fefefe;
+    }
 }

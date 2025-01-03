@@ -31,7 +31,7 @@ const DataHeader = () => {
     console.log(date);
 
     return (
-        <div className="data-header__container">
+        <section className="data-header__container">
             <button className="data-header__btn">
                 <svg width="18" height="18" aria-hidden="true">
                     <use href="/sprite.svg#back-arrow"></use>
@@ -48,7 +48,7 @@ const DataHeader = () => {
                 </svg>
             </Link>
             <Balance />
-        </div>
+        </section>
     );
 };
 
